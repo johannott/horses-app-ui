@@ -1,0 +1,10 @@
+<table
+  class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"
+>
+  <tr>
+    <th class="mdl-data-table__cell--non-numeric">Horse Name</th>
+  </tr>
+  <tr *ngFor="let horse of horses">
+    <td class="mdl-data-table__cell--non-numeric">{{horse.horse_name}}</td>
+  </tr>
+</table>
