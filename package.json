@@ -1,11 +1,13 @@
 {
   "name": "horses-graph-qlclient",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "engines": { "node": "10.12.0", "npm": "6.4.1" },
   "scripts": {
     "ng": "ng",
     "start:dev": "ng serve",
-    "start": "ng build --prod --max_old_space_size=4096",
+    "start": "node server.js",
     "build": "ng build",
+    "postinstall": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
