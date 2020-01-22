@@ -1,7 +1,11 @@
 {
-  "name": "horses-graph-qlclient",
-  "version": "0.0.1",
-  "engines": { "node": "10.12.0", "npm": "6.4.1" },
+  "name": "horses-graphql-client",
+  "version": "0.1.0",
+  "engines": {
+    "node": "10.12.0",
+    "npm": "6.4.1"
+  },
+  "author": "Johann Ott <johann.ott@gmail.com>",
   "scripts": {
     "ng": "ng",
     "start:dev": "ng serve",
@@ -26,15 +30,17 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "apollo-angular": "^1.8.0",
+    "apollo-angular-link-http": "^1.9.0",
+    "apollo-cache-inmemory": "^1.6.0",
+    "apollo-client": "^2.6.0",
+    "apollo-link": "^1.2.11",
+    "axios": "^0.19.1",
+    "graphql": "^14.5.0",
+    "graphql-tag": "^2.10.0",
+    "jwt-decode": "^2.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
-    "zone.js": "~0.9.1",
-    "apollo-angular-link-http": "^1.9.0",
-    "apollo-link": "^1.2.11",
-    "apollo-client": "^2.6.0",
-    "apollo-cache-inmemory": "^1.6.0",
-    "graphql-tag": "^2.10.0",
-    "graphql": "^14.5.0"
+    "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular/language-service": "~8.2.14",

@@ -5,7 +5,25 @@ import gql from 'graphql-tag';
 const HORSES_QUERY = gql`
   query { 
     horses {
-      horse_name
+      horse_name,
+      trainer,
+      regular_jockey,
+      owner,
+      age,
+      gender,
+      sire,
+      form,
+      races,
+      wins,
+      places,
+      win_percentage,
+      place_percentage,
+      type,
+      distance,
+      ground,
+      track,
+      comments,
+      link
     }
   }
 `;

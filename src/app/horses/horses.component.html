@@ -1,10 +1,48 @@
-<table
-  class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp"
->
-  <tr>
-    <th class="mdl-data-table__cell--non-numeric">Horse Name</th>
-  </tr>
-  <tr *ngFor="let horse of horses">
-    <td class="mdl-data-table__cell--non-numeric">{{horse.horse_name}}</td>
-  </tr>
-</table>
+<table class="table table-sm">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Horse Name</th>
+        <th scope="col">Trainer</th>
+        <th scope="col">Jockey</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Sire</th>
+        <th scope="col">Form</th>
+        <th scope="col">Races</th>
+        <th scope="col">Wins</th>
+        <th scope="col">Places</th>
+        <th scope="col">Win %</th>
+        <th scope="col">Place %</th>
+        <th scope="col">Type</th>
+        <th scope="col">Distance</th>
+        <th scope="col">Ground</th>
+        <th scope="col">Track</th>
+        <th scope="col">Comments</th>
+        <!-- <th scope="col">Link</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let horse of horses">
+        <td>{{horse.horse_name}}</td>
+        <td>{{horse.trainer}}</td>
+        <td>{{horse.regular_jockey}}</td>
+        <td>{{horse.owner}}</td>
+        <td>{{horse.age}}</td>
+        <td>{{horse.gender}}</td>
+        <td>{{horse.sire}}</td>
+        <td>{{horse.form}}</td>
+        <td>{{horse.races}}</td>
+        <td>{{horse.wins}}</td>
+        <td>{{horse.places}}</td>
+        <td>{{horse.win_percentage}}</td>
+        <td>{{horse.place_percentage}}</td>
+        <td>{{horse.type}}</td>
+        <td>{{horse.distance}}</td>
+        <td>{{horse.ground}}</td>
+        <td>{{horse.track}}</td>
+        <td>{{horse.comments}}</td>
+        <!-- <td>{{horse.link}}</td> -->
+      </tr>
+    </tbody>
+  </table>
