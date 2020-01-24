@@ -1,48 +1,68 @@
-<table class="table table-sm table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse Name</th>
-        <th scope="col" sortable="trainer" (sort)="onSort($event)">Trainer</th>
-        <th scope="col" sortable="regular_jockey" (sort)="onSort($event)">Jockey</th>
-        <th scope="col" sortable="owner" (sort)="onSort($event)">Owner</th>
-        <th scope="col" sortable="age" (sort)="onSort($event)">Age</th>
-        <th scope="col" sortable="gender" (sort)="onSort($event)">Gender</th>
-        <th scope="col" sortable="sire" (sort)="onSort($event)">Sire</th>
-        <th scope="col" sortable="form" (sort)="onSort($event)">Form</th>
-        <th scope="col" sortable="races" (sort)="onSort($event)">Races</th>
-        <th scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>
-        <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
-        <th scope="col" sortable="win_percentage" (sort)="onSort($event)">Win %</th>
-        <th scope="col" sortable="place_percentage" (sort)="onSort($event)">Place %</th>
-        <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
-        <th scope="col" sortable="distance" (sort)="onSort($event)">Distance</th>
-        <th scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
-        <th scope="col" sortable="track" (sort)="onSort($event)">Track</th>
-        <th scope="col" sortable="comments" (sort)="onSort($event)">Comments</th>
-        <!-- <th scope="col">Link</th> -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let horse of horses">
-        <td>{{horse.horse_name}}</td>
-        <td>{{horse.trainer}}</td>
-        <td>{{horse.regular_jockey}}</td>
-        <td>{{horse.owner}}</td>
-        <td>{{horse.age}}</td>
-        <td>{{horse.gender}}</td>
-        <td>{{horse.sire}}</td>
-        <td>{{horse.form}}</td>
-        <td>{{horse.races}}</td>
-        <td>{{horse.wins}}</td>
-        <td>{{horse.places}}</td>
-        <td>{{horse.win_percentage}}</td>
-        <td>{{horse.place_percentage}}</td>
-        <td>{{horse.type}}</td>
-        <td>{{horse.distance}}</td>
-        <td>{{horse.ground}}</td>
-        <td>{{horse.track}}</td>
-        <td>{{horse.comments}}</td>
-        <!-- <td>{{horse.link}}</td> -->
-      </tr>
-    </tbody>
-  </table>
+
+<form>
+  <div class="form-group form-inline horses-search">
+      Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+  </div>
+  <table class="table table-sm table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse Name</th>
+          <th scope="col" sortable="trainer" (sort)="onSort($event)">Trainer</th>
+          <th scope="col" sortable="regular_jockey" (sort)="onSort($event)">Jockey</th>
+          <th scope="col" sortable="owner" (sort)="onSort($event)">Owner</th>
+          <th scope="col" sortable="age" (sort)="onSort($event)">Age</th>
+          <th scope="col" sortable="gender" (sort)="onSort($event)">Gender</th>
+          <th scope="col" sortable="sire" (sort)="onSort($event)">Sire</th>
+          <th scope="col" sortable="form" (sort)="onSort($event)">Form</th>
+          <th scope="col" sortable="races" (sort)="onSort($event)">Races</th>
+          <th scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>
+          <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
+          <th scope="col" sortable="win_percentage" (sort)="onSort($event)">Win %</th>
+          <th scope="col" sortable="place_percentage" (sort)="onSort($event)">Place %</th>
+          <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+          <th scope="col" sortable="distance" (sort)="onSort($event)">Distance</th>
+          <th scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
+          <th scope="col" sortable="track" (sort)="onSort($event)">Track</th>
+          <th scope="col" sortable="comments" (sort)="onSort($event)">Comments</th>
+          <!-- <th scope="col">Link</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let horse of horses$ | async">
+          <td><ngb-highlight [result]="horse.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.trainer" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.regular_jockey" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.owner" [term]="service.searchTerm"></ngb-highlight></td>
+          <td>{{horse.age}}</td>
+          <td>{{horse.gender}}</td>
+          <td><ngb-highlight [result]="horse.sire" [term]="service.searchTerm"></ngb-highlight></td>
+          <td>{{horse.form}}</td>
+          <td>{{horse.races}}</td>
+          <td>{{horse.wins}}</td>
+          <td>{{horse.places}}</td>
+          <td>{{horse.win_percentage}}</td>
+          <td>{{horse.place_percentage}}</td>
+          <td><ngb-highlight [result]="horse.type" [term]="service.searchTerm"></ngb-highlight></td>
+          <td>{{horse.distance}}</td>
+          <td>{{horse.ground}}</td>
+          <td>{{horse.track}}</td>
+          <td>{{horse.comments}}</td>
+          <!-- <td>{{horse.link}}</td> -->
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+        [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+      </ngb-pagination>
+  
+      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+        <option [ngValue]="20">20 items per page</option>
+        <option [ngValue]="40">40 items per page</option>
+        <option [ngValue]="60">60 items per page</option>
+      </select>
+    </div>
+
+</form>

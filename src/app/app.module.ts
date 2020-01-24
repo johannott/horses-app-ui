@@ -7,7 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HorsesComponent, NgbdSortableHeader } from './horses/horses.component';
+import { HorsesComponent } from './horses/horses.component';
+import { NgbdSortableHeader } from './horses/sortable.directive';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
