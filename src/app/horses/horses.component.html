@@ -1,24 +1,24 @@
-<table class="table table-sm">
+<table class="table table-sm table-striped">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Horse Name</th>
-        <th scope="col">Trainer</th>
-        <th scope="col">Jockey</th>
-        <th scope="col">Owner</th>
-        <th scope="col">Age</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Sire</th>
-        <th scope="col">Form</th>
-        <th scope="col">Races</th>
-        <th scope="col">Wins</th>
-        <th scope="col">Places</th>
-        <th scope="col">Win %</th>
-        <th scope="col">Place %</th>
-        <th scope="col">Type</th>
-        <th scope="col">Distance</th>
-        <th scope="col">Ground</th>
-        <th scope="col">Track</th>
-        <th scope="col">Comments</th>
+        <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse Name</th>
+        <th scope="col" sortable="trainer" (sort)="onSort($event)">Trainer</th>
+        <th scope="col" sortable="regular_jockey" (sort)="onSort($event)">Jockey</th>
+        <th scope="col" sortable="owner" (sort)="onSort($event)">Owner</th>
+        <th scope="col" sortable="age" (sort)="onSort($event)">Age</th>
+        <th scope="col" sortable="gender" (sort)="onSort($event)">Gender</th>
+        <th scope="col" sortable="sire" (sort)="onSort($event)">Sire</th>
+        <th scope="col" sortable="form" (sort)="onSort($event)">Form</th>
+        <th scope="col" sortable="races" (sort)="onSort($event)">Races</th>
+        <th scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>
+        <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
+        <th scope="col" sortable="win_percentage" (sort)="onSort($event)">Win %</th>
+        <th scope="col" sortable="place_percentage" (sort)="onSort($event)">Place %</th>
+        <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+        <th scope="col" sortable="distance" (sort)="onSort($event)">Distance</th>
+        <th scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
+        <th scope="col" sortable="track" (sort)="onSort($event)">Track</th>
+        <th scope="col" sortable="comments" (sort)="onSort($event)">Comments</th>
         <!-- <th scope="col">Link</th> -->
       </tr>
     </thead>

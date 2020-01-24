@@ -2,18 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { DataTablesModule } from 'angular-datatables';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HorsesComponent } from './horses/horses.component';
+import { HorsesComponent, NgbdSortableHeader } from './horses/horses.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HorsesComponent,
+    NgbdSortableHeader,
     HomeComponent,
     AuthComponent
   ],
@@ -22,7 +27,9 @@ import { AuthComponent } from './auth/auth.component';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DataTablesModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
