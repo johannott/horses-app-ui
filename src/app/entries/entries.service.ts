@@ -1,43 +1,32 @@
 import {Injectable, PipeTransform} from '@angular/core';
-import {DecimalPipe} from '@angular/common';
+import { DecimalPipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
-import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
-import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 
 import { Apollo, QueryRef } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-import { Horse } from './horse';
-import {SortDirection} from './sortable.directive';
+import { Entry } from './entry';
+import { SortDirection } from '../horses/sortable.directive';
 
-const HORSES_QUERY = gql`
-  query { 
-    horses {
+const ENTRIES_QUERY = gql`
+  query EntriesByRaceName($race_name: String!){ 
+    entriesByRace(race_name: $race_name) {
       horse_name,
-      trainer,
-      regular_jockey,
-      owner,
-      age,
-      gender,
-      sire,
-      form,
-      races,
-      wins,
-      places,
-      win_percentage,
-      place_percentage,
-      type,
-      distance,
-      ground,
-      track,
-      comments,
-      link
+      number
+      weight,
+      jockey,
+      trends,
+      tipped,
+      bets
     }
   }
 `;
 
 interface SearchResult {
-  horses: Horse[];
+  entries: Entry[];
   total: number;
 }
 
@@ -53,34 +42,36 @@ function compare(v1, v2) {
   return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
-function sort(horses: Horse[], column: string, direction: string): Horse[] {
+function sort(entries: Entry[], column: string, direction: string): Entry[] {
   if (direction === '') {
-    return horses;
+    return entries;
   } else {
-    return [...horses].sort((a, b) => {
+    return [...entries].sort((a, b) => {
       const res = compare(a[column], b[column]);
       return direction === 'asc' ? res : -res;
     });
   }
 }
 
-function matches(horse: Horse, term: string, pipe: PipeTransform) {
-  return horse.horse_name.toLowerCase().includes(term.toLowerCase())
-    || horse.trainer.toLowerCase().includes(term.toLowerCase())
-    || horse.regular_jockey.toLowerCase().includes(term.toLowerCase())
-    || horse.owner.toLowerCase().includes(term.toLowerCase())
-    || horse.sire.toLowerCase().includes(term.toLowerCase())
-    || horse.type.toLowerCase().includes(term.toLowerCase());
+function matches(entry: Entry, term: string, pipe: PipeTransform) {
+  return entry.horse_name.toLowerCase().includes(term.toLowerCase())
+    || entry.number.toLowerCase().includes(term.toLowerCase())
+    || entry.weight.toLowerCase().includes(term.toLowerCase())
+    || entry.jockey.toLowerCase().includes(term.toLowerCase())
+    || entry.trends.toLowerCase().includes(term.toLowerCase())
+    || entry.tipped.toLowerCase().includes(term.toLowerCase())
+    || entry.bets.toLowerCase().includes(term.toLowerCase());
 }
 
 @Injectable({providedIn: 'root'})
-export class HorseService {
+export class EntriesService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _horses$ = new BehaviorSubject<Horse[]>([]);
+  private _entries$ = new BehaviorSubject<Entry[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
   private query: QueryRef<any>;
-  private HORSES: Horse[];
+  private ENTRIES: Entry[];
+  private race_name 
 
   private _state: State = {
     page: 1,
@@ -90,14 +81,19 @@ export class HorseService {
     sortDirection: ''
   };
 
-  constructor(private pipe: DecimalPipe, private apollo: Apollo) {
-    this.query = this.apollo.watchQuery({
-        query: HORSES_QUERY
+  constructor(private pipe: DecimalPipe, private apollo: Apollo, private route: ActivatedRoute) {
+    this.race_name = this.route.snapshot.params['race_name']
+      this.query = this.apollo.watchQuery({
+        query: ENTRIES_QUERY,
+        variables: {race_name: this.race_name}
       });
   
       this.query.valueChanges.subscribe(result => {
-        this.HORSES = result.data && result.data.horses;
-      });
+        this.ENTRIES = result.data && result.data.entriesByRace && result.data.entriesByRace;
+        console.log(this.ENTRIES)
+      })
+
+    
 
     this._search$.pipe(
       tap(() => this._loading$.next(true)),
@@ -106,14 +102,14 @@ export class HorseService {
       delay(200),
       tap(() => this._loading$.next(false))
     ).subscribe(result => {
-      this._horses$.next(result.horses);
+      this._entries$.next(result.entries);
       this._total$.next(result.total);
     });
 
     this._search$.next();
   }
 
-  get horses$() { return this._horses$.asObservable(); }
+  get entries$() { return this._entries$.asObservable(); }
   get total$() { return this._total$.asObservable(); }
   get loading$() { return this._loading$.asObservable(); }
   get page() { return this._state.page; }
@@ -135,14 +131,14 @@ export class HorseService {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
     // 1. sort
-    let horses = sort(this.HORSES, sortColumn, sortDirection);
+    let entries = sort(this.ENTRIES, sortColumn, sortDirection);
 
     // 2. filter
-    horses = horses.filter(horse => matches(horse, searchTerm, this.pipe));
-    const total = horses.length;
+    entries = entries.filter(entry => matches(entry, searchTerm, this.pipe));
+    const total = entries.length;
 
     // 3. paginate
-    horses = horses.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({horses, total});
+    entries = entries.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+    return of({entries, total});
   }
 }

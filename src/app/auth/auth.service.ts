@@ -16,6 +16,7 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     user = new BehaviorSubject<User>(null);
+    private tokenExpirationTimer: any;
 
     constructor(private router: Router){}
 
@@ -33,11 +34,12 @@ export class AuthService {
         if (res.data.data) {
             const token = res.data.data.signIn.token;
             const decoded = jwt_decode(token);
-            const expirationDate = new Date(new Date().getTime() + decoded.exp * 1000);
+            const expirationDate = new Date(decoded.exp * 1000);
             const user = new User(decoded.email, decoded.id, token, expirationDate);
             this.user.next(user);
+            const expirationDuration = new Date(expirationDate).getTime() - new Date().getTime();
+            this.autoSignOut(expirationDuration)
             localStorage.setItem("userData", JSON.stringify(user));
-            return this.user;
         } else if (res.data.errors) {
             return res.data.errors[0].message;
         }
@@ -46,10 +48,48 @@ export class AuthService {
       });
 
 
+      autoSignIn() {
+        const userData: {
+          email: string;
+          id: string;
+          _token: string;
+          _tokenExpirationDate: string;
+        } = JSON.parse(localStorage.getItem('userData'));
+        if (!userData) {
+          return;
+        }
+    
+        const loadedUser = new User(
+          userData.email,
+          userData.id,
+          userData._token,
+          new Date(userData._tokenExpirationDate)
+        );
+    
+        if (loadedUser.token) {
+          this.user.next(loadedUser);
+          const expirationDuration =
+            new Date(userData._tokenExpirationDate).getTime() -
+            new Date().getTime();
+          this.autoSignOut(expirationDuration);
+        }
+      }
+
+      autoSignOut(expirationDuration: number) {
+        this.tokenExpirationTimer = setTimeout(() => {
+          this.signOut();
+        }, expirationDuration);
+      }
+
+
       signOut() {
           this.user.next(null);
           localStorage.removeItem("userData");
           this.router.navigate(['/login']);
+          if (this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
+          }
+          this.tokenExpirationTimer = null;
       }
 
 }
