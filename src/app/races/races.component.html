@@ -1,12 +1,12 @@
 <div class="py-5 bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-6" *ngFor="let race of races">
+            <div class="col-md-6" *ngFor="let race_ of races">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                      <h5 class="card-title">{{race.race_fullname}}</h5>
-                      <p class="card-text">A {{race.type}} over {{race.distance}} on the {{race.course}} course for {{race.age_limit}}.</p>
-                      <a routerLink="/races/{{race.race_name}}" class="btn btn-primary">Go to race</a>
+                      <h5 class="card-title">{{race_.race_fullname}}</h5>
+                      <p class="card-text">A {{race_.type}} over {{race_.distance}} on the {{race_.course}} course for {{race_.age_limit}}.</p>
+                      <a routerLink="/races/{{race_.race_name}}" class="btn btn-primary">Go to race</a>
                     </div>
                 </div>
             </div>
