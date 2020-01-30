@@ -29,7 +29,7 @@ const RACE_QUERY = gql`
   })
   export class RaceComponent implements OnInit{
     private race_query: QueryRef<any>
-    private race: any
+    race: any
     private race_name: string
 
     constructor(private route: ActivatedRoute, private apollo: Apollo, public entriesService: EntriesService) {

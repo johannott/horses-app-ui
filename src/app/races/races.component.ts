@@ -26,7 +26,7 @@ const RACES_QUERY = gql`
   export class RacesComponent {
 
     private query: QueryRef<any>
-    private races: any
+    races: any
 
     constructor(private apollo: Apollo){
       this.query = this.apollo.watchQuery({
