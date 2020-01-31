@@ -43,7 +43,7 @@ mutation updateEntryMutation (
 })
 export class UpdateEntryComponent {
     error: string = null;
-    entry: object
+    entry: any
     race_name: string
    
 

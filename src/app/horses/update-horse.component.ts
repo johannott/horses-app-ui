@@ -66,7 +66,7 @@ mutation updateHorseMutation(
 export class UpdateHorseComponent {
     error: string = null
     current_name: string
-    horse: object
+    horse: any
 
     constructor(private apollo: Apollo, private router: Router, private route: ActivatedRoute) {
       this.current_name = this.route.snapshot.params['horse_name']
