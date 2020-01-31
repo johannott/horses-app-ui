@@ -24,6 +24,8 @@ import { EntriesComponent } from './entries/entries.component';
 import { AddEntryComponent } from './entries/add-entry.component';
 import { UpdateEntryComponent } from './entries/update-entry.component';
 
+import { TrendsComponent } from './trends/trends.component';
+
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 
@@ -40,6 +42,7 @@ import { AuthComponent } from './auth/auth.component';
     EntriesComponent,
     UpdateEntryComponent,
     AddEntryComponent,
+    TrendsComponent,
     HomeComponent,
     AuthComponent
   ],

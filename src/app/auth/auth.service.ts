@@ -6,7 +6,9 @@ import { BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
 
-const API_URL = 'http://localhost:8000/graphql';
+// const API_URL = 'http://localhost:8000/graphql';
+const API_URL = 'https://johann-horses-app.herokuapp.com/graphql'; // <-- add the URL of the GraphQL server here
+
 
 
 export interface AuthResponseData {
