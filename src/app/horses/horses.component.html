@@ -29,7 +29,7 @@
           <th scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
           <th scope="col" sortable="track" (sort)="onSort($event)">Track</th>
           <th scope="col" sortable="comments" (sort)="onSort($event)">Comments</th>
-          <!-- <th scope="col">Link</th> -->
+          <th scope="col">Update</th>
         </tr>
       </thead>
       <tbody>
@@ -52,7 +52,7 @@
           <td>{{horse.ground}}</td>
           <td>{{horse.track}}</td>
           <td>{{horse.comments}}</td>
-          <!-- <td>{{horse.link}}</td> -->
+          <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td>
         </tr>
       </tbody>
     </table>

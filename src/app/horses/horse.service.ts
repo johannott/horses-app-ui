@@ -19,6 +19,7 @@ const HORSES_QUERY = gql`
       owner,
       age,
       gender,
+      bred
       sire,
       form,
       races,
@@ -97,6 +98,7 @@ export class HorseService {
   
       this.query.valueChanges.subscribe(result => {
         this.HORSES = result.data && result.data.horses;
+        localStorage.setItem("horses", JSON.stringify(this.HORSES));
       });
 
     this._search$.pipe(

@@ -1,0 +1,204 @@
+<div class="row update-horse">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="alert alert-danger" *ngIf="error">
+             <p>{{ error }}</p>
+        </div>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <div class="form-group">
+                <label for="name">Horse</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    class="form-control"
+                    ngModel="{{horse.horse_name}}"
+                    name="name">
+            </div>
+            <div class="form-group">
+                <label for="name">Trainer</label>
+                <input 
+                    type="text" 
+                    id="trainer" 
+                    class="form-control"
+                    ngModel="{{horse.trainer}}"
+                    name="trainer"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="jockey">Jockey</label>
+                <input 
+                    type="text" 
+                    id="jockey" 
+                    class="form-control"
+                    ngModel="{{horse.regular_jockey}}"
+                    name="jockey"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Owner</label>
+                <input 
+                    type="text" 
+                    id="owner" 
+                    class="form-control"
+                    ngModel="{{horse.owner}}"
+                    name="owner"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Age</label>
+                <input 
+                    type="text" 
+                    id="age" 
+                    class="form-control"
+                    ngModel="{{horse.age}}"
+                    name="age"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Gender</label>
+                <input 
+                    type="text" 
+                    id="gender" 
+                    class="form-control"
+                    ngModel="{{horse.gender}}"
+                    name="gender"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Bred</label>
+                <input 
+                    type="text" 
+                    id="bred" 
+                    class="form-control"
+                    ngModel="{{horse.bred}}"
+                    name="bred"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Sire</label>
+                <input 
+                    type="text" 
+                    id="sire" 
+                    class="form-control"
+                    ngModel="{{horse.sire}}"
+                    name="sire"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="name">Form</label>
+                <input 
+                    type="text" 
+                    id="form" 
+                    class="form-control"
+                    ngModel="{{horse.form}}"
+                    name="form">
+            </div>
+            <div class="form-group">
+                <label for="name">Races</label>
+                <input 
+                    type="text" 
+                    id="races" 
+                    class="form-control"
+                    ngModel="{{horse.races}}"
+                    name="races">
+            </div>
+            <div class="form-group">
+                <label for="name">Wins</label>
+                <input 
+                    type="text" 
+                    id="wins" 
+                    class="form-control"
+                    ngModel="{{horse.wins}}"
+                    name="wins">
+            </div>
+            <div class="form-group">
+                <label for="name">Places</label>
+                <input 
+                    type="text" 
+                    id="places" 
+                    class="form-control"
+                    ngModel="{{horse.places}}"
+                    name="places">
+            </div>
+            <div class="form-group">
+                <label for="name">Win Percentage</label>
+                <input 
+                    type="text" 
+                    id="win_percentage" 
+                    class="form-control"
+                    ngModel="{{horse.win_percentage}}"
+                    name="win_percentage">
+            </div>
+            <div class="form-group">
+                <label for="name">Place percentage</label>
+                <input 
+                    type="text" 
+                    id="place_percentage" 
+                    class="form-control"
+                    ngModel="{{horse.place_percentage}}"
+                    name="place_percentage">
+            </div>
+            <div class="form-group">
+                <label for="name">Type</label>
+                <input 
+                    type="text" 
+                    id="type" 
+                    class="form-control"
+                    ngModel="{{horse.type}}"
+                    name="type">
+            </div>
+            <div class="form-group">
+                <label for="name">Distance</label>
+                <input 
+                    type="text" 
+                    id="distance" 
+                    class="form-control"
+                    ngModel="{{horse.distance}}"
+                    name="distance">
+            </div>
+            <div class="form-group">
+                <label for="name">Ground</label>
+                <input 
+                    type="text" 
+                    id="ground" 
+                    class="form-control"
+                    ngModel="{{horse.ground}}"
+                    name="ground">
+            </div>
+            <div class="form-group">
+                <label for="name">Track</label>
+                <input 
+                    type="text" 
+                    id="track" 
+                    class="form-control"
+                    ngModel="{{horse.track}}"
+                    name="track">
+            </div>
+            <div class="form-group">
+                <label for="name">Comments</label>
+                <input 
+                    type="text" 
+                    id="comments" 
+                    class="form-control"
+                    ngModel="{{horse.comments}}"
+                    name="comments">
+            </div>
+            <div class="form-group">
+                <label for="name">Link</label>
+                <input 
+                    type="text" 
+                    id="link" 
+                    class="form-control"
+                    ngModel="{{horse.link}}"
+                    name="link">
+            </div>
+            <div>
+                <button 
+                    class="btn btn-primary" 
+                    type="submit"
+                    [disabled]="!authForm.valid">
+                    Update Horse
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

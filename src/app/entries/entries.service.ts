@@ -25,6 +25,34 @@ const ENTRIES_QUERY = gql`
   }
 `;
 
+
+const HORSE_QUERY = gql`
+  query HorseByName($horse_name: String!){ 
+    horseByName(horse_name: $horse_name) {
+      horse_name,
+      trainer,
+      regular_jockey,
+      owner,
+      age,
+      gender,
+      bred,
+      sire,
+      form,
+      races,
+      wins,
+      places,
+      win_percentage,
+      place_percentage,
+      type,
+      distance,
+      ground,
+      track,
+      comments,
+      link
+    }
+  }
+`;
+
 interface SearchResult {
   entries: Entry[];
   total: number;
@@ -70,7 +98,10 @@ export class EntriesService {
   private _entries$ = new BehaviorSubject<Entry[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
   private query: QueryRef<any>;
+  private horse_query: QueryRef<any>;
   private ENTRIES: Entry[];
+  private HORSE_ENTRIES: any[] = [];
+  private MERGED_ENTRIES: any[] = [];
   private race_name 
 
   private _state: State = {
@@ -90,8 +121,25 @@ export class EntriesService {
   
       this.query.valueChanges.subscribe(result => {
         this.ENTRIES = result.data && result.data.entriesByRace && result.data.entriesByRace;
-        console.log(this.ENTRIES)
+        localStorage.setItem("entries", JSON.stringify(this.ENTRIES));
+        this.ENTRIES.forEach(entry => {
+          this.horse_query = this.apollo.watchQuery({
+            query: HORSE_QUERY,
+            variables: {horse_name: entry.horse_name}
+          });
+          this.horse_query.valueChanges.subscribe(res => {
+            if (res.data && res.data.horseByName && res.data.horseByName) {
+              this.HORSE_ENTRIES.push(res.data.horseByName)
+              if (this.ENTRIES.length > 0 && this.HORSE_ENTRIES.length > 0) {
+                this.MERGED_ENTRIES = this.ENTRIES.map((item, i) => Object.assign({}, item, this.HORSE_ENTRIES[i]));
+                console.log(this.ENTRIES)
+                console.log(this.HORSE_ENTRIES)
+                console.log(this.MERGED_ENTRIES)
+              }
+            }
+        });
       })
+    })
 
     
 
@@ -131,7 +179,7 @@ export class EntriesService {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
     // 1. sort
-    let entries = sort(this.ENTRIES, sortColumn, sortDirection);
+    let entries = sort(this.MERGED_ENTRIES, sortColumn, sortDirection);
 
     // 2. filter
     entries = entries.filter(entry => matches(entry, searchTerm, this.pipe));

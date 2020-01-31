@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
-const ADD_HORSE_MUTATION = gql`
-mutation addHorseMutation(
+const UPDATE_HORSE_MUTATION = gql`
+mutation updateHorseMutation(
+    $current_name: String!,  
     $horse_name: String!,
     $trainer: String!,
     $regular_jockey: String!,
@@ -28,7 +29,8 @@ mutation addHorseMutation(
     $comments: String,
     $link: String,
   ) {
-    addHorse(
+    updateHorse(
+      current_name: $current_name,
       horse_name: $horse_name,
       trainer: $trainer,
       regular_jockey: $regular_jockey,
@@ -56,15 +58,23 @@ mutation addHorseMutation(
 `;
 
 @Component({
-  selector: 'app-add-horse',
-  templateUrl: './add-horse.component.html',
-  styleUrls: ['./add-horse.component.scss'],
+  selector: 'update-add-horse',
+  templateUrl: './update-horse.component.html',
+  styleUrls: ['./update-horse.component.scss'],
   providers: []
 })
-export class AddHorseComponent {
-    error: string = null;
+export class UpdateHorseComponent {
+    error: string = null
+    current_name: string
+    horse: object
 
-    constructor(private apollo: Apollo, private router: Router) {}
+    constructor(private apollo: Apollo, private router: Router, private route: ActivatedRoute) {
+      this.current_name = this.route.snapshot.params['horse_name']
+      const horses = JSON.parse(localStorage.getItem('horses'))
+
+      this.horse = horses.find(o => o.horse_name === this.current_name);
+      console.log('horse', this.horse)
+    }
 
 
     onSubmit(form: NgForm) {
@@ -94,8 +104,9 @@ export class AddHorseComponent {
         const link = form.value.link.trim();
 
         this.apollo.mutate({
-            mutation: ADD_HORSE_MUTATION,
+            mutation: UPDATE_HORSE_MUTATION,
             variables: {
+                current_name: this.current_name,
                 horse_name,
                 trainer,
                 regular_jockey,
@@ -118,11 +129,11 @@ export class AddHorseComponent {
                 link
             }
           }).subscribe(({ data }) => {
-            console.log('Horse Data', data);
+            console.log('Horse Update Data', data);
             form.reset();
             this.router.navigate(['/horses']);
           },(error) => {
-            console.log('There was an error sending the add horse mutation', error);
+            console.log('There was an error sending the update horse mutation', error);
             this.error = error;
           });
     } 

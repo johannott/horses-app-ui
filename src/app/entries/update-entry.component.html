@@ -1,0 +1,90 @@
+<div class="row update-entry">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="alert alert-danger" *ngIf="error">
+             <p>{{ error }}</p>
+        </div>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+            <div class="form-group">
+                <label for="name">Race</label>
+                <input 
+                    type="text" 
+                    id="race_name" 
+                    class="form-control"
+                    ngModel="{{race_name}}"
+                    name="race_name">
+            </div>
+            <div class="form-group">
+                <label for="name">Horse</label>
+                <input 
+                    type="text" 
+                    id="horse_name" 
+                    class="form-control"
+                    ngModel="{{entry.horse_name}}"
+                    name="horse_name"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="jockey">Number</label>
+                <input 
+                    type="text" 
+                    id="number" 
+                    class="form-control"
+                    ngModel="{{entry.number}}"
+                    name="number">
+            </div>
+            <div class="form-group">
+                <label for="name">Weight</label>
+                <input 
+                    type="text" 
+                    id="weight" 
+                    class="form-control"
+                    ngModel="{{entry.weight}}"
+                    name="weight">
+            </div>
+            <div class="form-group">
+                <label for="name">Jockey</label>
+                <input 
+                    type="text" 
+                    id="jockey" 
+                    class="form-control"
+                    ngModel="{{entry.jockey}}"
+                    name="jockey">
+            </div>
+            <div class="form-group">
+                <label for="name">Trends</label>
+                <input 
+                    type="text" 
+                    id="trends" 
+                    class="form-control"
+                    ngModel="{{entry.trends}}"
+                    name="trends">
+            </div>
+            <div class="form-group">
+                <label for="name">Tipped</label>
+                <input 
+                    type="text" 
+                    id="tipped" 
+                    class="form-control"
+                    ngModel="{{entry.tipped}}"
+                    name="tipped">
+            </div>
+            <div class="form-group">
+                <label for="name">Bets</label>
+                <input 
+                    type="text" 
+                    id="bets" 
+                    class="form-control"
+                    ngModel="{{entry.bets}}"
+                    name="bets">
+            </div>
+            <div>
+                <button 
+                    class="btn btn-primary" 
+                    type="submit"
+                    [disabled]="!authForm.valid">
+                    Update Entry
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

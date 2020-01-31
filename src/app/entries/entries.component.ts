@@ -1,6 +1,7 @@
 import { Component, ViewChildren, QueryList, Input } from '@angular/core';
 import {Observable} from 'rxjs';
 import {DecimalPipe} from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 import { Entry } from './entry';
 import { EntriesService } from './entries.service';
@@ -15,12 +16,14 @@ import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive';
   export class EntriesComponent{
     entries$: Observable<Entry[]>;
     total$: Observable<number>;
+    race_name: string
   
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   
-    constructor(public service: EntriesService) {
+    constructor(public service: EntriesService, private route: ActivatedRoute) {
       this.entries$ = service.entries$;
       this.total$ = service.total$;
+      this.race_name = this.route.snapshot.params['race_name']
     }
   
     onSort({column, direction}: SortEvent) {
