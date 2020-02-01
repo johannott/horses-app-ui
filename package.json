@@ -11,7 +11,7 @@
     "start:dev": "ng serve",
     "start": "node server.js",
     "build": "ng build",
-    "postinstall": "ng build --aot --prod",
+    "postinstall": "ng build --aot --prod --deploy-url /dist/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
