@@ -133,7 +133,10 @@ export class EntriesService {
           if (res.data && res.data.horsesByName) {
             this.HORSE_ENTRIES = res.data.horsesByName
             if (this.ENTRIES.length > 0 && this.HORSE_ENTRIES.length > 0) {
-              this.MERGED_ENTRIES = this.ENTRIES.map((item, i) => Object.assign({}, item, this.HORSE_ENTRIES[i]));
+              this.MERGED_ENTRIES = this.ENTRIES.map(itm => ({
+                ...this.HORSE_ENTRIES.find((item) => (item.horse_name === itm.horse_name) && item),
+                ...itm
+            }));
               console.log(this.ENTRIES)
               console.log(this.HORSE_ENTRIES)
               console.log(this.MERGED_ENTRIES)
