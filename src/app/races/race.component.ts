@@ -44,7 +44,7 @@ const RACE_QUERY = gql`
       });
   
       this.race_query.valueChanges.subscribe(result => {
-        this.race = result.data && result.data.raceByName && result.data.raceByName[0];
+        this.race = result.data && result.data.raceByName;
         console.log(this.race)
       })
     }

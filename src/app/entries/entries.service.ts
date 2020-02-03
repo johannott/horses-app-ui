@@ -27,8 +27,8 @@ const ENTRIES_QUERY = gql`
 
 
 const HORSE_QUERY = gql`
-  query HorseByName($horse_name: String!){ 
-    horseByName(horse_name: $horse_name) {
+  query HorsesByName($horse_names: [String!]){ 
+    horsesByName(horse_names: $horse_names) {
       horse_name,
       trainer,
       regular_jockey,
@@ -95,7 +95,7 @@ function matches(entry: Entry, term: string, pipe: PipeTransform) {
 export class EntriesService {
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _entries$ = new BehaviorSubject<Entry[]>([]);
+  private _entries$ = new BehaviorSubject<any[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
   private query: QueryRef<any>;
   private horse_query: QueryRef<any>;
@@ -122,23 +122,24 @@ export class EntriesService {
       this.query.valueChanges.subscribe(result => {
         this.ENTRIES = result.data && result.data.entriesByRace && result.data.entriesByRace;
         localStorage.setItem("entries", JSON.stringify(this.ENTRIES));
-        this.ENTRIES.forEach(entry => {
-          this.horse_query = this.apollo.watchQuery({
-            query: HORSE_QUERY,
-            variables: {horse_name: entry.horse_name}
-          });
-          this.horse_query.valueChanges.subscribe(res => {
-            if (res.data && res.data.horseByName && res.data.horseByName) {
-              this.HORSE_ENTRIES.push(res.data.horseByName)
-              if (this.ENTRIES.length > 0 && this.HORSE_ENTRIES.length > 0) {
-                this.MERGED_ENTRIES = this.ENTRIES.map((item, i) => Object.assign({}, item, this.HORSE_ENTRIES[i]));
-                console.log(this.ENTRIES)
-                console.log(this.HORSE_ENTRIES)
-                console.log(this.MERGED_ENTRIES)
-              }
-            }
+
+        let horse_names = this.ENTRIES.map(a => a.horse_name);
+        
+        this.horse_query = this.apollo.watchQuery({
+          query: HORSE_QUERY,
+          variables: { horse_names }
         });
-      })
+        this.horse_query.valueChanges.subscribe(res => {
+          if (res.data && res.data.horsesByName) {
+            this.HORSE_ENTRIES = res.data.horsesByName
+            if (this.ENTRIES.length > 0 && this.HORSE_ENTRIES.length > 0) {
+              this.MERGED_ENTRIES = this.ENTRIES.map((item, i) => Object.assign({}, item, this.HORSE_ENTRIES[i]));
+              console.log(this.ENTRIES)
+              console.log(this.HORSE_ENTRIES)
+              console.log(this.MERGED_ENTRIES)
+            }
+          }
+        });
     })
 
     
@@ -181,12 +182,17 @@ export class EntriesService {
     // 1. sort
     let entries = sort(this.MERGED_ENTRIES, sortColumn, sortDirection);
 
-    // 2. filter
-    entries = entries.filter(entry => matches(entry, searchTerm, this.pipe));
-    const total = entries.length;
+    if (entries.length > 0) {
+      // 2. filter
+      entries = entries.filter(entry => matches(entry, searchTerm, this.pipe));
+      const total = entries.length;
 
-    // 3. paginate
-    entries = entries.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
-    return of({entries, total});
+      // 3. paginate
+      entries = entries.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+      return of({entries, total});
+      } else {
+        const total = entries.length;
+        return of({entries, total});
+      } 
   }
 }
