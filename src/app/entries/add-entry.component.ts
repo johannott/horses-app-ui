@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
@@ -39,8 +39,13 @@ mutation addEntryMutation (
 })
 export class AddEntryComponent {
     error: string = null;
+    race_name: string
+    horses: any
 
-    constructor(private apollo: Apollo, private router: Router) {}
+    constructor(private apollo: Apollo, private router: Router, private route: ActivatedRoute) {
+      this.race_name = this.route.snapshot.params['race_name']
+      this.horses = JSON.parse(localStorage.getItem('horses'))
+    }
 
 
     onSubmit(form: NgForm) {
@@ -56,6 +61,13 @@ export class AddEntryComponent {
         const trends = form.value.trends.trim();
         const tipped = form.value.tipped.trim();
         const bets = form.value.bets.trim();      
+
+        const isInHorses = this.horses.find(o => o.horse_name === horse_name);
+
+        if (!isInHorses) {
+          this.error = 'Horse is not currently in horse database. Please add there before adding entry';
+          return;
+      }
 
         this.apollo.mutate<any>({
             mutation: ADD_ENTRY_MUTATION,

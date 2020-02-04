@@ -44,7 +44,7 @@ const routes: Routes = [
     component: RaceComponent
   },
   {
-    path: 'addentry',
+    path: 'addentry/:race_name',
     canActivate: [AuthGuard],
     component: AddEntryComponent
   },

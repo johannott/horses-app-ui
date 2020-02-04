@@ -4,7 +4,7 @@
         Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
         <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
     </div>
-    <div class="col-sm"><button class="btn btn-primary float-right" routerLink="/addentry">Add Entry</button></div>
+    <div class="col-sm"><button class="btn btn-primary float-right" routerLink="/addentry/{{race_name}}">Add Entry</button></div>
     </div>
     
     <table class="table table-sm table-striped">

@@ -139,13 +139,16 @@ export class HorseService {
     // 1. sort
     let horses = sort(this.HORSES, sortColumn, sortDirection);
 
-    if (horses) {
+    if (horses.length > 0) {
       // 2. filter
       horses = horses.filter(horse => matches(horse, searchTerm, this.pipe));
       const total = horses.length;
 
       // 3. paginate
       horses = horses.slice((page - 1) * pageSize, (page - 1) * pageSize + pageSize);
+      return of({horses, total});
+    } else {
+      const total = horses.length;
       return of({horses, total});
     }
   }
