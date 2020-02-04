@@ -81,7 +81,7 @@ export class HorseService {
   private _horses$ = new BehaviorSubject<Horse[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
   private query: QueryRef<any>;
-  private HORSES: Horse[];
+  private HORSES: Horse[] = [];
 
   private _state: State = {
     page: 1,

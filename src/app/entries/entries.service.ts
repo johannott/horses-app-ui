@@ -99,7 +99,7 @@ export class EntriesService {
   private _total$ = new BehaviorSubject<number>(0);
   private query: QueryRef<any>;
   private horse_query: QueryRef<any>;
-  private ENTRIES: Entry[];
+  private ENTRIES: Entry[] = [];
   private HORSE_ENTRIES: any[] = [];
   private MERGED_ENTRIES: any[] = [];
   private race_name 
