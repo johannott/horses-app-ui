@@ -43,8 +43,16 @@ function matches(horse: Horse, term: string, pipe: PipeTransform) {
     || horse.trainer.toLowerCase().includes(term.toLowerCase())
     || horse.regular_jockey.toLowerCase().includes(term.toLowerCase())
     || horse.owner.toLowerCase().includes(term.toLowerCase())
+    || horse.age.toLowerCase().includes(term.toLowerCase())
+    || horse.gender.toLowerCase().includes(term.toLowerCase())
     || horse.sire.toLowerCase().includes(term.toLowerCase())
-    || horse.type.toLowerCase().includes(term.toLowerCase());
+    || horse.win_percentage.toLowerCase().includes(term.toLowerCase())
+    || horse.place_percentage.toLowerCase().includes(term.toLowerCase())
+    || horse.type.toLowerCase().includes(term.toLowerCase())
+    || horse.distance.toLowerCase().includes(term.toLowerCase())
+    || horse.ground.toLowerCase().includes(term.toLowerCase())
+    || horse.track.toLowerCase().includes(term.toLowerCase())
+    || horse.comments.toLowerCase().includes(term.toLowerCase());
 }
 
 @Injectable({providedIn: 'root'})

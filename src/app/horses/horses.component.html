@@ -40,20 +40,20 @@
           <td><ngb-highlight [result]="horse.trainer" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="horse.regular_jockey" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="horse.owner" [term]="service.searchTerm"></ngb-highlight></td>
-          <td>{{horse.age}}</td>
-          <td>{{horse.gender}}</td>
+          <td><ngb-highlight [result]="horse.age" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.gender" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="horse.sire" [term]="service.searchTerm"></ngb-highlight></td>
           <td>{{horse.form}}</td>
           <td>{{horse.races}}</td>
           <td>{{horse.wins}}</td>
           <td>{{horse.places}}</td>
-          <td>{{horse.win_percentage}}</td>
-          <td>{{horse.place_percentage}}</td>
+          <td><ngb-highlight [result]="horse.win_percentage" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.place_percentage" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="horse.type" [term]="service.searchTerm"></ngb-highlight></td>
-          <td>{{horse.distance}}</td>
-          <td>{{horse.ground}}</td>
-          <td>{{horse.track}}</td>
-          <td>{{horse.comments}}</td>
+          <td><ngb-highlight [result]="horse.distance" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.ground" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.track" [term]="service.searchTerm"></ngb-highlight></td>
+          <td><ngb-highlight [result]="horse.comments" [term]="service.searchTerm"></ngb-highlight></td>
           <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td>
         </tr>
       </tbody>

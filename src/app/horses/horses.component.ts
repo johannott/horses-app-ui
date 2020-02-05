@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren, OnInit } from '@angular/core'
+import { Component, QueryList, ViewChildren, OnInit, OnDestroy } from '@angular/core'
 import { DecimalPipe } from '@angular/common'
 
 import {Observable} from 'rxjs'
@@ -13,11 +13,12 @@ import { NgbdSortableHeader, SortEvent } from './sortable.directive'
   styleUrls: ['./horses.component.scss'],
   providers: [HorseService, DecimalPipe]
 })
-export class HorsesComponent implements OnInit {
+export class HorsesComponent implements OnInit, OnDestroy {
   horses$: Observable<Horse[]>
   gqlhorses$: Observable<Horse[]>
   total$: Observable<number>
   isLoading = false
+  mainContainer: HTMLElement
 
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
@@ -30,6 +31,9 @@ export class HorsesComponent implements OnInit {
       this.isLoading = horses.length === 0
     });
     this.total$ = this.service.total$
+
+    this.mainContainer = document.getElementById('main-container')
+    this.mainContainer.className = 'container-fluid'
   }
 
   onSort({column, direction}: SortEvent) {
@@ -42,6 +46,10 @@ export class HorsesComponent implements OnInit {
 
     this.service.sortColumn = column
     this.service.sortDirection = direction
+  }
+
+  ngOnDestroy() {
+    this.mainContainer.className = 'container'
   }
 
 }
