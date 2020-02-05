@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import {DecimalPipe} from '@angular/common';
 
 import { Apollo } from 'apollo-angular';
 
@@ -12,7 +13,7 @@ import { HORSES_QUERY, ADD_HORSE_MUTATION } from '../graphql'
   selector: 'app-add-horse',
   templateUrl: './add-horse.component.html',
   styleUrls: ['./add-horse.component.scss'],
-  providers: []
+  providers: [HorseService, DecimalPipe]
 })
 export class AddHorseComponent {
     error: string = null;

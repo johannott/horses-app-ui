@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './auth/auth.service'; 
 import { Subscription } from 'rxjs';
@@ -13,9 +14,10 @@ export class AppComponent implements OnInit, OnDestroy {
   isAuthenticated = false
   private userSub: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    console.log('router url ', this.router.url)
     this.authService.autoSignIn();
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;

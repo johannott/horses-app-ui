@@ -1,11 +1,11 @@
-import { Component, QueryList, ViewChildren, OnInit } from '@angular/core';
-import {DecimalPipe} from '@angular/common';
+import { Component, QueryList, ViewChildren, OnInit } from '@angular/core'
+import { DecimalPipe } from '@angular/common'
 
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs'
 
-import { Horse } from './horse';
-import { HorseService } from './horse.service';
-import { NgbdSortableHeader, SortEvent } from './sortable.directive';
+import { Horse } from './horse'
+import { HorseService } from './horse.service'
+import { NgbdSortableHeader, SortEvent } from './sortable.directive'
 
 @Component({
   selector: 'app-horses',
@@ -29,7 +29,7 @@ export class HorsesComponent implements OnInit {
     this.gqlhorses$.subscribe(horses => {
       this.isLoading = horses.length === 0
     });
-    this.total$ = this.service.total$;
+    this.total$ = this.service.total$
   }
 
   onSort({column, direction}: SortEvent) {

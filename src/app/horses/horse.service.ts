@@ -1,14 +1,14 @@
-import {Injectable, PipeTransform} from '@angular/core';
-import {DecimalPipe} from '@angular/common';
+import { Injectable, PipeTransform } from '@angular/core'
+import { DecimalPipe } from '@angular/common'
 
-import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
-import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs'
+import {debounceTime, delay, switchMap, tap} from 'rxjs/operators'
 
-import { Apollo, QueryRef } from 'apollo-angular';
+import { Apollo, QueryRef } from 'apollo-angular'
 import { HORSES_QUERY } from '../graphql'
 
-import { Horse } from './horse';
-import {SortDirection} from './sortable.directive';
+import { Horse } from './horse'
+import { SortDirection } from './sortable.directive'
 
 interface SearchResult {
   horses: Horse[];
