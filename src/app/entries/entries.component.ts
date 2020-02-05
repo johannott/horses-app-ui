@@ -17,6 +17,7 @@ import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive';
     entries$: Observable<Entry[]>;
     total$: Observable<number>;
     race_name: string
+    isLoading = false
   
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   
@@ -24,6 +25,10 @@ import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive';
       this.entries$ = service.entries$;
       this.total$ = service.total$;
       this.race_name = this.route.snapshot.params['race_name']
+
+      this.entries$.subscribe(entries => {
+        this.isLoading = entries.length === 0
+      });
     }
   
     onSort({column, direction}: SortEvent) {

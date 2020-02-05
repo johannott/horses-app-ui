@@ -29,6 +29,8 @@ import { TrendsComponent } from './trends/trends.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component'
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { AuthComponent } from './auth/auth.component';
     AddEntryComponent,
     TrendsComponent,
     HomeComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

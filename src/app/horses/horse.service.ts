@@ -81,7 +81,7 @@ export class HorseService {
   private _horses$ = new BehaviorSubject<Horse[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
   private query: QueryRef<any>;
-  private HORSES: Horse[] = [];
+  HORSES = new BehaviorSubject<Horse[]>([]);
 
   private _state: State = {
     page: 1,
@@ -97,24 +97,24 @@ export class HorseService {
       });
   
       this.query.valueChanges.subscribe(result => {
-        this.HORSES = result.data && result.data.horses;
-        localStorage.setItem("horses", JSON.stringify(this.HORSES));
+        this.HORSES.next(result.data && result.data.horses);
+        this._search$.pipe(
+          tap(() => this._loading$.next(true)),
+          debounceTime(200),
+          switchMap(() => this._search()),
+          delay(200),
+          tap(() => this._loading$.next(false))
+        ).subscribe(result => {
+          this._horses$.next(result.horses);
+          this._total$.next(result.total);
+        });
+    
+        this._search$.next();
+        localStorage.setItem("horses", JSON.stringify(this.HORSES.value));
       });
-
-    this._search$.pipe(
-      tap(() => this._loading$.next(true)),
-      debounceTime(200),
-      switchMap(() => this._search()),
-      delay(200),
-      tap(() => this._loading$.next(false))
-    ).subscribe(result => {
-      this._horses$.next(result.horses);
-      this._total$.next(result.total);
-    });
-
-    this._search$.next();
   }
 
+  get gqlhorses$() { return this.HORSES.asObservable(); }
   get horses$() { return this._horses$.asObservable(); }
   get total$() { return this._total$.asObservable(); }
   get loading$() { return this._loading$.asObservable(); }
@@ -137,7 +137,7 @@ export class HorseService {
     const {sortColumn, sortDirection, pageSize, page, searchTerm} = this._state;
 
     // 1. sort
-    let horses = sort(this.HORSES, sortColumn, sortDirection);
+    let horses = sort(this.HORSES.value, sortColumn, sortDirection);
 
     if (horses.length > 0) {
       // 2. filter

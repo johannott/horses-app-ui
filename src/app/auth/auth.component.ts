@@ -14,7 +14,6 @@ import { Subscription } from 'rxjs';
 export class AuthComponent {
 
   error: string = null;
-  userSub: Subscription
 
   constructor(private authService: AuthService, private router: Router) {}
 

@@ -140,25 +140,22 @@ export class EntriesService {
               console.log(this.ENTRIES)
               console.log(this.HORSE_ENTRIES)
               console.log(this.MERGED_ENTRIES)
+              this._search$.pipe(
+                tap(() => this._loading$.next(true)),
+                debounceTime(200),
+                switchMap(() => this._search()),
+                delay(200),
+                tap(() => this._loading$.next(false))
+              ).subscribe(result => {
+                this._entries$.next(result.entries);
+                this._total$.next(result.total);
+              });
+          
+              this._search$.next();
             }
           }
         });
     })
-
-    
-
-    this._search$.pipe(
-      tap(() => this._loading$.next(true)),
-      debounceTime(200),
-      switchMap(() => this._search()),
-      delay(200),
-      tap(() => this._loading$.next(false))
-    ).subscribe(result => {
-      this._entries$.next(result.entries);
-      this._total$.next(result.total);
-    });
-
-    this._search$.next();
   }
 
   get entries$() { return this._entries$.asObservable(); }
