@@ -2,15 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Apollo, QueryRef } from 'apollo-angular';
-import gql from 'graphql-tag';
-
-const TRENDS_QUERY = gql`
-  query TrendsByRace($race_name: String!){
-    trendsByRace(race_name: $race_name){  
-        trend_
-    }
-  }
-`;
+import { TRENDS_QUERY } from '../graphql'
 
 @Component({
     selector: 'app-trends',

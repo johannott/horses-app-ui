@@ -5,37 +5,10 @@ import {BehaviorSubject, Observable, of, Subject} from 'rxjs';
 import {debounceTime, delay, switchMap, tap} from 'rxjs/operators';
 
 import { Apollo, QueryRef } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { HORSES_QUERY } from '../graphql'
 
 import { Horse } from './horse';
 import {SortDirection} from './sortable.directive';
-
-const HORSES_QUERY = gql`
-  query { 
-    horses {
-      horse_name,
-      trainer,
-      regular_jockey,
-      owner,
-      age,
-      gender,
-      bred
-      sire,
-      form,
-      races,
-      wins,
-      places,
-      win_percentage,
-      place_percentage,
-      type,
-      distance,
-      ground,
-      track,
-      comments,
-      link
-    }
-  }
-`;
 
 interface SearchResult {
   horses: Horse[];
@@ -80,7 +53,7 @@ export class HorseService {
   private _search$ = new Subject<void>();
   private _horses$ = new BehaviorSubject<Horse[]>([]);
   private _total$ = new BehaviorSubject<number>(0);
-  private query: QueryRef<any>;
+  query: QueryRef<any>;
   HORSES = new BehaviorSubject<Horse[]>([]);
 
   private _state: State = {

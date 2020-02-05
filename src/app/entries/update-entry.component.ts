@@ -5,35 +5,10 @@ import {DecimalPipe} from '@angular/common';
 
 
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { UPDATE_ENTRY_MUTATION, ENTRIES_BY_RACE_QUERY } from '../graphql'
+
 
 import { EntriesService } from './entries.service';
-
-const UPDATE_ENTRY_MUTATION = gql`
-mutation updateEntryMutation (
-    $race_name: String!,       
-    $horse_name: String!, 
-    $number: String,
-    $weight: String,
-    $jockey: String,
-    $trends: String,
-    $tipped: String,
-    $bets: String) {
-    updateEntry(
-        race_name: $race_name
-        horse_name: $horse_name, 
-        number: $number
-        weight: $weight,
-        jockey: $jockey,
-        trends: $trends,
-        tipped: $tipped,
-        bets: $bets
-    ) {
-        race_name
-        horse_name
-    }
-}
-`;
 
 @Component({
   selector: 'app-update-entry',
@@ -85,7 +60,11 @@ export class UpdateEntryComponent {
                 trends,
                 tipped,
                 bets
-            }
+            },
+            refetchQueries: [{
+              query: ENTRIES_BY_RACE_QUERY,
+              variables: { race_name },
+            }]
           }).subscribe(({ data }) => {
             console.log('Entry Data', data);
             form.reset();

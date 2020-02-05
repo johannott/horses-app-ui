@@ -6,52 +6,11 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { debounceTime, delay, switchMap, tap } from 'rxjs/operators';
 
 import { Apollo, QueryRef } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { ENTRIES_BY_RACE_QUERY, HORSE_BY_NAME_QUERY } from '../graphql'
+
 
 import { Entry } from './entry';
 import { SortDirection } from '../horses/sortable.directive';
-
-const ENTRIES_QUERY = gql`
-  query EntriesByRaceName($race_name: String!){ 
-    entriesByRace(race_name: $race_name) {
-      horse_name,
-      number
-      weight,
-      jockey,
-      trends,
-      tipped,
-      bets
-    }
-  }
-`;
-
-
-const HORSE_QUERY = gql`
-  query HorsesByName($horse_names: [String!]){ 
-    horsesByName(horse_names: $horse_names) {
-      horse_name,
-      trainer,
-      regular_jockey,
-      owner,
-      age,
-      gender,
-      bred,
-      sire,
-      form,
-      races,
-      wins,
-      places,
-      win_percentage,
-      place_percentage,
-      type,
-      distance,
-      ground,
-      track,
-      comments,
-      link
-    }
-  }
-`;
 
 interface SearchResult {
   entries: Entry[];
@@ -115,10 +74,10 @@ export class EntriesService {
   constructor(private pipe: DecimalPipe, private apollo: Apollo, private route: ActivatedRoute) {
     this.race_name = this.route.snapshot.params['race_name']
       this.query = this.apollo.watchQuery({
-        query: ENTRIES_QUERY,
+        query: ENTRIES_BY_RACE_QUERY,
         variables: {race_name: this.race_name}
       });
-  
+        
       this.query.valueChanges.subscribe(result => {
         this.ENTRIES = result.data && result.data.entriesByRace && result.data.entriesByRace;
         localStorage.setItem("entries", JSON.stringify(this.ENTRIES));
@@ -126,7 +85,7 @@ export class EntriesService {
         let horse_names = this.ENTRIES.map(a => a.horse_name);
         
         this.horse_query = this.apollo.watchQuery({
-          query: HORSE_QUERY,
+          query: HORSE_BY_NAME_QUERY,
           variables: { horse_names }
         });
         this.horse_query.valueChanges.subscribe(res => {

@@ -3,57 +3,10 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 
-const ADD_HORSE_MUTATION = gql`
-mutation addHorseMutation(
-    $horse_name: String!,
-    $trainer: String!,
-    $regular_jockey: String!,
-    $owner: String!,
-    $age: String!,
-    $gender: String!,
-    $bred: String!,
-    $sire: String!,
-    $form: String,
-    $races: String,
-    $wins: String,
-    $places: String,
-    $win_percentage: String,
-    $place_percentage: String,
-    $type: String,
-    $distance: String,
-    $ground: String,
-    $track: String,
-    $comments: String,
-    $link: String,
-  ) {
-    addHorse(
-      horse_name: $horse_name,
-      trainer: $trainer,
-      regular_jockey: $regular_jockey,
-      owner: $owner,
-      age: $age,
-      gender: $gender,
-      bred: $bred,
-      sire: $sire,
-      form: $form,
-      races: $races,
-      wins:$wins,
-      places: $places,
-      win_percentage: $win_percentage,
-      place_percentage: $place_percentage,
-      type: $type,
-      distance: $distance,
-      ground: $ground,
-      track: $track,
-      comments: $comments,
-      link: $link,
-    ) {
-      horse_name
-    }
-  }
-`;
+import { HorseService } from './horse.service'
+
+import { HORSES_QUERY, ADD_HORSE_MUTATION } from '../graphql'
 
 @Component({
   selector: 'app-add-horse',
@@ -64,7 +17,7 @@ mutation addHorseMutation(
 export class AddHorseComponent {
     error: string = null;
 
-    constructor(private apollo: Apollo, private router: Router) {}
+    constructor(private apollo: Apollo, private router: Router, public service: HorseService) {}
 
 
     onSubmit(form: NgForm) {
@@ -116,7 +69,10 @@ export class AddHorseComponent {
                 track,
                 comments,
                 link
-            }
+            },
+            refetchQueries: [{
+              query: HORSES_QUERY
+            }],
           }).subscribe(({ data }) => {
             console.log('Horse Data', data);
             form.reset();

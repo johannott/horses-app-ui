@@ -3,33 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
-
-const ADD_ENTRY_MUTATION = gql`
-mutation addEntryMutation (
-    $race_name: String!,       
-    $horse_name: String!, 
-    $number: String,
-    $weight: String,
-    $jockey: String,
-    $trends: String,
-    $tipped: String,
-    $bets: String) {
-    addEntry(
-        race_name: $race_name
-        horse_name: $horse_name, 
-        number: $number
-        weight: $weight,
-        jockey: $jockey,
-        trends: $trends,
-        tipped: $tipped,
-        bets: $bets
-    ) {
-        race_name
-        horse_name
-    }
-}
-`;
+import { ADD_ENTRY_MUTATION, ENTRIES_BY_RACE_QUERY } from '../graphql'
 
 @Component({
   selector: 'app-add-entry',
@@ -80,7 +54,11 @@ export class AddEntryComponent {
                 trends,
                 tipped,
                 bets
-            }
+            },
+            refetchQueries: [{
+              query: ENTRIES_BY_RACE_QUERY,
+              variables: { race_name },
+            }]
           }).subscribe(({ data }) => {
             console.log('Entry Data', data);
             form.reset();
