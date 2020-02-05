@@ -36,7 +36,11 @@
         <tbody>
           <tr *ngFor="let entry of entries$ | async">
             <td><ngb-highlight [result]="entry.number" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="entry.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+            <td>
+              <a class="btn btn-link horse-name" href="{{entry.link}}" target="_blank">
+                <ngb-highlight [result]="entry.horse_name" [term]="service.searchTerm"></ngb-highlight>
+              </a>
+            </td>
             <td><ngb-highlight [result]="entry.weight" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight [result]="entry.jockey" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight [result]="entry.bred" [term]="service.searchTerm"></ngb-highlight></td>

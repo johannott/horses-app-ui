@@ -2,6 +2,10 @@ th {
     cursor: pointer;
 }
 
+.table td, .table th {
+    vertical-align: middle;
+}
+
 .horses-search {
     margin-top: 20px;
 }
