@@ -2,7 +2,7 @@
 <form>
   <div class="row align-items-center">
     <div class="form-group form-inline horses-search col-sm">
-      Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+      <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
       <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
   </div>
   <div class="col-sm"><button class="btn btn-primary float-right" routerLink="/addhorse">Add Horse</button></div>

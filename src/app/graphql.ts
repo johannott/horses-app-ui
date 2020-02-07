@@ -209,7 +209,7 @@ export const UPDATE_ENTRY_MUTATION = gql`
     updateEntry(
         race_name: $race_name
         horse_name: $horse_name, 
-        number: $number
+        number: $number,
         weight: $weight,
         jockey: $jockey,
         trends: $trends,
@@ -253,6 +253,50 @@ export const TRENDS_QUERY = gql`
   query TrendsByRace($race_name: String!){
     trendsByRace(race_name: $race_name){  
         trend_
+    }
+  }
+`
+
+export const NOTES_QUERY = gql`
+  query {
+    notes{  
+        note_,
+        type
+    }
+  }
+`
+
+export const ADD_NOTE_MUTATION = gql`
+mutation addNoteMutation (
+    $note: String!,       
+    $type: String!) {
+    addNote(
+        note_: $note,
+        type: $type
+    ) {
+        note_
+    }
+}
+`
+
+export const ACCOUNTS_QUERY = gql`
+  query {
+    accounts{  
+        account_name,
+        username,
+        balance
+    }
+  }
+`
+
+export const BETS_QUERY = gql`
+  query {
+    bets{  
+        race_name,
+        horse_name, 
+        type,
+        price,
+        amount
     }
   }
 `

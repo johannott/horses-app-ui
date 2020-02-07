@@ -25,6 +25,11 @@ import { AddEntryComponent } from './entries/add-entry.component';
 import { UpdateEntryComponent } from './entries/update-entry.component';
 
 import { TrendsComponent } from './trends/trends.component';
+import { NotesComponent } from './notes/notes.component';
+
+import { BettingComponent } from './betting/betting.component';
+import { BetsComponent } from './betting/bets.component';
+import { AccountsComponent } from './betting/accounts.component';
 
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
@@ -45,6 +50,10 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     UpdateEntryComponent,
     AddEntryComponent,
     TrendsComponent,
+    NotesComponent,
+    BettingComponent,
+    BetsComponent,
+    AccountsComponent,
     HomeComponent,
     AuthComponent,
     LoadingSpinnerComponent

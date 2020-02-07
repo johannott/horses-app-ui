@@ -1,0 +1,20 @@
+<table class="table table-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Race Name</th>  
+        <th scope="col">Horse(s)</th>  
+        <th scope="col">Type</th>        
+        <th scope="col">Price</th>        
+        <th scope="col">Amount</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bet of bets">
+        <td>{{bet.race_name}}</td>
+        <td>{{bet.horse_name}}</td>
+        <td>{{bet.type}}</td>
+        <td>{{bet.price}}</td>
+        <td>{{bet.amount}}</td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,0 +1,37 @@
+<div>
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="display-4">Racing Bets</h2>
+            <table class="table table-sm table-striped">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Points</th>  
+                        <th scope="col">Amount of Bank</th>  
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0.5</td>
+                        <td>{{pointFive}}</td>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>{{onePoint}}</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>{{twoPoints}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+        </div>
+        <div class="col-md-7">
+            <app-accounts (balance)="getBalance($event)"></app-accounts>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+           <app-bets></app-bets>
+        </div>
+    </div>
+</div>

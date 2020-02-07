@@ -1,0 +1,16 @@
+<table class="table table-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Account</th>  
+        <th scope="col">Username</th>  
+        <th scope="col">Balance</th>        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accounts">
+        <td>{{account.account_name}}</td>
+        <td>{{account.username}}</td>
+        <td>€{{account.balance}}</td>
+      </tr>
+    </tbody>
+  </table>

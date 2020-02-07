@@ -1,11 +1,11 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
+    <!-- <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
+    </ol> -->
     <div class="carousel-inner">
-      <div class="carousel-item active">
+      <!-- <div class="carousel-item active">
         <img src="assets/images/annie.jpg" class="img-responsive" alt="">
         <div class="container">
         </div>
@@ -14,21 +14,21 @@
         <img src="assets/images/tiger.jpg" class="img-responsive" alt="">
         <div class="container">
         </div>
-      </div>
-      <div class="carousel-item">
+      </div> -->
+      <div class="carousel-item active">
         <img src="assets/images/chelt3.jpg" class="img-responsive" alt="">
         <div class="container">
         </div>
       </div>
     </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <!-- <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
-    </a>
+    </a> -->
   </div>
 
   <div class="container marketing">
@@ -45,28 +45,16 @@
 
     <hr class="featurette-divider">
 
-    <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">This section will be for racing notes... <span class="text-muted">Cheltenham and more...</span></h2>
-          <p class="lead">Will pull from the racing notes database...</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+    <div class="row featurette"> 
+      <div class="col-md-12">
+          <h2 class="display-4">Racing Notes</h2>
+          <app-notes></app-notes>
         </div>
       </div>
 
     <hr class="featurette-divider">
 
-
-    <div class="row featurette">
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-        </div>
-        <div class="col-md-7">
-            <h2 class="featurette-heading">This section will be for bets</h2>
-            <p class="lead">Will pull from the racing bets database...</p>
-          </div>
-      </div>
+    <app-betting></app-betting>    
 
     <hr class="featurette-divider">
 
@@ -86,7 +74,7 @@
               </div>
         </div>
         <div class="col-md-6 order-md-2">
-            <a class="twitter-timeline" data-lang="en" data-width="500" data-height="500" data-theme="dark" href="https://twitter.com/johannott/lists/racing?ref_src=twsrc%5Etfw">A Twitter List by johannott</a>
+            <a class="twitter-timeline" data-lang="en" data-width="500" data-height="491" data-theme="dark" href="https://twitter.com/johannott/lists/racing?ref_src=twsrc%5Etfw">A Twitter List by johannott</a>
         </div>
     </div> 
 
