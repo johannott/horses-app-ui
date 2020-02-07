@@ -12,7 +12,7 @@ import { ACCOUNTS_QUERY } from '../graphql'
   })
   export class AccountsComponent{
     private accounts_query: QueryRef<any>
-    private accounts: any
+    accounts: any
     balanceTotal: any
 
     @Output() balance = new EventEmitter<number>();

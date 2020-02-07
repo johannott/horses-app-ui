@@ -27,7 +27,7 @@ import { ADD_NOTE_MUTATION, NOTES_QUERY } from '../graphql'
 
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
     
-    constructor(private apollo: Apollo, private service: NotesService) {}
+    constructor(private apollo: Apollo, public service: NotesService) {}
 
     ngOnInit() {
       this.notes$ = this.service.notes$
