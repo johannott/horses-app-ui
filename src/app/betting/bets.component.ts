@@ -12,7 +12,7 @@ import { BETS_QUERY } from '../graphql'
   })
   export class BetsComponent{
     private bets_query: QueryRef<any>
-    private bets: any
+    bets: any
     
     constructor(private apollo: Apollo, private route: ActivatedRoute) {
         this.bets_query = this.apollo.watchQuery({
