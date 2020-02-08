@@ -8,7 +8,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let account of accounts">
-        <td>{{account.account_name}}</td>
+        <td>
+          <a class="btn btn-link" href="{{account.url}}" target="_blank">
+            {{account.account_name}}
+          </a>
+        </td>
         <td>{{account.username}}</td>
         <td>€{{account.balance}}</td>
       </tr>

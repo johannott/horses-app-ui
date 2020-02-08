@@ -284,7 +284,8 @@ export const ACCOUNTS_QUERY = gql`
     accounts{  
         account_name,
         username,
-        balance
+        balance,
+        url
     }
   }
 `
