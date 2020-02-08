@@ -1,4 +1,4 @@
-import { Component, QueryList, ViewChildren, OnInit, OnDestroy } from '@angular/core';
+import { Component, QueryList, ViewChildren, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DecimalPipe } from '@angular/common'
 
@@ -26,6 +26,7 @@ import { ADD_NOTE_MUTATION, NOTES_QUERY } from '../graphql'
     error: string = null
 
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
+    @ViewChild('closebutton', null) closebutton;
     
     constructor(private apollo: Apollo, public service: NotesService) {}
 
@@ -70,8 +71,7 @@ import { ADD_NOTE_MUTATION, NOTES_QUERY } from '../graphql'
         }).subscribe(({ data }) => {
           console.log('Note Data', data);
           form.reset();
-          $('#addNoteModalCenter').toggle()
-          $('.modal-backdrop').hide();
+          this.closebutton.nativeElement.click();
         },(error) => {
           console.log('There was an error sending the add note mutation', error);
           this.error = error;

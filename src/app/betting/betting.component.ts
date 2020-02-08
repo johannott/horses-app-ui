@@ -10,10 +10,12 @@ import { Component } from '@angular/core';
     pointFive: number
     onePoint: number
     twoPoints: number
+    balance: number
     
     constructor() {}
 
     getBalance(balance: number) {
+      this.balance = balance
       this.pointFive = balance*.005;
       this.onePoint = balance*.01;
       this.twoPoints = balance*.02;

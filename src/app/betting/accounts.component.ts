@@ -13,7 +13,7 @@ import { ACCOUNTS_QUERY } from '../graphql'
   export class AccountsComponent{
     private accounts_query: QueryRef<any>
     accounts: any
-    balanceTotal: any
+    balanceTotal: number = 0
 
     @Output() balance = new EventEmitter<number>();
     
@@ -24,8 +24,10 @@ import { ACCOUNTS_QUERY } from '../graphql'
       
           this.accounts_query.valueChanges.subscribe(result => {
             this.accounts = result.data && result.data.accounts;
-            this.balanceTotal = this.accounts.map(account => Number(account.balance)).reduce((prev, next) => prev + next);
-            this.balance.emit(this.balanceTotal);
+            if (this.accounts.length > 0) {
+              this.balanceTotal = this.accounts.map(account => Number(account.balance)).reduce((prev, next) => prev + next);
+              this.balance.emit(this.balanceTotal);
+            }
             console.log('Accounts', this.accounts)
             console.log('balanceTotal', this.balanceTotal)
           })
