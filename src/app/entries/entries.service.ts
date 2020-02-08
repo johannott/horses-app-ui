@@ -41,13 +41,13 @@ function sort(entries: Entry[], column: string, direction: string): Entry[] {
 }
 
 function matches(entry: Entry, term: string, pipe: PipeTransform) {
-  return entry.horse_name.toLowerCase().includes(term.toLowerCase())
-    || entry.number.toLowerCase().includes(term.toLowerCase())
-    || entry.weight.toLowerCase().includes(term.toLowerCase())
-    || entry.jockey.toLowerCase().includes(term.toLowerCase())
-    || entry.trends.toLowerCase().includes(term.toLowerCase())
-    || entry.tipped.toLowerCase().includes(term.toLowerCase())
-    || entry.bets.toLowerCase().includes(term.toLowerCase());
+  return (entry.horse_name && entry.horse_name.toLowerCase().includes(term.toLowerCase()))
+    || (entry.number && entry.number.toLowerCase().includes(term.toLowerCase()))
+    || (entry.weight && entry.weight.toLowerCase().includes(term.toLowerCase()))
+    || (entry.jockey && entry.jockey.toLowerCase().includes(term.toLowerCase()))
+    || (entry.trends && entry.trends.toLowerCase().includes(term.toLowerCase()))
+    || (entry.tipped && entry.tipped.toLowerCase().includes(term.toLowerCase()))
+    || (entry.bets && entry.bets.toLowerCase().includes(term.toLowerCase()));
 }
 
 @Injectable({providedIn: 'root'})
