@@ -9,6 +9,7 @@ import { RacesComponent } from './races/races.component';
 import { RaceComponent } from './races/race.component';
 import { AddEntryComponent } from './entries/add-entry.component';
 import { UpdateEntryComponent } from './entries/update-entry.component';
+import { TracksComponent } from './tracks/tracks.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -52,6 +53,11 @@ const routes: Routes = [
     path: 'updateentry/:race_name/:horse_name',
     canActivate: [AuthGuard],
     component: UpdateEntryComponent
+  },
+  {
+    path: 'tracks',
+    canActivate: [AuthGuard],
+    component: TracksComponent
   },
   {
     path: 'login',

@@ -24,6 +24,8 @@ import { EntriesComponent } from './entries/entries.component';
 import { AddEntryComponent } from './entries/add-entry.component';
 import { UpdateEntryComponent } from './entries/update-entry.component';
 
+import { TracksComponent } from './tracks/tracks.component';
+
 import { TrendsComponent } from './trends/trends.component';
 import { NotesComponent } from './notes/notes.component';
 
@@ -49,6 +51,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     EntriesComponent,
     UpdateEntryComponent,
     AddEntryComponent,
+    TracksComponent,
     TrendsComponent,
     NotesComponent,
     BettingComponent,

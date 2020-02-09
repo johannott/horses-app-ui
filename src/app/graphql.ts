@@ -332,3 +332,40 @@ mutation AddBetMutation(
     }
 }
 `
+
+export const TRACKS_QUERY = gql`
+  query {
+    tracks{  
+      track_name,
+      direction,
+      topography,
+      notes,
+      length:,
+      surface,
+      country
+    }
+  }
+`
+
+export const ADD_TRACK_MUTATION = gql`
+mutation AddTrackMutation(
+    $track_name: String!
+    $direction: String
+    $topography: String
+    $notes: String
+    $length: String
+    $surface: String
+    $country: String) {
+      addTrack(
+      track_name: $track_name
+      direction: $direction, 
+      topography: $topography
+      notes: $notes,
+      length: $length,
+      surface: $surface,
+      country: $country
+    ) {
+      track_name
+    }
+}
+`
