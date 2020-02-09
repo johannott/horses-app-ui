@@ -30,7 +30,7 @@ export class AuthComponent {
     if (typeof authPromise === 'string') {
       this.error = authPromise;
     } else {
-      this.router.navigate(['/horses']);
+      this.router.navigate(['/']);
     }
   
     form.reset();
