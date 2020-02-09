@@ -305,3 +305,30 @@ export const BETS_QUERY = gql`
     }
   }
 `
+
+export const ADD_BET_MUTATION = gql`
+mutation AddBetMutation(
+    $race_name: String!
+    $horse_name: [String!]
+    $type: String
+    $places: String
+    $price: String
+    $amount: String
+    $to_return: String
+    $date: String
+    $time: String) {
+    addBet(
+      race_name: $race_name
+      horse_name: $horse_name, 
+      type: $type
+      places: $places,
+      price: $price,
+      amount: $amount,
+      to_return: $to_return,
+      date: $date,
+      time: $time
+    ) {
+      race_name
+    }
+}
+`

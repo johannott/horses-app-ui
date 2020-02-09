@@ -1,28 +1,169 @@
-<table class="table table-sm table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Race Name</th>  
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Horse(s)</th>  
-        <th scope="col">Type</th>        
-        <th scope="col">Places</th>  
-        <th scope="col">Price</th>        
-        <th scope="col">Amount</th>
-        <th scope="col">To Return</th>  
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let bet of bets">
-        <td>{{bet.race_name}}</td>
-        <td>{{bet.date}}</td>
-        <td>{{bet.time}}</td>
-        <td>{{bet.horse_name}}</td>
-        <td>{{bet.type}}</td>
-        <td>{{bet.places}}</td>
-        <td>{{bet.price}}</td>
-        <td>€{{bet.amount}}</td>
-        <td>€{{bet.to_return}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <form>
+    <div class="row align-items-center">
+      <div class="form-group form-inline bets-search col-sm">
+        <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+    <div class="col-sm"><button class="btn btn-primary float-right" data-toggle="modal" data-target="#addBetModalCenter">Add Bet</button></div>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <table *ngIf="!isLoading && hasBets" class="table table-sm table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" sortable="race_name" (sort)="onSort($event)">Race(s)</th>
+            <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+            <th scope="col" sortable="time" (sort)="onSort($event)">Time</th>
+            <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse(s)</th>
+            <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+            <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
+            <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+            <th scope="col" sortable="amount" (sort)="onSort($event)">Amount</th>
+            <th scope="col" sortable="to_return" (sort)="onSort($event)">To Return</th>
+            <!-- <th scope="col">Update</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bet of bets$ | async">
+            <td><ngb-highlight [result]="bet.race_name" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.date" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.time" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
+            <!-- <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td> -->
+          </tr>
+        </tbody>
+      </table>
+  
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+          [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+        </ngb-pagination>
+    
+        <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+          <option [ngValue]="20">20 items per page</option>
+          <option [ngValue]="40">40 items per page</option>
+          <option [ngValue]="60">60 items per page</option>
+        </select>
+      </div>
+  
+  </form>
+    
+  <!-- Modal -->
+  <div class="modal fade" id="addBetModalCenter" tabindex="-1" role="dialog" aria-labelledby="addBetModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBetModalCenterTitle">Add Bet</h5>
+          <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+           </div>
+           <form #betForm="ngForm" (ngSubmit)="onSubmit(betForm)">
+               <div class="form-group">
+                   <label for="name">Race Name</label>
+                   <input 
+                       type="text" 
+                       id="race_name" 
+                       class="form-control"
+                       ngModel
+                       name="race_name">
+               </div>
+               <div class="form-group">
+                <label for="name">Date</label>
+                <input 
+                    type="text" 
+                    id="date" 
+                    class="form-control"
+                    ngModel
+                    name="date"
+                    required>
+              </div>
+              <div class="form-group">
+                <label for="name">Time</label>
+                <input 
+                    type="text" 
+                    id="time" 
+                    class="form-control"
+                    ngModel
+                    name="time"
+                    required>
+              </div>
+               <div class="form-group">
+                   <label for="name">Horse(s)</label>
+                   <input 
+                       type="text" 
+                       id="horse_name" 
+                       class="form-control"
+                       ngModel
+                       name="horse_name"
+                       required>
+               </div>
+               <div class="form-group">
+                <label for="name">Type</label>
+                <input 
+                    type="text" 
+                    id="type" 
+                    class="form-control"
+                    ngModel
+                    name="type"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Places</label>
+                  <input 
+                      type="text" 
+                      id="places" 
+                      class="form-control"
+                      ngModel
+                      name="places"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Price</label>
+                  <input 
+                      type="text" 
+                      id="price" 
+                      class="form-control"
+                      ngModel
+                      name="price"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Amount</label>
+                  <input 
+                      type="text" 
+                      id="amount" 
+                      class="form-control"
+                      ngModel
+                      name="amount"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="name">To Return</label>
+                  <input 
+                      type="text" 
+                      id="to_return" 
+                      class="form-control"
+                      ngModel
+                      name="to_return"
+                      required>
+                </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" type="submit" [disabled]="!betForm.valid">Add Bet</button>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
