@@ -2,19 +2,27 @@
     <thead class="thead-dark">
       <tr>
         <th scope="col">Race Name</th>  
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
         <th scope="col">Horse(s)</th>  
         <th scope="col">Type</th>        
+        <th scope="col">Places</th>  
         <th scope="col">Price</th>        
-        <th scope="col">Amount</th>        
+        <th scope="col">Amount</th>
+        <th scope="col">To Return</th>  
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let bet of bets">
         <td>{{bet.race_name}}</td>
+        <td>{{bet.date}}</td>
+        <td>{{bet.time}}</td>
         <td>{{bet.horse_name}}</td>
         <td>{{bet.type}}</td>
+        <td>{{bet.places}}</td>
         <td>{{bet.price}}</td>
-        <td>{{bet.amount}}</td>
+        <td>€{{bet.amount}}</td>
+        <td>€{{bet.to_return}}</td>
       </tr>
     </tbody>
   </table>

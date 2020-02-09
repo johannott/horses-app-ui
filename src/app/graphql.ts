@@ -296,8 +296,12 @@ export const BETS_QUERY = gql`
         race_name,
         horse_name, 
         type,
+        places,
         price,
-        amount
+        amount,
+        to_return,
+        date,
+        time
     }
   }
 `
