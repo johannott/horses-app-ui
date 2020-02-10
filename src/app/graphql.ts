@@ -259,7 +259,8 @@ export const TRENDS_QUERY = gql`
 
 export const NOTES_QUERY = gql`
   query {
-    notes{  
+    notes{ 
+        id 
         note_,
         type
     }
@@ -271,6 +272,21 @@ mutation addNoteMutation (
     $note: String!,       
     $type: String!) {
     addNote(
+        note_: $note,
+        type: $type
+    ) {
+        note_
+    }
+}
+`
+
+export const UPDATE_NOTE_MUTATION = gql`
+mutation addNoteMutation (
+    $id: ID!,
+    $note: String!,       
+    $type: String!) {
+    updateNote(
+        id: $id,
         note_: $note,
         type: $type
     ) {

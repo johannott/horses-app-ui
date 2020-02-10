@@ -14,14 +14,14 @@
         <tr>
           <th scope="col" sortable="horse_name" (sort)="onSort($event)">Note</th>
           <th scope="col" sortable="trainer" (sort)="onSort($event)">Type</th>
-          <!-- <th scope="col">Update</th> -->
+          <th scope="col">Update</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let note of notes$ | async">
           <td><ngb-highlight [result]="note.note_" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="note.type" [term]="service.searchTerm"></ngb-highlight></td>
-          <!-- <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td> -->
+          <td><button class="btn btn-link update-note" [attr.data-id]="note.id" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">Update</button></td>
         </tr>
       </tbody>
     </table>
@@ -40,7 +40,7 @@
 
 </form>
   
-<!-- Modal -->
+<!-- Add Note Modal -->
 <div class="modal fade" id="addNoteModalCenter" tabindex="-1" role="dialog" aria-labelledby="addNoteModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -77,6 +77,49 @@
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Add Note</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update Note Modal -->
+<div class="modal fade" id="updateNoteModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateNoteModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateNoteModalCenterTitle">Update Note</h5>
+        <button type="button" class="close" #closebuttonUpdate data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="error">
+              <p>{{ error }}</p>
+         </div>
+         <form [formGroup]="updateNoteForm" (ngSubmit)="onSubmitUpdate()">
+             <div class="form-group">
+                 <label for="name">Note</label>
+                 <input 
+                     type="text" 
+                     id="note" 
+                     class="form-control"
+                     [formControlName]="'note'"
+                     name="note">
+             </div>
+             <div class="form-group">
+                 <label for="name">Type</label>
+                 <input 
+                     type="text" 
+                     id="type" 
+                     class="form-control"
+                     [formControlName]="'type'"
+                     name="type">
+             </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateNoteForm.valid">Update Note</button>
               </div>
         </form>
       </div>
