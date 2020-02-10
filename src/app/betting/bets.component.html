@@ -1,4 +1,4 @@
-  <form *ngIf="hasBets">
+  <form>
     <div class="row align-items-center">
       <div class="form-group form-inline bets-search col-sm">
         <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
@@ -9,7 +9,7 @@
     <div *ngIf="isLoading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <table *ngIf="!isLoading" class="table table-sm table-striped">
+    <table *ngIf="!isLoading && hasBets" class="table table-sm table-striped">
         <thead class="thead-dark">
           <tr>
             <th scope="col" sortable="race_name" (sort)="onSort($event)">Race(s)</th>
@@ -21,7 +21,7 @@
             <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
             <th scope="col" sortable="amount" (sort)="onSort($event)">Amount</th>
             <th scope="col" sortable="to_return" (sort)="onSort($event)">To Return</th>
-            <!-- <th scope="col">Update</th> -->
+            <th scope="col">Update</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +35,7 @@
             <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
             <td>€<ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
             <td>€<ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
-            <!-- <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td> -->
+            <td><button class="btn btn-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter">Update</button></td>
           </tr>
         </tbody>
       </table>
@@ -54,13 +54,13 @@
   
   </form>
     
-  <!-- Modal -->
+  <!-- Add Bet Modal -->
   <div class="modal fade" id="addBetModalCenter" tabindex="-1" role="dialog" aria-labelledby="addBetModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="addBetModalCenterTitle">Add Bet</h5>
-          <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" #closeBetAdd data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -167,3 +167,117 @@
       </div>
     </div>
   </div>
+
+  <!-- Update Bet Modal -->
+<div class="modal fade" id="updateBetModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateBetModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateBetModalCenterTitle">Update Bet</h5>
+        <button type="button" class="close" #closeBetUpdate data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="error">
+              <p>{{ error }}</p>
+         </div>
+         <form [formGroup]="updateBetForm" (ngSubmit)="onSubmitUpdate()">
+            <div class="form-group">
+            <label for="name">Race Name</label>
+            <input 
+                type="text" 
+                id="race_name" 
+                class="form-control"
+                [formControlName]="'race_name'"
+                name="race_name">
+            </div>
+            <div class="form-group">
+            <label for="name">Date</label>
+            <input 
+                type="text" 
+                id="date" 
+                class="form-control"
+                [formControlName]="'date'"
+                name="date"
+                required>
+          </div>
+            <div class="form-group">
+              <label for="name">Time</label>
+              <input 
+                  type="text" 
+                  id="time" 
+                  class="form-control"
+                  [formControlName]="'time'"
+                  name="time"
+                  required>
+            </div>
+              <div class="form-group">
+                  <label for="name">Horse(s)</label>
+                  <input 
+                      type="text" 
+                      id="horse_name" 
+                      class="form-control"
+                      [formControlName]="'horse_name'"
+                      name="horse_name"
+                      required>
+              </div>
+              <div class="form-group">
+              <label for="name">Type</label>
+              <input 
+                  type="text" 
+                  id="type" 
+                  class="form-control"
+                  [formControlName]="'type'"
+                  name="type"
+                  required>
+              </div>
+              <div class="form-group">
+                <label for="name">Places</label>
+                <input 
+                    type="text" 
+                    id="places" 
+                    class="form-control"
+                    [formControlName]="'places'"
+                    name="places"
+                    required>
+              </div>
+              <div class="form-group">
+                <label for="name">Price</label>
+                <input 
+                    type="text" 
+                    id="price" 
+                    class="form-control"
+                    [formControlName]="'price'"
+                    name="price"
+                    required>
+              </div>
+              <div class="form-group">
+                <label for="name">Amount</label>
+                <input 
+                    type="text" 
+                    id="amount" 
+                    class="form-control"
+                    [formControlName]="'amount'"
+                    name="amount"
+                    required>
+              </div>
+              <div class="form-group">
+                <label for="name">To Return</label>
+                <input 
+                    type="text" 
+                    id="to_return" 
+                    class="form-control"
+                    [formControlName]="'to_return'"
+                    name="to_return"
+                    required>
+              </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateBetForm.valid">Update Bet</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

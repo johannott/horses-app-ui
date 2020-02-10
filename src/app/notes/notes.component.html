@@ -21,7 +21,7 @@
         <tr *ngFor="let note of notes$ | async">
           <td><ngb-highlight [result]="note.note_" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="note.type" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><button class="btn btn-link update-note" [attr.data-id]="note.id" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">Update</button></td>
+          <td><button class="btn btn-link update-note" (click)="onClickUpdate(note.id)" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">Update</button></td>
         </tr>
       </tbody>
     </table>
@@ -46,7 +46,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Add Note</h5>
-        <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" #closeNoteAdd data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -90,7 +90,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="updateNoteModalCenterTitle">Update Note</h5>
-        <button type="button" class="close" #closebuttonUpdate data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" #closeNoteUpdate data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

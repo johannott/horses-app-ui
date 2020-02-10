@@ -28,8 +28,8 @@ import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql
     updateNoteForm: FormGroup
 
     @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
-    @ViewChild('closebutton', null) closebutton;
-    @ViewChild('closebuttonUpdate', null) closebuttonUpdate;
+    @ViewChild('closeNoteAdd', null) closeNoteAdd;
+    @ViewChild('closeNoteUpdate', null) closeNoteUpdate;
     
     constructor(private apollo: Apollo, public service: NotesService) {}
 
@@ -46,17 +46,16 @@ import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql
         'type': new FormControl("", Validators.required),
         'id': new FormControl("")
       })
+    }
 
-      $(document).on("click", ".update-note", () => {
-        var noteId = $(".update-note").data('id')
-        const notes = JSON.parse(localStorage.getItem('notes'))
-        this.note = notes.find(o => o.id === noteId.toString());
-        this.updateNoteForm.setValue({
-          'note': this.note.note_,
-          'type': this.note.type,
-          'id': this.note.id
-        })
-      });
+    onClickUpdate(id) {
+      const notes = JSON.parse(localStorage.getItem('notes'))
+      this.note = notes.find(o => o.id === id.toString());
+      this.updateNoteForm.setValue({
+        'note': this.note.note_,
+        'type': this.note.type,
+        'id': this.note.id
+      })
     }
   
     onSort({column, direction}: SortEvent) {
@@ -91,7 +90,7 @@ import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql
         }).subscribe(({ data }) => {
           console.log('Note Data', data);
           form.reset();
-          this.closebutton.nativeElement.click();
+          this.closeNoteAdd.nativeElement.click();
         },(error) => {
           console.log('There was an error sending the add note mutation', error);
           this.error = error;
@@ -120,7 +119,7 @@ import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql
       }).subscribe(({ data }) => {
         console.log('Note Data', data);
         this.updateNoteForm.reset();
-        this.closebuttonUpdate.nativeElement.click();
+        this.closeNoteUpdate.nativeElement.click();
       },(error) => {
         console.log('There was an error sending the update note mutation', error);
         this.error = error;
