@@ -39,8 +39,13 @@ function sort(bets: Bet[], column: string, direction: string): Bet[] {
 }
 
 function matches(bet: Bet, term: string, pipe: PipeTransform) {
-  return bet.race_name.toLowerCase().includes(term.toLowerCase())
-    || bet.type.toLowerCase().includes(term.toLowerCase());
+  return (bet.race_name && bet.race_name.toLowerCase().includes(term.toLowerCase()))
+    || (bet.date && bet.date.toLowerCase().includes(term.toLowerCase()))
+    || (bet.time && bet.time.toLowerCase().includes(term.toLowerCase()))
+    || (bet.horse_name && bet.horse_name.includes(term))
+    || (bet.type && bet.type.toLowerCase().includes(term.toLowerCase()))
+    || (bet.places && bet.places.toLowerCase().includes(term.toLowerCase()))
+    || (bet.price && bet.price.toLowerCase().includes(term.toLowerCase()));
 }
 
 @Injectable({providedIn: 'root'})

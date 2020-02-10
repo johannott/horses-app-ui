@@ -1,4 +1,4 @@
-  <form>
+  <form *ngIf="hasBets">
     <div class="row align-items-center">
       <div class="form-group form-inline bets-search col-sm">
         <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
@@ -9,7 +9,7 @@
     <div *ngIf="isLoading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <table *ngIf="!isLoading && hasBets" class="table table-sm table-striped">
+    <table *ngIf="!isLoading" class="table table-sm table-striped">
         <thead class="thead-dark">
           <tr>
             <th scope="col" sortable="race_name" (sort)="onSort($event)">Race(s)</th>
@@ -33,8 +33,8 @@
             <td><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
             <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
+            <td>€<ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
+            <td>€<ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
             <!-- <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td> -->
           </tr>
         </tbody>

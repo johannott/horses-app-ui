@@ -1,35 +1,3 @@
-// import { Component } from '@angular/core';
-// import { ActivatedRoute } from '@angular/router';
-
-// import { Apollo, QueryRef } from 'apollo-angular';
-// import { BETS_QUERY } from '../graphql'
-
-// @Component({
-//     selector: 'app-bets',
-//     templateUrl: './bets.component.html',
-//     styleUrls: ['./bets.component.scss'],
-//     providers: []
-//   })
-//   export class BetsComponent{
-//     private bets_query: QueryRef<any>
-//     bets: any
-//     hasBets: boolean = false
-    
-//     constructor(private apollo: Apollo, private route: ActivatedRoute) {
-//         this.bets_query = this.apollo.watchQuery({
-//             query: BETS_QUERY
-//           });
-      
-//           this.bets_query.valueChanges.subscribe(result => {
-//             this.bets = result.data && result.data.bets;
-//             this.bets = this.bets.filter(bet => new Date(bet.date).getTime() > new Date().getTime())
-//             this.hasBets = this.bets.length > 0
-//             console.log('Bets', this.bets)
-//           })
-//     }
-  
-//   }
-
 import { Component, QueryList, ViewChildren, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DecimalPipe } from '@angular/common'
