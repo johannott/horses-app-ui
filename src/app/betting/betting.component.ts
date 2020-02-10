@@ -16,9 +16,12 @@ import { Component } from '@angular/core';
 
     getBalance(balance: number) {
       this.balance = balance
-      this.pointFive = balance*.005;
-      this.onePoint = balance*.01;
-      this.twoPoints = balance*.02;
+      this.pointFive = this.roundToTwoDecmimals(balance*.005);
+      this.onePoint = this.roundToTwoDecmimals(balance*.01);
+      this.twoPoints = this.roundToTwoDecmimals(balance*.02);
     }
-  
+
+    roundToTwoDecmimals(amountofBank: number): number {
+      return Math.round((amountofBank + Number.EPSILON) * 100) / 100
+    }
   }

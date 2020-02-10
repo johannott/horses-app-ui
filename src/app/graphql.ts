@@ -340,7 +340,7 @@ export const TRACKS_QUERY = gql`
       direction,
       topography,
       notes,
-      length:,
+      length,
       surface,
       country
     }
