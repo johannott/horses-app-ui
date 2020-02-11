@@ -9,36 +9,38 @@
     <div *ngIf="isLoading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
     </div>
-    <table *ngIf="!isLoading && hasBets" class="table table-sm table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col" sortable="race_name" (sort)="onSort($event)">Race(s)</th>
-            <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
-            <th scope="col" sortable="time" (sort)="onSort($event)">Time</th>
-            <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse(s)</th>
-            <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
-            <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
-            <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
-            <th scope="col" sortable="amount" (sort)="onSort($event)">Amount</th>
-            <th scope="col" sortable="to_return" (sort)="onSort($event)">To Return</th>
-            <th scope="col">Update</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let bet of bets$ | async">
-            <td><ngb-highlight [result]="bet.race_name" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.date" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.time" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
-            <td>€<ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
-            <td>€<ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
-            <td><button class="btn btn-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter">Update</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="table-responsive">
+        <table *ngIf="!isLoading && hasBets" class="table table-sm table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" sortable="race_name" (sort)="onSort($event)">Race(s)</th>
+                <th scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+                <th scope="col" sortable="time" (sort)="onSort($event)">Time</th>
+                <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse(s)</th>
+                <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+                <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
+                <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+                <th scope="col" sortable="amount" (sort)="onSort($event)">Amount</th>
+                <th scope="col" sortable="to_return" (sort)="onSort($event)">To Return</th>
+                <th scope="col" class="update-heading">Update</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bet of bets$ | async">
+                <td><ngb-highlight [result]="bet.race_name" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.date" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.time" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
+                <td>€<ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
+                <td>€<ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><button class="btn btn-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter">Update</button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
   
       <div class="d-flex justify-content-between p-2">
         <ngb-pagination

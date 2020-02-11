@@ -42,7 +42,7 @@ function matches(bet: Bet, term: string, pipe: PipeTransform) {
   return (bet.race_name && bet.race_name.toLowerCase().includes(term.toLowerCase()))
     || (bet.date && bet.date.toLowerCase().includes(term.toLowerCase()))
     || (bet.time && bet.time.toLowerCase().includes(term.toLowerCase()))
-    || (bet.horse_name && bet.horse_name.includes(term))
+    || bet.horse_name.some(horse => horse.toLowerCase().includes(term.toLowerCase()))
     || (bet.type && bet.type.toLowerCase().includes(term.toLowerCase()))
     || (bet.places && bet.places.toLowerCase().includes(term.toLowerCase()))
     || (bet.price && bet.price.toLowerCase().includes(term.toLowerCase()));
@@ -56,6 +56,7 @@ export class BetsService {
   private _total$ = new BehaviorSubject<number>(0);
   query: QueryRef<any>;
   BETS = new BehaviorSubject<Bet[]>([]);
+  private bets: Bet[] = []
 
   private _state: State = {
     page: 1,
@@ -71,7 +72,11 @@ export class BetsService {
       });
   
       this.query.valueChanges.subscribe(result => {
-        this.BETS.next(result.data && result.data.bets.filter(bet => new Date(bet.date).getTime() > new Date().getTime()));
+        this.bets = result.data && result.data.bets.filter(bet => new Date(bet.date).getTime() > new Date().getTime())
+        this.bets.forEach(bet => {
+          bet.date = new Date(bet.date).toDateString()
+        });
+        this.BETS.next(this.bets)
         this._search$.pipe(
           tap(() => this._loading$.next(true)),
           debounceTime(200),
