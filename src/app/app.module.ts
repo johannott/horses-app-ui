@@ -36,6 +36,8 @@ import { AccountsComponent } from './betting/accounts.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
 
+import { FooterComponent } from './footer/footer.component';
+
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component'
 
 
@@ -59,6 +61,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     AccountsComponent,
     HomeComponent,
     AuthComponent,
+    FooterComponent,
     LoadingSpinnerComponent
   ],
   imports: [
