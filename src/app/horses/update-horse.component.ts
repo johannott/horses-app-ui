@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 
 import { Apollo } from 'apollo-angular'
-import { HORSES_QUERY, UPDATE_HORSE_MUTATION } from '../graphql'
+import { HORSES_QUERY, UPDATE_HORSE_MUTATION, HORSE_BY_NAME_QUERY } from '../graphql'
 
 @Component({
   selector: 'update-add-horse',
@@ -78,6 +78,10 @@ export class UpdateHorseComponent {
             },
             refetchQueries: [{
               query: HORSES_QUERY
+            },
+            {
+              query: HORSE_BY_NAME_QUERY, 
+              variables: { horse_name: this.current_name },
             }]
           }).subscribe(({ data }) => {
             console.log('Horse Update Data', data)

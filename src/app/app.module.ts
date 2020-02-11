@@ -39,6 +39,10 @@ import { AuthComponent } from './auth/auth.component';
 import { FooterComponent } from './footer/footer.component';
 
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component'
+import { HorseService } from './horses/horse.service';
+import { BetsService } from './betting/bets.service';
+import { EntriesService } from './entries/entries.service';
+import { NotesService } from './notes/notes.service';
 
 
 @NgModule({
@@ -74,7 +78,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     DataTablesModule,
     NgbModule
   ],
-  providers: [],
+  providers: [HorseService, BetsService, EntriesService, NotesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

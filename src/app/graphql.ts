@@ -235,6 +235,21 @@ export const RACES_QUERY = gql`
     }
   }
 `
+
+export const ENTRIES_QUERY = gql`
+  query { 
+    entries {
+      race_name,
+      horse_name,
+      number
+      weight,
+      jockey,
+      trends,
+      tipped,
+      bets
+    }
+  }
+`
 export const RACE_BY_NAME_QUERY = gql`
   query RaceByName($race_name: String!){ 
     raceByName(race_name: $race_name) {

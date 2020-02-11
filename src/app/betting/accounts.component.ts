@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Apollo, QueryRef } from 'apollo-angular';
 import { ACCOUNTS_QUERY } from '../graphql'
+
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-accounts',
@@ -10,10 +12,11 @@ import { ACCOUNTS_QUERY } from '../graphql'
     styleUrls: ['./accounts.component.scss'],
     providers: []
   })
-  export class AccountsComponent{
+  export class AccountsComponent implements OnDestroy{
     private accounts_query: QueryRef<any>
     accounts: any
     balanceTotal: number = 0
+    private accountsSub: Subscription;
 
     @Output() balance = new EventEmitter<number>();
     
@@ -22,7 +25,7 @@ import { ACCOUNTS_QUERY } from '../graphql'
             query: ACCOUNTS_QUERY
           });
       
-          this.accounts_query.valueChanges.subscribe(result => {
+          this.accountsSub = this.accounts_query.valueChanges.subscribe(result => {
             this.accounts = result.data && result.data.accounts;
             if (this.accounts.length > 0) {
               this.balanceTotal = this.accounts.map(account => Number(account.balance)).reduce((prev, next) => prev + next);
@@ -31,6 +34,10 @@ import { ACCOUNTS_QUERY } from '../graphql'
             console.log('Accounts', this.accounts)
             console.log('balanceTotal', this.balanceTotal)
           })
+    }
+
+    ngOnDestroy() {
+      this.accountsSub.unsubscribe();
     }
   
   }
