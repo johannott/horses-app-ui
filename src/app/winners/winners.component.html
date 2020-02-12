@@ -1,0 +1,44 @@
+<form>
+    <div class="row align-items-center">
+      <div class="form-group form-inline winners-search col-sm">
+        <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+    </div>
+
+    <div *ngIf="isLoading" style="text-align: center;">
+      <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="table-responsive">
+      <table *ngIf="!isLoading" class="table table-sm table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col" sortable="year" (sort)="onSort($event)">Year</th>
+              <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse</th>
+              <th scope="col" sortable="weight" (sort)="onSort($event)">Weight</th>
+              <th scope="col" sortable="jockey" (sort)="onSort($event)">Jockey</th>        
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let winner of winners$ | async">
+              <td><ngb-highlight [result]="winner.year" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.weight" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.jockey" [term]="service.searchTerm"></ngb-highlight></td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+      <option [ngValue]="20">20 items per page</option>
+      <option [ngValue]="40">40 items per page</option>
+      <option [ngValue]="60">60 items per page</option>
+    </select>
+  </div>
+  
+</form>

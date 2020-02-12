@@ -430,3 +430,14 @@ mutation AddTrackMutation(
     }
 }
 `
+
+export const WINNERS_BY_RACE_QUERY = gql`
+  query WinnersByRaceName($race_name: String!){ 
+    winnersByRace(race_name: $race_name) {
+      horse_name,
+      year,
+      weight,
+      jockey
+    }
+  }
+`

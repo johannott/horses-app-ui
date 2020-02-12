@@ -20,6 +20,8 @@ import { NgbdSortableHeader } from './horses/sortable.directive';
 import { RacesComponent } from './races/races.component';
 import { RaceComponent } from './races/race.component';
 
+import { WinnersComponent } from './winners/winners.component';
+
 import { EntriesComponent } from './entries/entries.component';
 import { AddEntryComponent } from './entries/add-entry.component';
 import { UpdateEntryComponent } from './entries/update-entry.component';
@@ -43,6 +45,7 @@ import { HorseService } from './horses/horse.service';
 import { BetsService } from './betting/bets.service';
 import { EntriesService } from './entries/entries.service';
 import { NotesService } from './notes/notes.service';
+import { WinnersService } from './winners/winners.service';
 
 
 @NgModule({
@@ -54,6 +57,7 @@ import { NotesService } from './notes/notes.service';
     NgbdSortableHeader,
     RacesComponent,
     RaceComponent,
+    WinnersComponent,
     EntriesComponent,
     UpdateEntryComponent,
     AddEntryComponent,
@@ -78,7 +82,7 @@ import { NotesService } from './notes/notes.service';
     DataTablesModule,
     NgbModule
   ],
-  providers: [HorseService, BetsService, EntriesService, NotesService],
+  providers: [HorseService, BetsService, EntriesService, NotesService, WinnersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

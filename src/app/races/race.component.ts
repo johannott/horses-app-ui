@@ -6,13 +6,14 @@ import { Apollo, QueryRef } from 'apollo-angular'
 import { RACE_BY_NAME_QUERY } from '../graphql'
 
 import { EntriesService } from '../entries/entries.service'
+import { WinnersService } from '../winners/winners.service'
 import { DecimalPipe } from '@angular/common'
 
 @Component({
     selector: 'app-race',
     templateUrl: './race.component.html',
     styleUrls: ['./race.component.scss'],
-    providers: [EntriesService, DecimalPipe]
+    providers: [EntriesService, WinnersService, DecimalPipe]
   })
   export class RaceComponent implements OnInit{
     private race_query: QueryRef<any>
