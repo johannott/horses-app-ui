@@ -30,6 +30,7 @@ import { TracksComponent } from './tracks/tracks.component';
 
 import { TrendsComponent } from './trends/trends.component';
 import { NotesComponent } from './notes/notes.component';
+import { InfoComponent } from './info/info.component';
 
 import { BettingComponent } from './betting/betting.component';
 import { BetsComponent } from './betting/bets.component';
@@ -64,6 +65,7 @@ import { WinnersService } from './winners/winners.service';
     TracksComponent,
     TrendsComponent,
     NotesComponent,
+    InfoComponent,
     BettingComponent,
     BetsComponent,
     AccountsComponent,

@@ -20,15 +20,37 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-            <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" *ngIf="isAuthenticated" (click)="onLogOut()">Logout</a>
-          </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="isAuthenticated">
+          <button data-toggle="modal" data-target="#infoModalCenter"><i class="fa fa-info"></i></button>
+        </a>
+      </li>  
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="isAuthenticated" (click)="onLogOut()">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>
 <main role="main" class="container" id="main-container">
   <router-outlet></router-outlet>
 </main>
+
+<!-- Update Note Modal -->
+<div class="modal fade" id="infoModalCenter" tabindex="-1" role="dialog" aria-labelledby="infoModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="infoModalCenterTitle">Info</h5>
+        <button type="button" class="close" #closeNoteUpdate data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <app-info></app-info>
+      </div>
+    </div>
+  </div>
+</div>

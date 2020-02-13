@@ -441,3 +441,13 @@ export const WINNERS_BY_RACE_QUERY = gql`
     }
   }
 `
+
+export const ABBREVIATION_QUERY = gql`
+  query {
+    abbreviations{ 
+        id 
+        abbr,
+        meaning
+    }
+  }
+`

@@ -1,0 +1,15 @@
+<h3>Abbreviations</h3>
+<table class="table table-sm table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>                
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let abbreviation of abbrs">
+        <td>{{abbreviation.abbr}}</td>
+        <td>{{abbreviation.meaning}}</td>
+      </tr>
+    </tbody>
+  </table>
