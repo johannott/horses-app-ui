@@ -18,6 +18,14 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/tracks" *ngIf="isAuthenticated">Tracks</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" *ngIf="isAuthenticated" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cheltenham
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" *ngFor="let race_ of races" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
+        </div>
+      </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">

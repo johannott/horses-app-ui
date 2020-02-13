@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 import { Apollo, QueryRef } from 'apollo-angular'
 
@@ -20,12 +20,13 @@ import { DecimalPipe } from '@angular/common'
     race: any
     private race_name: string
 
-    constructor(private route: ActivatedRoute, private apollo: Apollo, public entriesService: EntriesService) {
+    constructor(private router: Router, private route: ActivatedRoute, private apollo: Apollo, public entriesService: EntriesService) {
     }
 
     ngOnInit() {
       console.log(this.route.snapshot.params['race_name'])
       this.race_name = this.route.snapshot.params['race_name']
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.race_query = this.apollo.watchQuery({
         query: RACE_BY_NAME_QUERY,
         variables: {race_name: this.race_name}

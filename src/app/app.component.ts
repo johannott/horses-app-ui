@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service'; 
 import { Subscription } from 'rxjs';
 
+import { Apollo, QueryRef } from 'apollo-angular'
+import { RACES_QUERY } from './graphql'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,8 +16,10 @@ export class AppComponent implements OnInit, OnDestroy {
   title = 'National Hunt Application';
   isAuthenticated = false
   private userSub: Subscription;
+  private query: QueryRef<any>
+  races: any
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private apollo: Apollo) {}
 
   ngOnInit() {
     console.log('router url ', this.router.url)
@@ -22,6 +27,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userSub = this.authService.user.subscribe(user => {
       this.isAuthenticated = !!user;
     });
+
+    this.query = this.apollo.watchQuery({
+      query: RACES_QUERY
+    })
+
+    this.query.valueChanges.subscribe(result => {
+      this.races = result.data && result.data.races;
+      console.log(this.races)
+    })
   }
 
   onLogOut() {
