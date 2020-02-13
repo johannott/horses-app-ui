@@ -16,7 +16,15 @@
               <th scope="col" sortable="year" (sort)="onSort($event)">Year</th>
               <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse</th>
               <th scope="col" sortable="weight" (sort)="onSort($event)">Weight</th>
-              <th scope="col" sortable="jockey" (sort)="onSort($event)">Jockey</th>        
+              <th scope="col" sortable="age" (sort)="onSort($event)">Age</th>
+              <th scope="col" sortable="rating" (sort)="onSort($event)">Rating</th>  
+              <th scope="col" sortable="jockey" (sort)="onSort($event)">Jockey</th>  
+              <th scope="col" sortable="trainer" (sort)="onSort($event)">Trainer</th>  
+              <th scope="col" sortable="distance" (sort)="onSort($event)">Distance</th>  
+              <th scope="col" sortable="time" (sort)="onSort($event)">Time</th>  
+              <th scope="col" sortable="going" (sort)="onSort($event)">Going</th>
+              <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>  
+              <th scope="col" sortable="video_url" (sort)="onSort($event)">Video</th>  
             </tr>
           </thead>
           <tbody>
@@ -24,12 +32,71 @@
               <td><ngb-highlight [result]="winner.year" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="winner.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="winner.weight" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.age" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.rating" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="winner.jockey" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.trainer" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.distance" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.time" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.going" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><ngb-highlight [result]="winner.price" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><a *ngIf="winner.video_url" class="btn btn-link winner-link" href="{{winner.video_url}}" target="_blank">Watch</a></td>
             </tr>
           </tbody>
         </table>
   </div>
-  <div class="d-flex justify-content-between p-2">
+
+  <div class="table-responsive">
+    <table *ngIf="!isLoading" class="table table-sm table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" sortable="year" (sort)="onSort($event)">Year</th>
+            <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse</th>
+            <th scope="col" sortable="form" (sort)="onSort($event)">Form</th>
+            <th scope="col" sortable="runs" (sort)="onSort($event)">Runs</th>
+            <th scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>  
+            <th scope="col" sortable="cheltenham_runs" (sort)="onSort($event)">Chelt R</th>  
+            <th scope="col" sortable="cheltenham_wins" (sort)="onSort($event)">Chelt W</th>  
+            <th scope="col" sortable="distance_runs" (sort)="onSort($event)">Dist R</th>  
+            <th scope="col" sortable="distance_wins" (sort)="onSort($event)">Dist W</th>  
+            <th scope="col" sortable="hurdles_runs" (sort)="onSort($event)">H R</th>
+            <th scope="col" sortable="hurdles_wins" (sort)="onSort($event)">H W</th> 
+            <th scope="col" sortable="chase_runs" (sort)="onSort($event)">C R</th>
+            <th scope="col" sortable="chase_wins" (sort)="onSort($event)">C W</th> 
+            <th scope="col" sortable="last_run" (sort)="onSort($event)">Last Run</th>
+            <th scope="col" sortable="last_run_result" (sort)="onSort($event)">LR Result</th>
+            <th scope="col" sortable="since_last_run" (sort)="onSort($event)">Since LR</th> 
+            <th scope="col" sortable="grade_one_wins" (sort)="onSort($event)">G1W</th>
+            <th scope="col" sortable="grade_two_wins" (sort)="onSort($event)">G2W</th>
+            <th scope="col" sortable="grade_three_wins" (sort)="onSort($event)">G3W</th>  
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let winner of winners$ | async">
+            <td><ngb-highlight [result]="winner.year" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.form" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.runs" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.cheltenham_runs" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.cheltenham_wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.distance_runs" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.distance_wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.hurdles_runs" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.hurdles_wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.chase_runs" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.chase_wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.last_run" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.last_run_result" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.since_last_run" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.grade_one_wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.grade_two_wins" [term]="service.searchTerm"></ngb-highlight></td>
+            <td><ngb-highlight [result]="winner.grade_three_wins" [term]="service.searchTerm"></ngb-highlight></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+  <!-- <div class="d-flex justify-content-between p-2">
     <ngb-pagination
       [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
     </ngb-pagination>
@@ -39,6 +106,6 @@
       <option [ngValue]="40">40 items per page</option>
       <option [ngValue]="60">60 items per page</option>
     </select>
-  </div>
+  </div> -->
   
 </form>
