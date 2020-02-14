@@ -21,7 +21,9 @@
         <tr *ngFor="let note of notes$ | async">
           <td><ngb-highlight [result]="note.note_" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="note.type" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><button class="btn btn-link update-note" (click)="onClickUpdate(note.id)" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">Update</button></td>
+          <td><button class="btn btn-link update-note" (click)="onClickUpdate(note.id)" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">
+            <i class="fa fa-edit"></i>
+          </button></td>
         </tr>
       </tbody>
     </table>

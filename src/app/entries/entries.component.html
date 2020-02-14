@@ -14,50 +14,50 @@
       <table *ngIf="!isLoading" class="table table-sm table-striped">
           <thead class="thead-dark">
             <tr>
-              <th scope="col" sortable="number" (sort)="onSort($event)">No</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="number" (sort)="onSort($event)">No</th>
               <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse</th>
-              <th scope="col" sortable="weight" (sort)="onSort($event)">Weight</th>
-              <th scope="col" sortable="jockey" (sort)="onSort($event)">Jockey</th>
-              <th scope="col" sortable="bred" (sort)="onSort($event)">Bred</th>
-              <th scope="col" sortable="sire" (sort)="onSort($event)">Sire</th>
-              <th scope="col" sortable="form" (sort)="onSort($event)">Form</th>
-              <th scope="col" sortable="races" (sort)="onSort($event)">Races</th>
-              <th scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>
-              <th scope="col" sortable="places" (sort)="onSort($event)">Places</th>
-              <th scope="col" sortable="win_percentage" (sort)="onSort($event)">Win %</th>
-              <th scope="col" sortable="place_percentage" (sort)="onSort($event)">Place %</th>
-              <th scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="weight" (sort)="onSort($event)">Weight</th>
+              <th class="d-none d-lg-table-cell" class="d-none d-lg-table-cell" scope="col" sortable="jockey" (sort)="onSort($event)">Jockey</th>
+              <th class="d-none d-md-table-cell" scope="col" sortable="bred" (sort)="onSort($event)">Bred</th>
+              <th class="d-none d-md-table-cell" scope="col" sortable="sire" (sort)="onSort($event)">Sire</th>
+              <th class="d-none d-md-table-cell" scope="col" sortable="form" (sort)="onSort($event)">Form</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="races" (sort)="onSort($event)">Races</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="places" (sort)="onSort($event)">Places</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="win_percentage" (sort)="onSort($event)">Win %</th>
+              <th class="d-none d-lg-table-cell" scope="col" sortable="place_percentage" (sort)="onSort($event)">Place %</th>
+              <th class="d-none d-md-table-cell" scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
               <th scope="col" sortable="comments" (sort)="onSort($event)">Comments</th>
               <th scope="col" sortable="trends" (sort)="onSort($event)">Trends</th>
-              <th scope="col" sortable="tipped" (sort)="onSort($event)">Tipped</th>
-              <th scope="col" sortable="bets" (sort)="onSort($event)">Bets</th> 
+              <th class="d-none d-md-table-cell" scope="col" sortable="tipped" (sort)="onSort($event)">Tipped</th>
+              <th class="d-none d-md-table-cell" scope="col" sortable="bets" (sort)="onSort($event)">Bets</th> 
               <th scope="col" class="update-heading">Update</th>        
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let entry of entries$ | async">
-              <td><ngb-highlight [result]="entry.number" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.number" [term]="service.searchTerm"></ngb-highlight></td>
               <td>
                 <a class="btn btn-link horse-name" href="{{entry.link}}" target="_blank">
                   <ngb-highlight [result]="entry.horse_name" [term]="service.searchTerm"></ngb-highlight>
                 </a>
               </td>
-              <td><ngb-highlight [result]="entry.weight" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.jockey" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.bred" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.sire" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.form" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.races" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.wins" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.places" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.win_percentage" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.place_percentage" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.ground" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.weight" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.jockey" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.bred" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.sire" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.form" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.races" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.wins" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.places" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.win_percentage" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="entry.place_percentage" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.ground" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="entry.comments" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="entry.trends" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.tipped" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><ngb-highlight [result]="entry.bets" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><button class="btn btn-link entries-link" routerLink="/updateentry/{{race_name}}/{{entry.horse_name}}">Update</button></td>
+              <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.tipped" [term]="service.searchTerm"></ngb-highlight></td>
+              <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.bets" [term]="service.searchTerm"></ngb-highlight></td>
+              <td><button class="btn btn-link entries-link" routerLink="/updateentry/{{race_name}}/{{entry.horse_name}}"><i class="fa fa-edit"></i></button></td>
             </tr>
           </tbody>
         </table>
