@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'
 
 import { Bet } from './bet'
 import { BetsService } from './bets.service';
-import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive'
+import { NgbdSortableHeader, SortEvent } from '../utils/sortable.directive'
 
 import { Apollo } from 'apollo-angular';
 import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'

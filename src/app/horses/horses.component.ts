@@ -5,7 +5,7 @@ import {Observable} from 'rxjs'
 
 import { Horse } from './horse'
 import { HorseService } from './horse.service'
-import { NgbdSortableHeader, SortEvent } from './sortable.directive'
+import { NgbdSortableHeader, SortEvent } from '../utils/sortable.directive'
 
 @Component({
   selector: 'app-horses',

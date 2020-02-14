@@ -8,7 +8,7 @@ import { Apollo, QueryRef } from 'apollo-angular'
 import { HORSES_QUERY } from '../graphql'
 
 import { Horse } from './horse'
-import { SortDirection } from './sortable.directive'
+import { SortDirection } from '../utils/sortable.directive'
 
 interface SearchResult {
   horses: Horse[];

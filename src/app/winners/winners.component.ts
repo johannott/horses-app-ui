@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Winner } from './winner';
 import { WinnersService } from './winners.service';
-import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive';
+import { NgbdSortableHeader, SortEvent } from '../utils/sortable.directive';
 
 @Component({
     selector: 'app-winners',

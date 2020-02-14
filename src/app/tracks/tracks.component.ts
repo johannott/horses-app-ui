@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'
 
 import { Track } from './Track'
 import { TracksService } from './tracks.service';
-import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive'
+import { NgbdSortableHeader, SortEvent } from '../utils/sortable.directive'
 
 import { Apollo } from 'apollo-angular';
 import { ADD_TRACK_MUTATION, TRACKS_QUERY } from '../graphql'

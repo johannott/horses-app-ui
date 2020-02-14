@@ -8,7 +8,7 @@ import { Apollo, QueryRef } from 'apollo-angular'
 import { TRACKS_QUERY } from '../graphql'
 
 import { Track } from './Track'
-import { SortDirection } from '../horses/sortable.directive'
+import { SortDirection } from '../utils/sortable.directive'
 
 interface SearchResult {
   tracks: Track[];

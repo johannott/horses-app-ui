@@ -6,7 +6,7 @@ import { Observable } from 'rxjs'
 
 import { Note } from './note'
 import { NotesService } from './notes.service';
-import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive'
+import { NgbdSortableHeader, SortEvent } from '../utils/sortable.directive'
 
 import { Apollo } from 'apollo-angular';
 import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql'

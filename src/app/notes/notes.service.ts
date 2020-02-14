@@ -8,7 +8,7 @@ import { Apollo, QueryRef } from 'apollo-angular'
 import { NOTES_QUERY } from '../graphql'
 
 import { Note } from './note'
-import { SortDirection } from '../horses/sortable.directive'
+import { SortDirection } from '../utils/sortable.directive'
 
 interface SearchResult {
   notes: Note[];

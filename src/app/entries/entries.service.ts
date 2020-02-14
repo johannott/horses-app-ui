@@ -10,7 +10,7 @@ import { ENTRIES_BY_RACE_QUERY, HORSE_BY_NAME_QUERY } from '../graphql'
 
 
 import { Entry } from './entry';
-import { SortDirection } from '../horses/sortable.directive';
+import { SortDirection } from '../utils/sortable.directive';
 
 interface SearchResult {
   entries: Entry[];

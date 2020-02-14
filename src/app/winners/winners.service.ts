@@ -9,7 +9,7 @@ import { Apollo, QueryRef } from 'apollo-angular'
 import { WINNERS_BY_RACE_QUERY } from '../graphql'
 
 import { Winner } from './winner'
-import { SortDirection } from '../horses/sortable.directive'
+import { SortDirection } from '../utils/sortable.directive'
 
 interface SearchResult {
   winners: Winner[];

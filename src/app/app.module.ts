@@ -15,7 +15,7 @@ import { HorsesComponent } from './horses/horses.component';
 import { AddHorseComponent } from './horses/add-horse.component';
 import { UpdateHorseComponent } from './horses/update-horse.component';
 
-import { NgbdSortableHeader } from './horses/sortable.directive';
+import { NgbdSortableHeader } from './utils/sortable.directive';
 
 import { RacesComponent } from './races/races.component';
 import { RaceComponent } from './races/race.component';

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Entry } from './entry';
 import { EntriesService } from './entries.service';
-import { NgbdSortableHeader, SortEvent } from '../horses/sortable.directive';
+import { NgbdSortableHeader, SortEvent } from '../utils/sortable.directive';
 
 @Component({
     selector: 'app-entries',
