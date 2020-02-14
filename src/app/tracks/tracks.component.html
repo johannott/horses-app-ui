@@ -16,9 +16,9 @@
           <th scope="col" sortable="direction" (sort)="onSort($event)">Direction</th>
           <th scope="col" sortable="topography" (sort)="onSort($event)">Topography</th>
           <th scope="col" sortable="notes" (sort)="onSort($event)">Notes</th>
-          <th scope="col" sortable="length" (sort)="onSort($event)">Length</th>
-          <th scope="col" sortable="surface" (sort)="onSort($event)">Surface</th>
-          <th scope="col" sortable="country" (sort)="onSort($event)">Country</th>
+          <th class="d-none d-md-table-cell" scope="col" sortable="length" (sort)="onSort($event)">Length</th>
+          <th class="d-none d-md-table-cell" scope="col" sortable="surface" (sort)="onSort($event)">Surface</th>
+          <th class="d-none d-md-table-cell" scope="col" sortable="country" (sort)="onSort($event)">Country</th>
           <th scope="col" class="update-heading">Update</th>
         </tr>
       </thead>
@@ -28,9 +28,9 @@
           <td><ngb-highlight [result]="track.direction" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="track.topography" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="track.notes" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><ngb-highlight [result]="track.length" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><ngb-highlight [result]="track.surface" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><ngb-highlight [result]="track.country" [term]="service.searchTerm"></ngb-highlight></td>
+          <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.length" [term]="service.searchTerm"></ngb-highlight></td>
+          <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.surface" [term]="service.searchTerm"></ngb-highlight></td>
+          <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.country" [term]="service.searchTerm"></ngb-highlight></td>
           <td><button class="btn btn-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
             <i class="fa fa-edit"></i>
           </button></td>
