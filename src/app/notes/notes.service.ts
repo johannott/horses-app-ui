@@ -9,6 +9,7 @@ import { NOTES_QUERY } from '../graphql'
 
 import { Note } from './note'
 import { SortDirection } from '../utils/sortable.directive'
+import { compare } from '../utils/sortingUtils'
 
 interface SearchResult {
   notes: Note[];
@@ -21,10 +22,6 @@ interface State {
   searchTerm: string;
   sortColumn: string;
   sortDirection: SortDirection;
-}
-
-function compare(v1, v2) {
-  return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
 function sort(notes: Note[], column: string, direction: string): Note[] {

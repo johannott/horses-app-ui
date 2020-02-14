@@ -9,6 +9,7 @@ import { HORSES_QUERY } from '../graphql'
 
 import { Horse } from './horse'
 import { SortDirection } from '../utils/sortable.directive'
+import { compare } from '../utils/sortingUtils'
 
 interface SearchResult {
   horses: Horse[];
@@ -21,10 +22,6 @@ interface State {
   searchTerm: string;
   sortColumn: string;
   sortDirection: SortDirection;
-}
-
-function compare(v1, v2) {
-  return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
 function sort(horses: Horse[], column: string, direction: string): Horse[] {

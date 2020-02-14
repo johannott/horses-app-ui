@@ -9,6 +9,7 @@ import { BETS_QUERY } from '../graphql'
 
 import { Bet } from './bet'
 import { SortDirection } from '../utils/sortable.directive'
+import { compare } from '../utils/sortingUtils'
 
 interface SearchResult {
   bets: Bet[];
@@ -21,10 +22,6 @@ interface State {
   searchTerm: string;
   sortColumn: string;
   sortDirection: SortDirection;
-}
-
-function compare(v1, v2) {
-  return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
 function sort(bets: Bet[], column: string, direction: string): Bet[] {

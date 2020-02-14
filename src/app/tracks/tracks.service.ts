@@ -9,6 +9,7 @@ import { TRACKS_QUERY } from '../graphql'
 
 import { Track } from './Track'
 import { SortDirection } from '../utils/sortable.directive'
+import { compare } from '../utils/sortingUtils'
 
 interface SearchResult {
   tracks: Track[];
@@ -21,10 +22,6 @@ interface State {
   searchTerm: string;
   sortColumn: string;
   sortDirection: SortDirection;
-}
-
-function compare(v1, v2) {
-  return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
 function sort(tracks: Track[], column: string, direction: string): Track[] {
