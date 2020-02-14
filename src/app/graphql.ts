@@ -396,7 +396,8 @@ mutation UpdateBetMutation(
 
 export const TRACKS_QUERY = gql`
   query {
-    tracks{  
+    tracks{
+      id,  
       track_name,
       direction,
       topography,
@@ -418,6 +419,31 @@ mutation AddTrackMutation(
     $surface: String
     $country: String) {
       addTrack(
+      track_name: $track_name
+      direction: $direction, 
+      topography: $topography
+      notes: $notes,
+      length: $length,
+      surface: $surface,
+      country: $country
+    ) {
+      track_name
+    }
+}
+`
+
+export const UPDATE_TRACK_MUTATION = gql`
+mutation UpdateTrackMutation(
+    $id: ID!,
+    $track_name: String!
+    $direction: String
+    $topography: String
+    $notes: String
+    $length: String
+    $surface: String
+    $country: String) {
+      updateTrack(
+      id: $id,
       track_name: $track_name
       direction: $direction, 
       topography: $topography

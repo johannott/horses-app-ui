@@ -19,7 +19,7 @@
           <th scope="col" sortable="length" (sort)="onSort($event)">Length</th>
           <th scope="col" sortable="surface" (sort)="onSort($event)">Surface</th>
           <th scope="col" sortable="country" (sort)="onSort($event)">Country</th>
-          <!-- <th scope="col">Update</th> -->
+          <th scope="col" class="update-heading">Update</th>
         </tr>
       </thead>
       <tbody>
@@ -31,7 +31,9 @@
           <td><ngb-highlight [result]="track.length" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="track.surface" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="track.country" [term]="service.searchTerm"></ngb-highlight></td>
-          <!-- <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}">Update</button></td> -->
+          <td><button class="btn btn-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
+            <i class="fa fa-edit"></i>
+          </button></td>
         </tr>
       </tbody>
     </table>
@@ -50,13 +52,13 @@
 
 </form>
   
-<!-- Modal -->
+<!-- Add Track Modal -->
 <div class="modal fade" id="addTrackModalCenter" tabindex="-1" role="dialog" aria-labelledby="addTrackModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Add Track</h5>
-        <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" #closeTrackAdd data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -137,6 +139,96 @@
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" type="submit" [disabled]="!trackForm.valid">Add Track</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Update Track Modal -->
+<div class="modal fade" id="updateTrackModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateTrackModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateTrackModalCenterTitle">Update Track</h5>
+        <button type="button" class="close" #closeTrackUpdate data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="alert alert-danger" *ngIf="error">
+              <p>{{ error }}</p>
+         </div>
+         <form [formGroup]="updateTrackForm" (ngSubmit)="onSubmitUpdate()">
+             <div class="form-group">
+              <label for="name">Track</label>
+              <input 
+                  type="text" 
+                  id="track_name" 
+                  class="form-control"
+                  [formControlName]="'track_name'"
+                  name="track_name">
+          </div>
+          <div class="form-group">
+             <label for="name">Direction</label>
+             <input 
+                 type="text" 
+                 id="direction" 
+                 class="form-control"
+                 [formControlName]="'direction'"
+                 name="direction">
+          </div>
+          <div class="form-group">
+             <label for="name">Topography</label>
+             <input 
+                 type="text" 
+                 id="topography" 
+                 class="form-control"
+                 [formControlName]="'topography'"
+                 name="topography">
+         </div>
+         <div class="form-group">
+             <label for="name">Notes</label>
+             <input 
+                 type="text" 
+                 id="notes" 
+                 class="form-control"
+                 [formControlName]="'notes'"
+                 name="notes">
+         </div>
+         <div class="form-group">
+           <label for="name">Length</label>
+           <input 
+               type="text" 
+               id="length" 
+               class="form-control"
+               [formControlName]="'length'"
+               name="length">
+         </div>
+         <div class="form-group">
+           <label for="name">Surface</label>
+           <input 
+               type="text" 
+               id="surface" 
+               class="form-control"
+               [formControlName]="'surface'"
+               name="surface">
+         </div>
+         <div class="form-group">
+           <label for="name">Country</label>
+           <input 
+               type="text" 
+               id="country" 
+               class="form-control"
+               [formControlName]="'country'"
+               name="country">
+         </div>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateTrackForm.valid">Update Track</button>
               </div>
         </form>
       </div>
