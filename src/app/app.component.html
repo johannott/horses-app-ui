@@ -23,7 +23,7 @@
           Cheltenham Day 1
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngFor="let race_ of races | slice:0:8; let i=index" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
+          <a class="dropdown-item" *ngFor="let race_ of races | slice:0:7; let i=index" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
         </div>
       </li>
       <li class="nav-item dropdown">

@@ -1,15 +1,217 @@
 <div class="py-5 bg-light">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6" *ngFor="let race_ of races">
+        <div class="row align-items-center">
+      <div class="form-group form-inline races-search col-sm">
+        <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
+        <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+    </div>
+    <div class="form-group col-sm"><button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRaceModalCenter">Add Race</button>
+    </div>
+    <div *ngIf="isLoading" style="text-align: center;">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </div>
+        <div class="row" *ngIf="!isLoading && hasRaces">
+            <div class="col-md-6" *ngFor="let race_ of races$ | async">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                      <h5 class="card-title">{{race_.race_fullname}}</h5>
-                      <p class="card-text">A {{race_.type}} over {{race_.distance}} on the {{race_.course}} course for {{race_.age_limit}}.</p>
+                      <h5 class="card-title"><ngb-highlight [result]="race_.race_fullname" [term]="service.searchTerm"></ngb-highlight></h5>
+                      <p class="card-text">A <ngb-highlight [result]="race_.type" [term]="service.searchTerm"></ngb-highlight> over <ngb-highlight [result]="race_.distance" [term]="service.searchTerm"></ngb-highlight> 
+                        on the <ngb-highlight [result]="race_.course" [term]="service.searchTerm"></ngb-highlight> course for <ngb-highlight [result]="race_.age_limit" [term]="service.searchTerm"></ngb-highlight>.</p>
                       <a routerLink="/races/{{race_.race_name}}" class="btn btn-primary">Go to race</a>
+                      <button class="btn btn-link float-right" (click)="onClickUpdate(race_.id)" data-toggle="modal" id="{{race_.id}}" data-target="#updateRaceModalCenter"><i class="fa fa-edit"></i></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+    
+  <!-- Add Race Modal -->
+  <div class="modal fade" id="addRaceModalCenter" tabindex="-1" role="dialog" aria-labelledby="addRaceModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addRaceModalCenterTitle">Add Race</h5>
+          <button type="button" class="close" #closeRaceAdd data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+           </div>
+           <form #raceForm="ngForm" (ngSubmit)="onSubmit(raceForm)">
+               <div class="form-group">
+                   <label for="name">Race Name</label>
+                   <input 
+                       type="text" 
+                       id="race_name" 
+                       class="form-control"
+                       ngModel
+                       name="race_name">
+               </div>
+               <div class="form-group">
+                <label for="name">Full Race Name</label>
+                <input 
+                    type="text" 
+                    id="race_fullname" 
+                    class="form-control"
+                    ngModel
+                    name="race_fullname"
+                    required>
+              </div>
+              <div class="form-group">
+                <label for="name">Type</label>
+                <input 
+                    type="text" 
+                    id="type" 
+                    class="form-control"
+                    ngModel
+                    name="type"
+                    required>
+              </div>
+               <div class="form-group">
+                   <label for="name">Grade</label>
+                   <input 
+                       type="text" 
+                       id="grade" 
+                       class="form-control"
+                       ngModel
+                       name="grade"
+                       required>
+               </div>
+               <div class="form-group">
+                <label for="name">Distance</label>
+                <input 
+                    type="text" 
+                    id="distance" 
+                    class="form-control"
+                    ngModel
+                    name="distance"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Course</label>
+                  <input 
+                      type="text" 
+                      id="course" 
+                      class="form-control"
+                      ngModel
+                      name="course"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Age Limit</label>
+                  <input 
+                      type="text" 
+                      id="age_limit" 
+                      class="form-control"
+                      ngModel
+                      name="age_limit"
+                      required>
+                </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" type="submit" [disabled]="!raceForm.valid">Add Race</button>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Update Race Modal -->
+<div class="modal fade" id="updateRaceModalCenter" tabindex="-1" role="dialog" aria-labelledby="updateRaceModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateRaceModalCenterTitle">Update Race</h5>
+          <button type="button" class="close" #closeRaceUpdate data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+           </div>
+           <form [formGroup]="updateRaceForm" (ngSubmit)="onSubmitUpdate()">
+              <div class="form-group">
+              <label for="name">Race Name</label>
+              <input 
+                  type="text" 
+                  id="race_name" 
+                  class="form-control"
+                  [formControlName]="'race_name'"
+                  name="race_name">
+              </div>
+              <div class="form-group">
+              <label for="name">Full Race Name</label>
+              <input 
+                  type="text" 
+                  id="race_fullname" 
+                  class="form-control"
+                  [formControlName]="'race_fullname'"
+                  name="date"
+                  required>
+            </div>
+              <div class="form-group">
+                <label for="name">Type</label>
+                <input 
+                    type="text" 
+                    id="type" 
+                    class="form-control"
+                    [formControlName]="'type'"
+                    name="type"
+                    required>
+              </div>
+                <div class="form-group">
+                    <label for="name">Grade</label>
+                    <input 
+                        type="text" 
+                        id="grade" 
+                        class="form-control"
+                        [formControlName]="'grade'"
+                        name="grade"
+                        required>
+                </div>
+                <div class="form-group">
+                <label for="name">Distance</label>
+                <input 
+                    type="text" 
+                    id="distance" 
+                    class="form-control"
+                    [formControlName]="'distance'"
+                    name="type"
+                    required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Course</label>
+                  <input 
+                      type="text" 
+                      id="course" 
+                      class="form-control"
+                      [formControlName]="'course'"
+                      name="places"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="name">Age Limit</label>
+                  <input 
+                      type="text" 
+                      id="age_limit" 
+                      class="form-control"
+                      [formControlName]="'age_limit'"
+                      name="price"
+                      required>
+                </div>
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateRaceForm.valid">Update Race</button>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

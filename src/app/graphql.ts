@@ -225,6 +225,7 @@ export const UPDATE_ENTRY_MUTATION = gql`
 export const RACES_QUERY = gql`
   query { 
     races {
+      id,
       race_name,
       race_fullname,
       type,
@@ -234,6 +235,54 @@ export const RACES_QUERY = gql`
       age_limit
     }
   }
+`
+
+export const ADD_RACE_MUTATION = gql`
+mutation AddRaceMutation(
+    $race_name: String!
+    $race_fullname: String!
+    $type: String!
+    $grade: String!
+    $distance: String!
+    $course: String!
+    $age_limit: String!) {
+      addRace(
+      race_name: $race_name
+      race_fullname: $race_fullname, 
+      type: $type
+      grade: $grade,
+      distance: $distance,
+      course: $course,
+      age_limit: $age_limit
+    ) {
+      race_name
+    }
+}
+`
+
+export const UPDATE_RACE_MUTATION = gql`
+mutation UpdateRaceMutation(
+    $id: ID!,
+    $race_name: String!
+    $race_fullname: String
+    $type: String
+    $grade: String
+    $distance: String
+    $course: String
+    $age_limit: String) {
+      updateRace(
+      id: $id,
+      race_name: $race_name
+      race_fullname: $race_fullname, 
+      type: $type
+      grade: $grade,
+      distance: $distance,
+      course: $course,
+      age_limit: $age_limit
+    ) {
+      race_name
+    }
+}
 `
 
 export const ENTRIES_QUERY = gql`

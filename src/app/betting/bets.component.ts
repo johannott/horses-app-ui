@@ -170,8 +170,5 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
       console.log('There was an error sending the update bet mutation', error);
       this.error = error;
     });
-  }
-
-
-  
-  }
+  } 
+}
