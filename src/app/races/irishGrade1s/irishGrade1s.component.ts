@@ -18,10 +18,6 @@ import { Race } from '../race'
     
     constructor(private apollo: Apollo) {
 
-        // const races = JSON.parse(localStorage.getItem('races'))
-        // this.grade1s = races.filter(o => o.grade === 'Grade 1');
-        // console.log('Grade 1s', this.grade1s)
-
         this.tracks_query = this.apollo.watchQuery({
             query: RACES_BY_COUNTRY_QUERY,
             variables: {country: 'Ireland'}
@@ -29,7 +25,8 @@ import { Race } from '../race'
       
           this.tracks_query.valueChanges.subscribe(result => {
             this.races = result.data && result.data.racesByCountry;
-            console.log('Races By Country', this.races)
+            this.races = this.races.filter(o => o.grade === 'Grade 1');
+            console.log('Races: Grade 1s', this.races)
           })
     }
   
