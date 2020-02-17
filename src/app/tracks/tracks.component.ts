@@ -88,8 +88,8 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
 
       const track_name = form.value.track_name.trim();
       const direction = form.value.direction.trim();
-      const topography = form.value.direction.trim();
-      const notes = form.value.direction.trim();
+      const topography = form.value.topography.trim();
+      const notes = form.value.notes.trim();
       const length = form.value.length.trim();
       const surface = form.value.surface.trim();
       const country = form.value.country.trim();

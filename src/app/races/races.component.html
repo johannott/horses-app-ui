@@ -5,7 +5,9 @@
         <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
         <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
     </div>
-    <div class="form-group col-sm"><button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRaceModalCenter">Add Race</button>
+    <div class="form-group col-sm">
+      <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRaceModalCenter">Add Race</button>
+      <button class="btn btn-primary float-right grade1s" routerLink="/irishg1s">Irish G1s</button>
     </div>
     <div *ngIf="isLoading" style="text-align: center;">
         <app-loading-spinner></app-loading-spinner>
@@ -43,7 +45,7 @@
            </div>
            <form #raceForm="ngForm" (ngSubmit)="onSubmit(raceForm)">
                <div class="form-group">
-                   <label for="name">Race Name</label>
+                   <label for="race_name">Race Name</label>
                    <input 
                        type="text" 
                        id="race_name" 
@@ -52,7 +54,7 @@
                        name="race_name">
                </div>
                <div class="form-group">
-                <label for="name">Full Race Name</label>
+                <label for="race_fullname">Full Race Name</label>
                 <input 
                     type="text" 
                     id="race_fullname" 
@@ -62,7 +64,7 @@
                     required>
               </div>
               <div class="form-group">
-                <label for="name">Type</label>
+                <label for="type">Type</label>
                 <input 
                     type="text" 
                     id="type" 
@@ -72,7 +74,7 @@
                     required>
               </div>
                <div class="form-group">
-                   <label for="name">Grade</label>
+                   <label for="grade">Grade</label>
                    <input 
                        type="text" 
                        id="grade" 
@@ -82,7 +84,7 @@
                        required>
                </div>
                <div class="form-group">
-                <label for="name">Distance</label>
+                <label for="distance">Distance</label>
                 <input 
                     type="text" 
                     id="distance" 
@@ -92,7 +94,7 @@
                     required>
                 </div>
                 <div class="form-group">
-                  <label for="name">Course</label>
+                  <label for="course">Course</label>
                   <input 
                       type="text" 
                       id="course" 
@@ -102,7 +104,17 @@
                       required>
                 </div>
                 <div class="form-group">
-                  <label for="name">Age Limit</label>
+                  <label for="country">Country</label>
+                  <input 
+                      type="text" 
+                      id="country" 
+                      class="form-control"
+                      ngModel
+                      name="country"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="age_limit">Age Limit</label>
                   <input 
                       type="text" 
                       id="age_limit" 
@@ -111,6 +123,34 @@
                       name="age_limit"
                       required>
                 </div>
+                <div class="form-group">
+                  <label for="attended">Attened</label>
+                  <input 
+                      type="text" 
+                      id="attended" 
+                      class="form-control"
+                      ngModel
+                      name="attended"
+                      required>
+                </div>
+                <!-- <div class="form-group">
+                  <label for="yes">Yes</label>
+                  <input 
+                      type="radio" 
+                      id="yes" 
+                      class="form-control"
+                      ngModel
+                      name="attended"
+                      required>
+                  <label for="no">No</label>
+                  <input 
+                        type="radio" 
+                        id="no" 
+                        class="form-control"
+                        ngModel
+                        name="attended"
+                        required>
+                </div> -->
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" type="submit" [disabled]="!raceForm.valid">Add Race</button>
@@ -138,7 +178,7 @@
            </div>
            <form [formGroup]="updateRaceForm" (ngSubmit)="onSubmitUpdate()">
               <div class="form-group">
-              <label for="name">Race Name</label>
+              <label for="race_name">Race Name</label>
               <input 
                   type="text" 
                   id="race_name" 
@@ -147,17 +187,17 @@
                   name="race_name">
               </div>
               <div class="form-group">
-              <label for="name">Full Race Name</label>
+              <label for="race_fullname">Full Race Name</label>
               <input 
                   type="text" 
                   id="race_fullname" 
                   class="form-control"
                   [formControlName]="'race_fullname'"
-                  name="date"
+                  name="race_fullname"
                   required>
             </div>
               <div class="form-group">
-                <label for="name">Type</label>
+                <label for="type">Type</label>
                 <input 
                     type="text" 
                     id="type" 
@@ -167,7 +207,7 @@
                     required>
               </div>
                 <div class="form-group">
-                    <label for="name">Grade</label>
+                    <label for="grade">Grade</label>
                     <input 
                         type="text" 
                         id="grade" 
@@ -177,35 +217,75 @@
                         required>
                 </div>
                 <div class="form-group">
-                <label for="name">Distance</label>
+                <label for="distance">Distance</label>
                 <input 
                     type="text" 
                     id="distance" 
                     class="form-control"
                     [formControlName]="'distance'"
-                    name="type"
+                    name="distance"
                     required>
                 </div>
                 <div class="form-group">
-                  <label for="name">Course</label>
+                  <label for="course">Course</label>
                   <input 
                       type="text" 
                       id="course" 
                       class="form-control"
                       [formControlName]="'course'"
-                      name="places"
+                      name="course"
                       required>
                 </div>
                 <div class="form-group">
-                  <label for="name">Age Limit</label>
+                  <label for="country">Country</label>
+                  <input 
+                      type="text" 
+                      id="country" 
+                      class="form-control"
+                      [formControlName]="'country'"
+                      name="country"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="age_limit">Age Limit</label>
                   <input 
                       type="text" 
                       id="age_limit" 
                       class="form-control"
                       [formControlName]="'age_limit'"
-                      name="price"
+                      name="age_limit"
                       required>
                 </div>
+                <div class="form-group">
+                  <label for="attneded">Attended</label>
+                  <input 
+                      type="text" 
+                      id="attended" 
+                      class="form-control"
+                      [formControlName]="'attended'"
+                      name="attended"
+                      required>
+                </div>
+                <!-- <div class="form-group">
+                  <label for="yes">Yes</label>
+                  <input 
+                      type="radio" 
+                      id="yes" 
+                      class="form-control"
+                      [formControlName]="'attended'"
+                      name="attended"
+                      required>
+                </div>
+                <div class="form-group">
+                  <label for="no">No</label>
+                  <input 
+                      type="radio" 
+                      id="no" 
+                      class="form-control"
+                      [formControlName]="'attended'"
+                      name="attended"
+                      required>
+                </div> -->
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateRaceForm.valid">Update Race</button>

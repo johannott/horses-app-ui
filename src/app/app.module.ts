@@ -19,6 +19,7 @@ import { NgbdSortableHeader } from './utils/sortable.directive';
 
 import { RacesComponent } from './races/races.component';
 import { RaceComponent } from './races/race.component';
+import { IrishGrade1sComponent } from './races/irishGrade1s/irishGrade1s.component';
 
 import { WinnersComponent } from './winners/winners.component';
 
@@ -58,6 +59,7 @@ import { WinnersService } from './winners/winners.service';
     NgbdSortableHeader,
     RacesComponent,
     RaceComponent,
+    IrishGrade1sComponent,
     WinnersComponent,
     EntriesComponent,
     UpdateEntryComponent,

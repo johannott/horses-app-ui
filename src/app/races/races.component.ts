@@ -53,7 +53,9 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
         'grade': new FormControl("", Validators.required),
         'distance': new FormControl("", Validators.required),
         'course': new FormControl("", Validators.required),
-        'age_limit': new FormControl("", Validators.required)
+        'country': new FormControl("", Validators.required),
+        'age_limit': new FormControl("", Validators.required),
+        'attended': new FormControl("", Validators.required)
       })
     }
 
@@ -67,7 +69,9 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
         'grade': this.race.grade,
         'distance': this.race.distance,
         'course': this.race.course,
-        'age_limit': this.race.age_limit
+        'country': this.race.country,
+        'age_limit': this.race.age_limit,
+        'attended': this.race.attended
       })
     }
   
@@ -94,7 +98,9 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
       const grade = form.value.grade.trim();
       const distance = form.value.distance.trim();
       const course = form.value.course.trim();
+      const country = form.value.country.trim();
       const age_limit = form.value.age_limit.trim();
+      const attended = form.value.attended.trim();
 
       this.apollo.mutate({
           mutation: ADD_RACE_MUTATION,
@@ -105,7 +111,9 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
             grade,
             distance,
             course,
-            age_limit
+            country,
+            age_limit,
+            attended
           },
           refetchQueries: [{
             query: RACES_QUERY
@@ -113,6 +121,7 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
         }).subscribe(({ data }) => {
           console.log('Race Data', data);
           form.reset();
+          this.error = null;
           this.closeRaceAdd.nativeElement.click();
         },(error) => {
           console.log('There was an error sending the add race mutation', error);
@@ -133,7 +142,9 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
   const grade = this.updateRaceForm.value.grade.trim();
   const distance = this.updateRaceForm.value.distance.trim();
   const course = this.updateRaceForm.value.course.trim();
+  const country = this.updateRaceForm.value.country.trim();
   const age_limit = this.updateRaceForm.value.age_limit.trim();
+  const attended = this.updateRaceForm.value.attended.trim();
 
   this.apollo.mutate({
       mutation: UPDATE_RACE_MUTATION,
@@ -145,7 +156,9 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
         grade,
         distance,
         course,
-        age_limit
+        country,
+        age_limit,
+        attended
       },
       refetchQueries: [{
         query: RACES_QUERY

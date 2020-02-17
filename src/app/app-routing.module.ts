@@ -10,6 +10,7 @@ import { RaceComponent } from './races/race.component';
 import { AddEntryComponent } from './entries/add-entry.component';
 import { UpdateEntryComponent } from './entries/update-entry.component';
 import { TracksComponent } from './tracks/tracks.component';
+import { IrishGrade1sComponent } from './races/irishGrade1s/irishGrade1s.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -58,6 +59,11 @@ const routes: Routes = [
     path: 'tracks',
     canActivate: [AuthGuard],
     component: TracksComponent
+  },
+  {
+    path: 'irishg1s',
+    canActivate: [AuthGuard],
+    component: IrishGrade1sComponent
   },
   {
     path: 'login',

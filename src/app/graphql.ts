@@ -232,7 +232,9 @@ export const RACES_QUERY = gql`
       grade,
       distance,
       course,
-      age_limit
+      country,
+      age_limit,
+      attended
     }
   }
 `
@@ -245,7 +247,9 @@ mutation AddRaceMutation(
     $grade: String!
     $distance: String!
     $course: String!
-    $age_limit: String!) {
+    $country: String!
+    $age_limit: String!
+    $attended: String!) {
       addRace(
       race_name: $race_name
       race_fullname: $race_fullname, 
@@ -253,7 +257,9 @@ mutation AddRaceMutation(
       grade: $grade,
       distance: $distance,
       course: $course,
-      age_limit: $age_limit
+      country: $country,
+      age_limit: $age_limit,
+      attended: $attended
     ) {
       race_name
     }
@@ -267,9 +273,11 @@ mutation UpdateRaceMutation(
     $race_fullname: String
     $type: String
     $grade: String
+    $country: String
     $distance: String
     $course: String
-    $age_limit: String) {
+    $age_limit: String
+    $attended: String) {
       updateRace(
       id: $id,
       race_name: $race_name
@@ -278,7 +286,9 @@ mutation UpdateRaceMutation(
       grade: $grade,
       distance: $distance,
       course: $course,
-      age_limit: $age_limit
+      country: $country,
+      age_limit: $age_limit,
+      attended: $attended
     ) {
       race_name
     }
@@ -306,9 +316,27 @@ export const RACE_BY_NAME_QUERY = gql`
       race_fullname,
       type,
       grade,
+      country,
       distance,
       course,
-      age_limit
+      age_limit,
+      attended
+    }
+  }
+`
+
+export const RACES_BY_COUNTRY_QUERY = gql`
+  query RacesByCountry($country: String!){ 
+    racesByCountry(country: $country) {
+      race_name,
+      race_fullname,
+      type,
+      grade,
+      distance,
+      course,
+      country,
+      age_limit,
+      attended
     }
   }
 `
@@ -454,6 +482,14 @@ export const TRACKS_QUERY = gql`
       length,
       surface,
       country
+    }
+  }
+`
+
+export const TRACKS_BY_COUNTRY_QUERY = gql`
+  query ($country: String!){
+    tracksByCountry(country: $country) {
+      track_name
     }
   }
 `

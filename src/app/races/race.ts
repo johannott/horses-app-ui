@@ -6,5 +6,7 @@ export interface Race {
     grade: string,
     distance: string,
     course: string,
-    age_limit: string
+    country: string,
+    age_limit: string,
+    attended: boolean
   }
