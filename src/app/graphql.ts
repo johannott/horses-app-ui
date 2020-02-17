@@ -481,7 +481,8 @@ export const TRACKS_QUERY = gql`
       notes,
       length,
       surface,
-      country
+      country,
+      url
     }
   }
 `
@@ -502,7 +503,8 @@ mutation AddTrackMutation(
     $notes: String
     $length: String
     $surface: String
-    $country: String) {
+    $country: String
+    $url: String) {
       addTrack(
       track_name: $track_name
       direction: $direction, 
@@ -510,7 +512,8 @@ mutation AddTrackMutation(
       notes: $notes,
       length: $length,
       surface: $surface,
-      country: $country
+      country: $country,
+      url: $url
     ) {
       track_name
     }
@@ -526,7 +529,8 @@ mutation UpdateTrackMutation(
     $notes: String
     $length: String
     $surface: String
-    $country: String) {
+    $country: String
+    $url: String) {
       updateTrack(
       id: $id,
       track_name: $track_name
@@ -535,7 +539,8 @@ mutation UpdateTrackMutation(
       notes: $notes,
       length: $length,
       surface: $surface,
-      country: $country
+      country: $country,
+      url: $url
     ) {
       track_name
     }

@@ -8,4 +8,5 @@ export interface Track {
     surface: string
     country: string
     type: string 
+    url: string
   }

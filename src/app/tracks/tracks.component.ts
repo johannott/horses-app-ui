@@ -44,14 +44,15 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
       this.total$ = this.service.total$
 
       this.updateTrackForm = new FormGroup({
-        'id': new FormControl(""),
+        'id': new FormControl("", Validators.required),
         'track_name': new FormControl("", Validators.required),
         'direction': new FormControl("", Validators.required),
-        'topography': new FormControl(""),
-        'notes': new FormControl(""),
+        'topography': new FormControl("", Validators.required),
+        'notes': new FormControl("", Validators.required),
         'length': new FormControl("", Validators.required),
         'surface': new FormControl("", Validators.required),
-        'country': new FormControl("", Validators.required)
+        'country': new FormControl("", Validators.required),
+        'url': new FormControl("", Validators.required)
       })
     }
 
@@ -65,7 +66,8 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
         'notes': this.track.notes,
         'length': this.track.length,
         'surface': this.track.surface,
-        'country': this.track.country
+        'country': this.track.country,
+        'url': this.track.url
       })
     }
   
@@ -93,7 +95,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
       const length = form.value.length.trim();
       const surface = form.value.surface.trim();
       const country = form.value.country.trim();
-
+      const url = form.value.url.trim();
 
       this.apollo.mutate({
           mutation: ADD_TRACK_MUTATION,
@@ -104,7 +106,8 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
             notes,
             length,
             surface,
-            country
+            country,
+            url
           },
           refetchQueries: [{
             query: TRACKS_QUERY
@@ -132,6 +135,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
       const length = this.updateTrackForm.value.length.trim();
       const surface = this.updateTrackForm.value.surface.trim();
       const country = this.updateTrackForm.value.country.trim();
+      const url = this.updateTrackForm.value.url.trim();
   
     this.apollo.mutate({
         mutation: UPDATE_TRACK_MUTATION,
@@ -143,7 +147,8 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
           notes,
           length,
           surface,
-          country
+          country,
+          url
         },
         refetchQueries: [{
           query: TRACKS_QUERY
@@ -151,6 +156,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
       }).subscribe(({ data }) => {
         console.log('Update Track Data', data);
         this.updateTrackForm.reset();
+        this.error = null;
         this.closeTrackUpdate.nativeElement.click();
       },(error) => {
         console.log('There was an error sending the update track mutation', error);

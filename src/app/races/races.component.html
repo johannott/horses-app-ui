@@ -124,33 +124,30 @@
                       required>
                 </div>
                 <div class="form-group">
-                  <label for="attended">Attended</label>
-                  <input 
-                      type="text" 
-                      id="attended" 
-                      class="form-control"
-                      ngModel
-                      name="attended"
-                      required>
-                </div>
-                <!-- <div class="form-group">
-                  <label for="yes">Yes</label>
-                  <input 
+                  Attended:
+                  <label for="yes">
+                    <input 
                       type="radio" 
-                      id="yes" 
-                      class="form-control"
+                      id="yes"
+                      class="attended-radio" 
+                      value="true"
                       ngModel
                       name="attended"
                       required>
-                  <label for="no">No</label>
-                  <input 
-                        type="radio" 
-                        id="no" 
-                        class="form-control"
-                        ngModel
-                        name="attended"
-                        required>
-                </div> -->
+                    Yes
+                  </label>
+                  <label for="no">
+                    <input 
+                    type="radio" 
+                    id="no"
+                    class="attended-radio"
+                    value="false"
+                    ngModel
+                    name="attended"
+                    required>
+                    No
+                  </label>
+                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" type="submit" [disabled]="!raceForm.valid">Add Race</button>
@@ -266,26 +263,29 @@
                       name="attended"
                       required>
                 </div>
-                <!-- <div class="form-group">
-                  <label for="yes">Yes</label>
-                  <input 
-                      type="radio" 
-                      id="yes" 
-                      class="form-control"
-                      [formControlName]="'attended'"
-                      name="attended"
-                      required>
-                </div>
                 <div class="form-group">
-                  <label for="no">No</label>
-                  <input 
+                  Attended:
+                  <label for="yes">
+                    <input 
                       type="radio" 
-                      id="no" 
-                      class="form-control"
+                      id="yes"
+                      class="attended-radio" 
+                      value="true"
                       [formControlName]="'attended'"
-                      name="attended"
-                      required>
-                </div> -->
+                      name="attended">
+                    Yes
+                  </label>
+                  <label for="no">
+                    <input 
+                    type="radio" 
+                    id="no"
+                    class="attended-radio"
+                    value="false"
+                    [formControlName]="'attended'"
+                    name="attended">
+                    No
+                  </label>
+                </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateRaceForm.valid">Update Race</button>
