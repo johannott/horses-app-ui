@@ -1,12 +1,22 @@
 <table class="table table-sm table-striped irish-grade1s">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Race</th>        
+        <th scope="col">Race</th>
+        <th scope="col">Course</th>   
+        <th scope="col">Type</th>  
+        <th scope="col">Distance</th>   
+        <th scope="col">Age Limit</th>
+        <th scope="col">Attended</th>         
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let race of races">
         <td>{{race.race_fullname}}</td>
+        <td>{{race.course}}</td>
+        <td>{{race.type}}</td>
+        <td>{{race.distance}}</td>
+        <td>{{race.age_limit}}</td>
+        <td><i *ngIf="race.attended" class="fa fa-check"></i></td>
       </tr>
     </tbody>
   </table>
