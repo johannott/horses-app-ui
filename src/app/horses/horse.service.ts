@@ -60,6 +60,7 @@ export class HorseService {
   private _total$ = new BehaviorSubject<number>(0);
   query: QueryRef<any>;
   HORSES = new BehaviorSubject<Horse[]>([]);
+  horses: Horse[]
 
   private _state: State = {
     page: 1,
@@ -75,7 +76,11 @@ export class HorseService {
       });
   
       this.query.valueChanges.subscribe(result => {
-        this.HORSES.next(result.data && result.data.horses);
+        this.horses = result.data && result.data.horses;
+        this.horses.forEach(horse => {
+          horse.age = parseInt(horse.age)
+        });
+        this.HORSES.next(this.horses);
         this._search$.pipe(
           tap(() => this._loading$.next(true)),
           debounceTime(200),

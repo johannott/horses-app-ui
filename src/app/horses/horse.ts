@@ -4,7 +4,7 @@ export interface Horse {
     trainer: string,
     regular_jockey: string,
     owner: string,
-    age: string,
+    age: any,
     gender: string,
     sire: string,
     form: string,
