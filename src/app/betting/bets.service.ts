@@ -70,9 +70,6 @@ export class BetsService {
   
       this.query.valueChanges.subscribe(result => {
         this.bets = result.data && result.data.bets.filter(bet => new Date(bet.date).getTime() > new Date().getTime())
-        this.bets.forEach(bet => {
-          bet.date = new Date(bet.date).toDateString()
-        });
         this.BETS.next(this.bets)
         this._search$.pipe(
           tap(() => this._loading$.next(true)),

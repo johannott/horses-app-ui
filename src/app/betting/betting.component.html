@@ -12,19 +12,19 @@
                     <tbody>
                       <tr>
                         <td>0.5</td>
-                        <td>{{pointFive}}</td>
+                        <td>{{pointFive | currency:'EUR':true}}</td>
                       </tr>
                       <tr>
                         <td>1</td>
-                        <td>{{onePoint}}</td>
+                        <td>{{onePoint | currency:'EUR':true}}</td>
                       </tr>
                       <tr>
                         <td>2</td>
-                        <td>{{twoPoints}}</td>
+                        <td>{{twoPoints | currency:'EUR':true}}</td>
                       </tr>
                     </tbody>
                   </table>
-                  <span class="text-muted">Bank: €{{balance}}</span>
+                  <span class="text-muted">Bank: {{balance | currency:'EUR':true}}</span>
         </div>
         <div class="col-md-7">
             <app-accounts (balance)="getBalance($event)"></app-accounts>

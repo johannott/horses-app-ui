@@ -28,14 +28,14 @@
             <tbody>
               <tr *ngFor="let bet of bets$ | async">
                 <td><ngb-highlight [result]="bet.race_name" [term]="service.searchTerm"></ngb-highlight></td>
-                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.date" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.date | date" [term]="service.searchTerm"></ngb-highlight></td>
                 <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.time" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
                 <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
-                <td>€<ngb-highlight [result]="bet.amount" [term]="service.searchTerm"></ngb-highlight></td>
-                <td>€<ngb-highlight [result]="bet.to_return" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.amount | currency:'EUR':true" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.to_return | currency:'EUR':true" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><button class="btn btn-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter"><i class="fa fa-edit"></i></button></td>
               </tr>
             </tbody>

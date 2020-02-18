@@ -96,21 +96,22 @@ export class EntriesService {
                 ...this.HORSE_ENTRIES.find((item) => (item.horse_name === itm.horse_name) && item),
                 ...itm
             }));
-              console.log(this.ENTRIES)
-              console.log(this.HORSE_ENTRIES)
-              console.log(this.MERGED_ENTRIES)
-              this._search$.pipe(
-                tap(() => this._loading$.next(true)),
-                debounceTime(200),
-                switchMap(() => this._search()),
-                delay(200),
-                tap(() => this._loading$.next(false))
-              ).subscribe(result => {
-                this._entries$.next(result.entries);
-                this._total$.next(result.total);
-              });
-          
-              this._search$.next();
+            this.MERGED_ENTRIES.sort((a, b) => (a.horse_name > b.horse_name) ? 1 : -1)
+            console.log(this.ENTRIES)
+            console.log(this.HORSE_ENTRIES)
+            console.log(this.MERGED_ENTRIES)
+            this._search$.pipe(
+              tap(() => this._loading$.next(true)),
+              debounceTime(200),
+              switchMap(() => this._search()),
+              delay(200),
+              tap(() => this._loading$.next(false))
+            ).subscribe(result => {
+              this._entries$.next(result.entries);
+              this._total$.next(result.total);
+            });
+        
+            this._search$.next();
             }
           }
         });
