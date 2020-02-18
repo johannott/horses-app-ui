@@ -77,7 +77,8 @@ export class WinnersService {
   private _total$ = new BehaviorSubject<number>(0);
   query: QueryRef<any>;
   WINNERS = new BehaviorSubject<Winner[]>([]);
-  private race_name 
+  private race_name;
+  winners: Winner[]
 
   private _state: State = {
     page: 1,
@@ -95,7 +96,11 @@ export class WinnersService {
       });
   
       this.query.valueChanges.subscribe(result => {
-        this.WINNERS.next(result.data && result.data.winnersByRace);
+        this.winners = result.data && result.data.winnersByRace;
+        this.winners.forEach(winner => {
+          winner.last_run_result = winner.last_run_result.replace(/\s/g, "");
+        });
+        this.WINNERS.next(this.winners);
         this._search$.pipe(
           tap(() => this._loading$.next(true)),
           debounceTime(200),
