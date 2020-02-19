@@ -36,17 +36,17 @@ function sort(horses: Horse[], column: string, direction: string): Horse[] {
 }
 
 function matches(horse: Horse, term: string, pipe: PipeTransform) {
-  return horse.horse_name.toLowerCase().includes(term.toLowerCase())
-    || horse.trainer.toLowerCase().includes(term.toLowerCase())
-    || horse.regular_jockey.toLowerCase().includes(term.toLowerCase())
-    || horse.owner.toLowerCase().includes(term.toLowerCase())
-    || horse.age.toLowerCase().includes(term.toLowerCase())
-    || horse.gender.toLowerCase().includes(term.toLowerCase())
-    || horse.sire.toLowerCase().includes(term.toLowerCase())
-    || (horse.win_percentage &&horse.win_percentage.toLowerCase().includes(term.toLowerCase()))
-    || (horse.place_percentage &&horse.place_percentage.toLowerCase().includes(term.toLowerCase()))
+  return (horse.horse_name && horse.horse_name.toLowerCase().includes(term.toLowerCase()))
+    || (horse.trainer && horse.trainer.toLowerCase().includes(term.toLowerCase()))
+    || (horse.regular_jockey && horse.regular_jockey.toLowerCase().includes(term.toLowerCase()))
+    || (horse.owner && horse.owner.toLowerCase().includes(term.toLowerCase()))
+    || (horse.age && pipe.transform(horse.age).includes(term))
+    || (horse.gender && horse.gender.toLowerCase().includes(term.toLowerCase()))
+    || (horse.sire && horse.sire.toLowerCase().includes(term.toLowerCase()))
+    || (horse.win_percentage && horse.win_percentage.toLowerCase().includes(term.toLowerCase()))
+    || (horse.place_percentage && horse.place_percentage.toLowerCase().includes(term.toLowerCase()))
     || (horse.type && horse.type.toLowerCase().includes(term.toLowerCase()))
-    || (horse.distance &&horse.distance.toLowerCase().includes(term.toLowerCase()))
+    || (horse.distance && horse.distance.toLowerCase().includes(term.toLowerCase()))
     || (horse.ground && horse.ground.toLowerCase().includes(term.toLowerCase()))
     || (horse.track && horse.track.toLowerCase().includes(term.toLowerCase()))
     || (horse.comments && horse.comments.toLowerCase().includes(term.toLowerCase()));
