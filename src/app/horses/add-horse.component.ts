@@ -75,7 +75,6 @@ export class AddHorseComponent {
               query: HORSES_QUERY
             }],
           }).subscribe(({ data }) => {
-            console.log('Horse Data', data);
             form.reset();
             this.router.navigate(['/horses']);
           },(error) => {

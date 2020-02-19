@@ -31,8 +31,6 @@ import { Subscription } from 'rxjs';
               this.balanceTotal = this.accounts.map(account => Number(account.balance)).reduce((prev, next) => prev + next);
               this.balance.emit(this.balanceTotal);
             }
-            console.log('Accounts', this.accounts)
-            console.log('balanceTotal', this.balanceTotal)
           })
     }
 

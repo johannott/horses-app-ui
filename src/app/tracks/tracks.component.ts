@@ -113,7 +113,6 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
             query: TRACKS_QUERY
           }],
         }).subscribe(({ data }) => {
-          console.log('Track Data', data);
           form.reset();
           this.closeTrackAdd.nativeElement.click();
         },(error) => {
@@ -154,7 +153,6 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
           query: TRACKS_QUERY
         }],
       }).subscribe(({ data }) => {
-        console.log('Update Track Data', data);
         this.updateTrackForm.reset();
         this.error = null;
         this.closeTrackUpdate.nativeElement.click();

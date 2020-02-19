@@ -88,7 +88,6 @@ import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql
             query: NOTES_QUERY
           }],
         }).subscribe(({ data }) => {
-          console.log('Note Data', data);
           form.reset();
           this.closeNoteAdd.nativeElement.click();
         },(error) => {
@@ -117,7 +116,6 @@ import { ADD_NOTE_MUTATION, UPDATE_NOTE_MUTATION, NOTES_QUERY } from '../graphql
           query: NOTES_QUERY
         }],
       }).subscribe(({ data }) => {
-        console.log('Note Data', data);
         this.updateNoteForm.reset();
         this.closeNoteUpdate.nativeElement.click();
       },(error) => {

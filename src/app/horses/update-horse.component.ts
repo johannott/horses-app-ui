@@ -21,7 +21,6 @@ export class UpdateHorseComponent {
       const horses = JSON.parse(localStorage.getItem('horses'))
 
       this.horse = horses.find(o => o.horse_name === this.current_name)
-      console.log('horse', this.horse)
     }
 
 
@@ -84,7 +83,6 @@ export class UpdateHorseComponent {
               variables: { horse_name: this.current_name },
             }]
           }).subscribe(({ data }) => {
-            console.log('Horse Update Data', data)
             form.reset()
             this.router.navigate(['/horses'])
           },(error) => {

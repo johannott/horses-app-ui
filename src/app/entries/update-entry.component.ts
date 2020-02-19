@@ -23,15 +23,11 @@ export class UpdateEntryComponent {
    
 
     constructor(private apollo: Apollo, private router: Router, private route: ActivatedRoute) {
-      console.log(JSON.parse(localStorage.getItem('entries')));
-      console.log(this.route.snapshot.params['horse_name'])
-
       this.race_name = this.route.snapshot.params['race_name']
       const horse_name = this.route.snapshot.params['horse_name']
       const entries = JSON.parse(localStorage.getItem('entries'))
 
       this.entry = entries.find(o => o.horse_name === horse_name);
-      console.log('entry', this.entry)
     }
 
 
@@ -66,7 +62,6 @@ export class UpdateEntryComponent {
               variables: { race_name },
             }]
           }).subscribe(({ data }) => {
-            console.log('Entry Data', data);
             form.reset();
             this.router.navigate(['/races/'+data.updateEntry.race_name]);
           },(error) => {

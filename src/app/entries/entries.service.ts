@@ -97,9 +97,6 @@ export class EntriesService {
                 ...itm
             }));
             this.MERGED_ENTRIES.sort((a, b) => (a.horse_name > b.horse_name) ? 1 : -1)
-            console.log(this.ENTRIES)
-            console.log(this.HORSE_ENTRIES)
-            console.log(this.MERGED_ENTRIES)
             this._search$.pipe(
               tap(() => this._loading$.next(true)),
               debounceTime(200),

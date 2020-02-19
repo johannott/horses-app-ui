@@ -26,7 +26,6 @@ import { Race } from '../race'
           this.tracks_query.valueChanges.subscribe(result => {
             this.races = result.data && result.data.racesByCountry;
             this.races = this.races.filter(o => o.grade === 'Grade 1');
-            console.log('Races: Grade 1s', this.races)
           })
     }
   

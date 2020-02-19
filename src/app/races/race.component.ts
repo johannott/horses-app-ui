@@ -24,7 +24,6 @@ import { DecimalPipe } from '@angular/common'
     }
 
     ngOnInit() {
-      console.log(this.route.snapshot.params['race_name'])
       this.race_name = this.route.snapshot.params['race_name']
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.race_query = this.apollo.watchQuery({
@@ -34,7 +33,6 @@ import { DecimalPipe } from '@angular/common'
   
       this.race_query.valueChanges.subscribe(result => {
         this.race = result.data && result.data.raceByName;
-        console.log(this.race)
       })
     }
   }

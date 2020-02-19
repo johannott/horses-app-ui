@@ -60,7 +60,6 @@ export class AddEntryComponent {
               variables: { race_name },
             }]
           }).subscribe(({ data }) => {
-            console.log('Entry Data', data);
             form.reset();
             this.router.navigate(['/races/'+data.addEntry.race_name]);
           },(error) => {

@@ -33,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
     this.query.valueChanges.subscribe(result => {
       this.races = result.data && result.data.races;
-      console.log(this.races)
     })
   }
 

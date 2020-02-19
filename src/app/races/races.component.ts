@@ -119,7 +119,6 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
             query: RACES_QUERY
           }],
         }).subscribe(({ data }) => {
-          console.log('Race Data', data);
           form.reset();
           this.error = null;
           this.closeRaceAdd.nativeElement.click();
@@ -164,7 +163,6 @@ import { ADD_RACE_MUTATION, UPDATE_RACE_MUTATION, RACES_QUERY } from '../graphql
         query: RACES_QUERY
       }],
     }).subscribe(({ data }) => {
-      console.log('Update Race Data', data);
       this.updateRaceForm.reset();
       this.closeRaceUpdate.nativeElement.click();
     },(error) => {

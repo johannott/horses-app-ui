@@ -119,7 +119,6 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
             query: BETS_QUERY
           }],
         }).subscribe(({ data }) => {
-          console.log('Bet Data', data);
           form.reset();
           this.closeBetAdd.nativeElement.click();
         },(error) => {
@@ -163,7 +162,6 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
         query: BETS_QUERY
       }],
     }).subscribe(({ data }) => {
-      console.log('Update Bet Data', data);
       this.updateBetForm.reset();
       this.closeBetUpdate.nativeElement.click();
     },(error) => {

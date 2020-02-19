@@ -25,7 +25,6 @@ import { TRENDS_QUERY } from '../graphql'
       
           this.trend_query.valueChanges.subscribe(result => {
             this.trends = result.data && result.data.trendsByRace;
-            console.log('Trends By Race', this.trends)
           })
     }
   
