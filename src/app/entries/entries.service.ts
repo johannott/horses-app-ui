@@ -49,6 +49,7 @@ function matches(entry: MergedEntry, term: string, pipe: PipeTransform) {
     || (entry.tipped && entry.tipped.toLowerCase().includes(term.toLowerCase()))
     || (entry.bets && entry.bets.toLowerCase().includes(term.toLowerCase()))
     || (entry.age && pipe.transform(entry.age).includes(term))
+    || (entry.bred && entry.bred.toLowerCase().includes(term.toLowerCase()))
     || (entry.sire && entry.sire.toLowerCase().includes(term.toLowerCase()))
     || (entry.win_percentage && entry.win_percentage.toLowerCase().includes(term.toLowerCase()))
     || (entry.place_percentage && entry.place_percentage.toLowerCase().includes(term.toLowerCase()))

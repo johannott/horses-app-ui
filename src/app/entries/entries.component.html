@@ -59,7 +59,7 @@
               <td><ngb-highlight [result]="entry.trends" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.tipped" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-md-table-cell"><ngb-highlight [result]="entry.bets" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><button class="btn btn-link entries-link" routerLink="/updateentry/{{race_name}}/{{entry.horse_name}}"><i class="fa fa-edit"></i></button></td>
+              <td class="entries-link-cell"><button class="btn btn-link entries-link" routerLink="/updateentry/{{race_name}}/{{entry.horse_name}}"><i class="fa fa-edit"></i></button></td>
             </tr>
           </tbody>
         </table>
