@@ -34,6 +34,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.query.valueChanges.subscribe(result => {
       this.races = result.data && result.data.races;
     })
+
+  //   $('ul.navbar-nav > li').on('click', function(){
+  //     ($('.navbar-collapse') as any).collapse('toggle');
+  // });
   }
 
   onLogOut() {
