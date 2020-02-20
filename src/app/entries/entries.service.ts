@@ -9,7 +9,7 @@ import { Apollo, QueryRef } from 'apollo-angular';
 import { ENTRIES_BY_RACE_QUERY, HORSE_BY_NAME_QUERY } from '../graphql'
 
 
-import { Entry } from './entry';
+import { Entry, MergedEntry } from './entry';
 import { SortDirection } from '../utils/sortable.directive';
 
 interface SearchResult {
@@ -29,7 +29,7 @@ function compare(v1, v2) {
   return v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 }
 
-function sort(entries: Entry[], column: string, direction: string): Entry[] {
+function sort(entries: MergedEntry[], column: string, direction: string): MergedEntry[] {
   if (direction === '') {
     return entries;
   } else {
@@ -40,14 +40,20 @@ function sort(entries: Entry[], column: string, direction: string): Entry[] {
   }
 }
 
-function matches(entry: Entry, term: string, pipe: PipeTransform) {
+function matches(entry: MergedEntry, term: string, pipe: PipeTransform) {
   return (entry.horse_name && entry.horse_name.toLowerCase().includes(term.toLowerCase()))
     || (entry.number && entry.number.toLowerCase().includes(term.toLowerCase()))
     || (entry.weight && entry.weight.toLowerCase().includes(term.toLowerCase()))
     || (entry.jockey && entry.jockey.toLowerCase().includes(term.toLowerCase()))
     || (entry.trends && entry.trends.toLowerCase().includes(term.toLowerCase()))
     || (entry.tipped && entry.tipped.toLowerCase().includes(term.toLowerCase()))
-    || (entry.bets && entry.bets.toLowerCase().includes(term.toLowerCase()));
+    || (entry.bets && entry.bets.toLowerCase().includes(term.toLowerCase()))
+    || (entry.age && pipe.transform(entry.age).includes(term))
+    || (entry.sire && entry.sire.toLowerCase().includes(term.toLowerCase()))
+    || (entry.win_percentage && entry.win_percentage.toLowerCase().includes(term.toLowerCase()))
+    || (entry.place_percentage && entry.place_percentage.toLowerCase().includes(term.toLowerCase()))
+    || (entry.ground && entry.ground.toLowerCase().includes(term.toLowerCase()))
+    || (entry.comments && entry.comments.toLowerCase().includes(term.toLowerCase()));
 }
 
 @Injectable({providedIn: 'root'})
@@ -60,7 +66,7 @@ export class EntriesService {
   private horse_query: QueryRef<any>;
   private ENTRIES: Entry[] = [];
   private HORSE_ENTRIES: any[] = [];
-  private MERGED_ENTRIES: any[] = [];
+  private MERGED_ENTRIES: MergedEntry[] = [];
   private race_name 
 
   private _state: State = {

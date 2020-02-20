@@ -64,7 +64,7 @@ export class HorseService {
 
   private _state: State = {
     page: 1,
-    pageSize: 20,
+    pageSize: 40,
     searchTerm: '',
     sortColumn: '',
     sortDirection: ''

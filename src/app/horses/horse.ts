@@ -6,6 +6,7 @@ export interface Horse {
     owner: string,
     age: any,
     gender: string,
+    bred: string,
     sire: string,
     form: string,
     races: string,
