@@ -18,7 +18,7 @@
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
                       <img class="card-img-top" src="../../assets/images/{{race_.race_name}}.jpg" onerror='this.style.display = "none"'>
-                      <h5 class="card-title race-card-title"><ngb-highlight [result]="race_.race_fullname" [term]="service.searchTerm"></ngb-highlight></h5>
+                      <h5 class="card-title race-card-title"><ngb-highlight [result]="race_.race_fullname | shorten" [term]="service.searchTerm"></ngb-highlight></h5>
                       <p class="card-text">A <ngb-highlight [result]="race_.type" [term]="service.searchTerm"></ngb-highlight> over <ngb-highlight [result]="race_.distance" [term]="service.searchTerm"></ngb-highlight> 
                         on the <ngb-highlight [result]="race_.course" [term]="service.searchTerm"></ngb-highlight> course for <ngb-highlight [result]="race_.age_limit" [term]="service.searchTerm"></ngb-highlight>.</p>
                       <a routerLink="/races/{{race_.race_name}}" class="btn btn-primary">Go to race</a>

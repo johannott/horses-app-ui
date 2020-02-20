@@ -49,6 +49,7 @@ import { EntriesService } from './entries/entries.service';
 import { NotesService } from './notes/notes.service';
 import { WinnersService } from './winners/winners.service';
 
+import { ShortenPipe } from './pipes/shorten-pipe'
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { WinnersService } from './winners/winners.service';
     HomeComponent,
     AuthComponent,
     FooterComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,
