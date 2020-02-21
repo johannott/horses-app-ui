@@ -4,7 +4,7 @@
         <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
         <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
     </div>
-    <div class="col-sm"><button class="btn btn-primary float-right" data-toggle="modal" data-target="#addBetModalCenter">Add Bet</button></div>
+    <div class="col-sm"><button class="btn btn-info float-right" data-toggle="modal" data-target="#addBetModalCenter">Add Bet</button></div>
     </div>
     <div *ngIf="isLoading" style="text-align: center;">
       <app-loading-spinner></app-loading-spinner>
@@ -36,7 +36,7 @@
                 <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.amount | currency:'EUR':true" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.to_return | currency:'EUR':true" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><button class="btn btn-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter"><i class="fa fa-edit"></i></button></td>
+                <td><button class="btn btn-link update-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter"><i class="fa fa-edit"></i></button></td>
               </tr>
             </tbody>
           </table>
@@ -162,7 +162,7 @@
                 </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" type="submit" [disabled]="!betForm.valid">Add Bet</button>
+                  <button type="button" class="btn btn-info" type="submit" [disabled]="!betForm.valid">Add Bet</button>
                 </div>
           </form>
         </div>
@@ -276,7 +276,7 @@
               </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateBetForm.valid">Update Bet</button>
+                <button type="button" class="btn btn-info" type="submit" [disabled]="!updateBetForm.valid">Update Bet</button>
               </div>
         </form>
       </div>

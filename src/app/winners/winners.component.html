@@ -40,7 +40,7 @@
               <td><ngb-highlight [result]="winner.time" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="winner.going" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-lg-table-cell"><ngb-highlight [result]="winner.price" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><a *ngIf="winner.video_url" class="btn btn-link winner-link" href="{{winner.video_url}}" target="_blank"><i class="fa fa-youtube"></i></a></td>
+              <td><a *ngIf="winner.video_url" class="btn btn-link update-link winner-link" href="{{winner.video_url}}" target="_blank"><i class="fa fa-youtube"></i></a></td>
             </tr>
           </tbody>
         </table>

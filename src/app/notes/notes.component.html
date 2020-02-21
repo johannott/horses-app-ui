@@ -4,7 +4,7 @@
       <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
       <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
   </div>
-  <div class="col-sm"><button class="btn btn-primary float-right" data-toggle="modal" data-target="#addNoteModalCenter">Add Note</button></div>
+  <div class="col-sm"><button class="btn btn-info float-right" data-toggle="modal" data-target="#addNoteModalCenter">Add Note</button></div>
   </div>
   <div *ngIf="isLoading" style="text-align: center;">
     <app-loading-spinner></app-loading-spinner>
@@ -21,7 +21,7 @@
         <tr *ngFor="let note of notes$ | async">
           <td><ngb-highlight [result]="note.note_" [term]="service.searchTerm"></ngb-highlight></td>
           <td><ngb-highlight [result]="note.type" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><button class="btn btn-link update-note" (click)="onClickUpdate(note.id)" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">
+          <td><button class="btn btn-link update-link update-note" (click)="onClickUpdate(note.id)" data-toggle="modal" id="{{note.id}}" data-target="#updateNoteModalCenter">
             <i class="fa fa-edit"></i>
           </button></td>
         </tr>
@@ -78,7 +78,7 @@
              </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" type="submit" [disabled]="!noteForm.valid">Add Note</button>
+                <button type="button" class="btn btn-info" type="submit" [disabled]="!noteForm.valid">Add Note</button>
               </div>
         </form>
       </div>
@@ -121,7 +121,7 @@
              </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateNoteForm.valid">Update Note</button>
+                <button type="button" class="btn btn-info" type="submit" [disabled]="!updateNoteForm.valid">Update Note</button>
               </div>
         </form>
       </div>

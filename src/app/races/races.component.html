@@ -6,8 +6,8 @@
         <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
     </div>
     <div class="form-group col-sm">
-      <button class="btn btn-primary float-right" data-toggle="modal" data-target="#addRaceModalCenter">Add Race</button>
-      <button class="btn btn-primary float-right grade1s" routerLink="/irishg1s">Irish G1s</button>
+      <button class="btn btn-info float-right" data-toggle="modal" data-target="#addRaceModalCenter">Add Race</button>
+      <button class="btn btn-info float-right grade1s" routerLink="/irishg1s">Irish G1s</button>
     </div>
     <div *ngIf="isLoading" style="text-align: center;">
         <app-loading-spinner></app-loading-spinner>
@@ -21,8 +21,8 @@
                       <h5 class="card-title race-card-title"><ngb-highlight [result]="race_.race_fullname | shorten" [term]="service.searchTerm"></ngb-highlight></h5>
                       <p class="card-text">A <ngb-highlight [result]="race_.type" [term]="service.searchTerm"></ngb-highlight> over <ngb-highlight [result]="race_.distance" [term]="service.searchTerm"></ngb-highlight> 
                         on the <ngb-highlight [result]="race_.course" [term]="service.searchTerm"></ngb-highlight> course for <ngb-highlight [result]="race_.age_limit" [term]="service.searchTerm"></ngb-highlight>.</p>
-                      <a routerLink="/races/{{race_.race_name}}" class="btn btn-primary">Go to race</a>
-                      <button class="btn btn-link float-right" (click)="onClickUpdate(race_.id)" data-toggle="modal" id="{{race_.id}}" data-target="#updateRaceModalCenter"><i class="fa fa-edit"></i></button>
+                      <a routerLink="/races/{{race_.race_name}}" class="btn btn-info">Go to race</a>
+                      <button class="btn btn-link update-link float-right" (click)="onClickUpdate(race_.id)" data-toggle="modal" id="{{race_.id}}" data-target="#updateRaceModalCenter"><i class="fa fa-edit"></i></button>
                     </div>
                 </div>
             </div>
@@ -164,7 +164,7 @@
                 </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" type="submit" [disabled]="!raceForm.valid">Add Race</button>
+                  <button type="button" class="btn btn-info" type="submit" [disabled]="!raceForm.valid">Add Race</button>
                 </div>
           </form>
         </div>
@@ -302,7 +302,7 @@
                 </div>
                <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateRaceForm.valid">Update Race</button>
+                  <button type="button" class="btn btn-info" type="submit" [disabled]="!updateRaceForm.valid">Update Race</button>
                 </div>
           </form>
         </div>

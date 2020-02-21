@@ -5,7 +5,7 @@
       <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
       <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
   </div>
-  <div class="col-sm"><button class="btn btn-primary float-right" routerLink="/addhorse">Add Horse</button></div>
+  <div class="col-sm"><button class="btn btn-info float-right" routerLink="/addhorse">Add Horse</button></div>
   </div>
   <div *ngIf="isLoading" style="text-align: center;">
     <app-loading-spinner></app-loading-spinner>
@@ -38,7 +38,7 @@
           <tbody>
             <tr *ngFor="let horse of horses$ | async">
               <td>
-                <a class="btn btn-link horse-name" href="{{horse.link}}" target="_blank">
+                <a class="btn btn-link update-link horse-name" href="{{horse.link}}" target="_blank">
                   <ngb-highlight [result]="horse.horse_name" [term]="service.searchTerm"></ngb-highlight>
                 </a>
               </td>
@@ -59,7 +59,7 @@
               <td><ngb-highlight [result]="horse.ground" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-lg-table-cell"><ngb-highlight [result]="horse.track" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="horse.comments" [term]="service.searchTerm"></ngb-highlight></td>
-              <td><button class="btn btn-link" routerLink="/updatehorse/{{horse.horse_name}}"><i class="fa fa-edit"></i></button></td>
+              <td><button class="btn btn-link update-link update-link" routerLink="/updatehorse/{{horse.horse_name}}"><i class="fa fa-edit"></i></button></td>
             </tr>
           </tbody>
         </table>

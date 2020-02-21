@@ -4,7 +4,7 @@
       <input class="form-control" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
       <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
   </div>
-  <div class="col-sm"><button class="btn btn-primary float-right" data-toggle="modal" data-target="#addTrackModalCenter">Add Track</button></div>
+  <div class="col-sm"><button class="btn btn-info float-right" data-toggle="modal" data-target="#addTrackModalCenter">Add Track</button></div>
   </div>
   <div *ngIf="isLoading" style="text-align: center;">
     <app-loading-spinner></app-loading-spinner>
@@ -25,7 +25,7 @@
       <tbody>
         <tr *ngFor="let track of tracks$ | async">
           <td>
-            <a class="btn btn-link horse-name" href="{{track.url}}" target="_blank">
+            <a class="btn btn-link update-link horse-name" href="{{track.url}}" target="_blank">
               <ngb-highlight [result]="track.track_name" [term]="service.searchTerm"></ngb-highlight>
             </a>
           </td>
@@ -35,7 +35,7 @@
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.length" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.surface" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.country" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><button class="btn btn-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
+          <td><button class="btn btn-link update-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
             <i class="fa fa-edit"></i>
           </button></td>
         </tr>
@@ -152,7 +152,7 @@
             </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" type="submit" [disabled]="!trackForm.valid">Add Track</button>
+                <button type="button" class="btn btn-info" type="submit" [disabled]="!trackForm.valid">Add Track</button>
               </div>
         </form>
       </div>
@@ -251,7 +251,7 @@
         </div>
              <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" type="submit" [disabled]="!updateTrackForm.valid">Update Track</button>
+                <button type="button" class="btn btn-info" type="submit" [disabled]="!updateTrackForm.valid">Update Track</button>
               </div>
         </form>
       </div>
