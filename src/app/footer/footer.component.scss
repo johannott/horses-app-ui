@@ -1,3 +1,10 @@
 span.text-muted {
     margin-right: 20px;
 }
+
+.footer-link {
+    color: #17a2b8;
+    &:hover {
+      color: #117a8b;
+    }
+  }

@@ -344,7 +344,8 @@ export const RACES_BY_COUNTRY_QUERY = gql`
 export const TRENDS_QUERY = gql`
   query TrendsByRace($race_name: String!){
     trendsByRace(race_name: $race_name){  
-        trend_
+        trend_,
+        sentiment
     }
   }
 `

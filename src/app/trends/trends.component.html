@@ -6,7 +6,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let trend of trends">
-        <td>{{trend.trend_}}</td>
+        <td>{{trend.trend_}}<i class="sentiment fa" [ngClass]="{'fa-plus': trend.sentiment === 'positive', 'fa-minus': trend.sentiment === 'negative'}"></i></td>
       </tr>
     </tbody>
   </table>

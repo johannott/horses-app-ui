@@ -1,0 +1,11 @@
+.sentiment {
+    padding-left: 5px;
+
+    &.fa-plus{
+        color: #28a745;
+    }
+
+    &.fa-minus{
+        color: #dc3545;
+    }
+}
