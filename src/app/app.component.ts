@@ -34,10 +34,13 @@ export class AppComponent implements OnInit, OnDestroy {
     this.query.valueChanges.subscribe(result => {
       this.races = result.data && result.data.races;
     })
+  }
 
-  //   $('ul.navbar-nav > li').on('click', function(){
-  //     ($('.navbar-collapse') as any).collapse('toggle');
-  // });
+  closeMenu() {
+    var isMobile = /iPhone|iPad|iPod|BlackBerry|Opera Mini|IEMobile|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+      document.getElementById('navButton').click();
+    }
   }
 
   onLogOut() {

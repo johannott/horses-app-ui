@@ -19,13 +19,13 @@
           <th class="d-none d-md-table-cell" scope="col" sortable="length" (sort)="onSort($event)">Length</th>
           <th class="d-none d-md-table-cell" scope="col" sortable="surface" (sort)="onSort($event)">Surface</th>
           <th class="d-none d-md-table-cell" scope="col" sortable="country" (sort)="onSort($event)">Country</th>
-          <th scope="col" class="update-heading">Update</th>
+          <th scope="col" class="update-heading">Edit</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let track of tracks$ | async">
           <td>
-            <a class="btn btn-link update-link horse-name" href="{{track.url}}" target="_blank">
+            <a class="btn btn-link update-link track-name" href="{{track.url}}" target="_blank">
               <ngb-highlight [result]="track.track_name" [term]="service.searchTerm"></ngb-highlight>
             </a>
           </td>
@@ -35,9 +35,11 @@
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.length" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.surface" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.country" [term]="service.searchTerm"></ngb-highlight></td>
-          <td><button class="btn btn-link update-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
-            <i class="fa fa-edit"></i>
-          </button></td>
+          <td class="update-link-cell">
+            <button class="btn btn-link update-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
+              <i class="fa fa-edit"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

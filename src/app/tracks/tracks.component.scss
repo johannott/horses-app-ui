@@ -1,3 +1,17 @@
 .tracks-search {
     margin-top: 20px;
 }
+
+@media screen and (max-width: 1100px) {
+    .track-name {
+        padding: 0;
+    }               
+
+    .update-track {
+        padding: 0;
+    }
+}
+
+.update-link-cell {
+    text-align: center;
+}

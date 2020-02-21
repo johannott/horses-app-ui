@@ -1,29 +1,29 @@
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark navbar-default navbar-static-top">
   <a class="navbar-brand" href="#">National Hunt Racing</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" id="navButton" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/" *ngIf="isAuthenticated">Home</a>
+        <a class="nav-link" (click) = "closeMenu()" routerLink="/" *ngIf="isAuthenticated">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/horses" *ngIf="isAuthenticated">Horses</a>
+        <a class="nav-link" (click) = "closeMenu()" routerLink="/horses" *ngIf="isAuthenticated">Horses</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/races" *ngIf="isAuthenticated">Races</a>
+        <a class="nav-link" (click) = "closeMenu()" routerLink="/races" *ngIf="isAuthenticated">Races</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/tracks" *ngIf="isAuthenticated">Tracks</a>
+        <a class="nav-link" (click) = "closeMenu()" routerLink="/tracks" *ngIf="isAuthenticated">Tracks</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" *ngIf="isAuthenticated" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Cheltenham Day 1
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngFor="let race_ of races | slice:0:7; let i=index" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
+          <a class="dropdown-item" *ngFor="let race_ of races | slice:0:7; let i=index" routerLink="/races/{{race_.race_name}}" (click) = "closeMenu()">{{race_.race_fullname}}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -31,7 +31,7 @@
           Cheltenham Day 2
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngFor="let race_ of races | slice:7:14; let i=index" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
+          <a class="dropdown-item" *ngFor="let race_ of races | slice:7:14; let i=index" routerLink="/races/{{race_.race_name}}" (click) = "closeMenu()">{{race_.race_fullname}}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -39,7 +39,7 @@
           Cheltenham Day 3
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngFor="let race_ of races | slice:14:21; let i=index" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
+          <a class="dropdown-item" *ngFor="let race_ of races | slice:14:21; let i=index" routerLink="/races/{{race_.race_name}}" (click) = "closeMenu()">{{race_.race_fullname}}</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -47,21 +47,21 @@
           Cheltenham Day 4
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngFor="let race_ of races | slice:21:28; let i=index" routerLink="/races/{{race_.race_name}}">{{race_.race_fullname}}</a>
+          <a class="dropdown-item" *ngFor="let race_ of races | slice:21:28; let i=index" routerLink="/races/{{race_.race_name}}" (click) = "closeMenu()">{{race_.race_fullname}}</a>
         </div>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" *ngIf="isAuthenticated">
-          <button data-toggle="modal" data-target="#infoModalCenter"><i class="fa fa-info"></i></button>
+          <button data-toggle="modal" data-target="#infoModalCenter" (click) = "closeMenu()"><i class="fa fa-info"></i></button>
         </a>
       </li>  
       <li class="nav-item">
-        <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login">Login</a>
+        <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login" (click) = "closeMenu()">Login</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" *ngIf="isAuthenticated" (click)="onLogOut()">Logout</a>
+        <a class="nav-link" *ngIf="isAuthenticated" (click)="onLogOut()" (click) = "closeMenu()">Logout</a>
       </li>
     </ul>
   </div>
