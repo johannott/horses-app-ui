@@ -39,7 +39,7 @@
             <tr *ngFor="let horse of horses$ | async">
               <td>
                 <a class="btn btn-link update-link horse-name" href="{{horse.link}}" target="_blank">
-                  <ngb-highlight [result]="horse.horse_name" [term]="service.searchTerm"></ngb-highlight>
+                  <ngb-highlight [result]="horse.horse_name" [term]="service.searchTerm" class="horse-name-field"></ngb-highlight>
                 </a>
               </td>
               <td class="d-none d-lg-table-cell"><ngb-highlight [result]="horse.trainer" [term]="service.searchTerm"></ngb-highlight></td>
