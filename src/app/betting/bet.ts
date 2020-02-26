@@ -3,6 +3,7 @@ export interface Bet {
     race_name: string,
     horse_name: [string], 
     type: string,
+    account_name: string,
     places: string,
     price: string,
     amount: string,

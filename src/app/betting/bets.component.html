@@ -14,12 +14,13 @@
             <thead class="thead-dark">
               <tr>
                 <th scope="col" sortable="race_name" (sort)="onSort($event)">Race(s)</th>
-                <th class="d-none d-md-table-cell" scope="col" sortable="date" (sort)="onSort($event)">Date</th>
-                <th class="d-none d-md-table-cell" scope="col" sortable="time" (sort)="onSort($event)">Time</th>
-                <th scope="col" sortable="horse_name" (sort)="onSort($event)">Horse(s)</th>
-                <th scope="col" sortable="type" (sort)="onSort($event)">Type</th>
-                <th class="d-none d-md-table-cell" scope="col" sortable="places" (sort)="onSort($event)">Places</th>
-                <th scope="col" sortable="price" (sort)="onSort($event)">Price</th>
+                <th class="d-none d-lg-table-cell" scope="col" sortable="date" (sort)="onSort($event)">Date</th>
+                <th class="d-none d-lg-table-cell" scope="col" sortable="time" (sort)="onSort($event)">Time</th>
+                <th class="d-none d-md-table-cell" scope="col" sortable="horse_name" (sort)="onSort($event)">Horse(s)</th>
+                <th class="d-none d-md-table-cell" scope="col" sortable="type" (sort)="onSort($event)">Type</th>
+                <th scope="col" sortable="account_name" (sort)="onSort($event)">A/C</th>
+                <th class="d-none d-lg-table-cell" scope="col" sortable="places" (sort)="onSort($event)">Places</th>
+                <th class="d-none d-md-table-cell" scope="col" sortable="price" (sort)="onSort($event)">Price</th>
                 <th scope="col" sortable="amount" (sort)="onSort($event)">Amount</th>
                 <th scope="col" sortable="to_return" (sort)="onSort($event)">Win</th>
                 <th scope="col" class="update-heading">Update</th>
@@ -28,12 +29,13 @@
             <tbody>
               <tr *ngFor="let bet of bets$ | async">
                 <td><ngb-highlight [result]="bet.race_name" [term]="service.searchTerm"></ngb-highlight></td>
-                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.date | date" [term]="service.searchTerm"></ngb-highlight></td>
-                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.time" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]="bet.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
-                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
-                <td><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-lg-table-cell"><ngb-highlight [result]="bet.date | date" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-lg-table-cell"><ngb-highlight [result]="bet.time" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.horse_name" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.type" [term]="service.searchTerm"></ngb-highlight></td>
+                <td><ngb-highlight [result]="bet.account_name" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-lg-table-cell"><ngb-highlight [result]="bet.places" [term]="service.searchTerm"></ngb-highlight></td>
+                <td class="d-none d-md-table-cell"><ngb-highlight [result]="bet.price" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.amount | currency:'EUR':true" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><ngb-highlight [result]="bet.to_return | currency:'EUR':true" [term]="service.searchTerm"></ngb-highlight></td>
                 <td><button class="btn btn-link update-link" (click)="onClickUpdate(bet.id)" data-toggle="modal" id="{{bet.id}}" data-target="#updateBetModalCenter"><i class="fa fa-edit"></i></button></td>
@@ -120,6 +122,16 @@
                     name="type"
                     required>
                 </div>
+                <div class="form-group">
+                  <label for="account_name">Account</label>
+                  <input 
+                      type="text" 
+                      id="account_name" 
+                      class="form-control"
+                      ngModel
+                      name="account_name"
+                      required>
+                  </div>
                 <div class="form-group">
                   <label for="places">Places</label>
                   <input 
@@ -225,14 +237,24 @@
                       required>
               </div>
               <div class="form-group">
-              <label for="type">Type</label>
-              <input 
-                  type="text" 
-                  id="type" 
-                  class="form-control"
-                  [formControlName]="'type'"
-                  name="type"
-                  required>
+                <label for="type">Type</label>
+                <input 
+                    type="text" 
+                    id="type" 
+                    class="form-control"
+                    [formControlName]="'type'"
+                    name="type"
+                    required>
+              </div>
+              <div class="form-group">
+                <label for="account_name">Account</label>
+                <input 
+                    type="text" 
+                    id="account_name" 
+                    class="form-control"
+                    [formControlName]="'account_name'"
+                    name="account_name"
+                    required>
               </div>
               <div class="form-group">
                 <label for="places">Places</label>

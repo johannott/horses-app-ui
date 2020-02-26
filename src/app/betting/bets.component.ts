@@ -52,6 +52,7 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
         'time': new FormControl("", Validators.required),
         'horse_name': new FormControl("", Validators.required),
         'type': new FormControl("", Validators.required),
+        'account_name': new FormControl("", Validators.required),
         'places': new FormControl("", Validators.required),
         'price': new FormControl("", Validators.required),
         'amount': new FormControl("", Validators.required),
@@ -68,6 +69,7 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
         'time': this.bet.time,
         'horse_name': this.bet.horse_name.reduce((x,y) => x + ',' + y),
         'type': this.bet.type,
+        'account_name': this.bet.account_name,
         'places': this.bet.places,
         'price': this.bet.price,
         'amount': this.bet.amount,
@@ -97,6 +99,7 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
       const time = form.value.time.trim();
       const horse_name = form.value.horse_name.trim().split(',');
       const type = form.value.type.trim();
+      const account_name = form.value.account_name.trim();
       const places = form.value.places.trim();
       const price = form.value.price.trim();
       const amount = form.value.amount.trim();
@@ -110,6 +113,7 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
             time,
             horse_name,
             type,
+            account_name,
             places,
             price,
             amount,
@@ -139,6 +143,7 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
   const time = this.updateBetForm.value.time.trim();
   const horse_name = this.updateBetForm.value.horse_name.trim().split(',');
   const type = this.updateBetForm.value.type.trim();
+  const account_name = this.updateBetForm.value.account_name.trim();
   const places = this.updateBetForm.value.places.trim();
   const price = this.updateBetForm.value.price.trim();
   const amount = this.updateBetForm.value.amount.trim();
@@ -152,6 +157,7 @@ import { ADD_BET_MUTATION, UPDATE_BET_MUTATION, BETS_QUERY } from '../graphql'
         date,
         time,
         horse_name,
+        account_name,
         type,
         places,
         price,

@@ -406,6 +406,7 @@ export const BETS_QUERY = gql`
         race_name,
         horse_name, 
         type,
+        account_name
         places,
         price,
         amount,
@@ -421,6 +422,7 @@ mutation AddBetMutation(
     $race_name: String!
     $horse_name: [String!]
     $type: String!
+    $account_name: String!
     $places: String!
     $price: String!
     $amount: String!
@@ -431,6 +433,7 @@ mutation AddBetMutation(
       race_name: $race_name
       horse_name: $horse_name, 
       type: $type
+      account_name: $account_name
       places: $places,
       price: $price,
       amount: $amount,
@@ -449,6 +452,7 @@ mutation UpdateBetMutation(
     $race_name: String!
     $horse_name: [String!]
     $type: String!
+    $account_name: String!
     $places: String!
     $price: String!
     $amount: String!
@@ -460,6 +464,7 @@ mutation UpdateBetMutation(
       race_name: $race_name
       horse_name: $horse_name, 
       type: $type
+      account_name: $account_name
       places: $places,
       price: $price,
       amount: $amount,

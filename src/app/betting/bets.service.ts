@@ -41,6 +41,7 @@ function matches(bet: Bet, term: string, pipe: PipeTransform) {
     || (bet.time && bet.time.toLowerCase().includes(term.toLowerCase()))
     || bet.horse_name.some(horse => horse.toLowerCase().includes(term.toLowerCase()))
     || (bet.type && bet.type.toLowerCase().includes(term.toLowerCase()))
+    || (bet.account_name && bet.account_name.toLowerCase().includes(term.toLowerCase()))
     || (bet.places && bet.places.toLowerCase().includes(term.toLowerCase()))
     || (bet.price && bet.price.toLowerCase().includes(term.toLowerCase()));
 }
