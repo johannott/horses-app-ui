@@ -52,6 +52,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
         'length': new FormControl("", Validators.required),
         'surface': new FormControl("", Validators.required),
         'country': new FormControl("", Validators.required),
+        'current_going': new FormControl("", Validators.required),
         'url': new FormControl("", Validators.required)
       })
     }
@@ -67,6 +68,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
         'length': this.track.length,
         'surface': this.track.surface,
         'country': this.track.country,
+        'current_going': this.track.current_going,
         'url': this.track.url
       })
     }
@@ -95,6 +97,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
       const length = form.value.length.trim();
       const surface = form.value.surface.trim();
       const country = form.value.country.trim();
+      const current_going = form.value.current_going.trim();
       const url = form.value.url.trim();
 
       this.apollo.mutate({
@@ -107,6 +110,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
             length,
             surface,
             country,
+            current_going,
             url
           },
           refetchQueries: [{
@@ -134,6 +138,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
       const length = this.updateTrackForm.value.length.trim();
       const surface = this.updateTrackForm.value.surface.trim();
       const country = this.updateTrackForm.value.country.trim();
+      const current_going = this.updateTrackForm.value.current_going.trim();
       const url = this.updateTrackForm.value.url.trim();
   
     this.apollo.mutate({
@@ -147,6 +152,7 @@ import { ADD_TRACK_MUTATION, UPDATE_TRACK_MUTATION, TRACKS_QUERY } from '../grap
           length,
           surface,
           country,
+          current_going,
           url
         },
         refetchQueries: [{

@@ -7,6 +7,7 @@ export interface Track {
     length: string
     surface: string
     country: string
+    current_going: string
     type: string 
     url: string
   }

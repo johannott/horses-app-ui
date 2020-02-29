@@ -19,6 +19,7 @@
           <th class="d-none d-md-table-cell" scope="col" sortable="length" (sort)="onSort($event)">Length</th>
           <th class="d-none d-md-table-cell" scope="col" sortable="surface" (sort)="onSort($event)">Surface</th>
           <th class="d-none d-md-table-cell" scope="col" sortable="country" (sort)="onSort($event)">Country</th>
+          <th class="d-none d-md-table-cell" scope="col" sortable="country" (sort)="onSort($event)">Going</th>
           <th scope="col" class="update-heading">Edit</th>
         </tr>
       </thead>
@@ -35,6 +36,7 @@
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.length" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.surface" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.country" [term]="service.searchTerm"></ngb-highlight></td>
+          <td class="d-none d-md-table-cell"><ngb-highlight [result]="track.current_going" [term]="service.searchTerm"></ngb-highlight></td>
           <td class="update-link-cell">
             <button class="btn btn-link update-link update-track" (click)="onClickUpdate(track.id)" data-toggle="modal" id="{{track.id}}" data-target="#updateTrackModalCenter">
               <i class="fa fa-edit"></i>
@@ -143,6 +145,16 @@
                   required>
             </div>
             <div class="form-group">
+              <label for="country">Going</label>
+              <input 
+                  type="text" 
+                  id="current_going" 
+                  class="form-control"
+                  ngModel
+                  name="current_going"
+                  required>
+            </div>
+            <div class="form-group">
               <label for="url">URL</label>
               <input 
                   type="text" 
@@ -242,6 +254,15 @@
                [formControlName]="'country'"
                name="country">
          </div>
+         <div class="form-group">
+          <label for="country">Going</label>
+          <input 
+              type="text" 
+              id="current_going" 
+              class="form-control"
+              [formControlName]="'current_going'"
+              name="current_going">
+        </div>
          <div class="form-group">
           <label for="country">URL</label>
           <input 
