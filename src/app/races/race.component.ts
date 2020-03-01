@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 
 import { Apollo, QueryRef } from 'apollo-angular'
 
-import { RACE_BY_NAME_QUERY } from '../graphql'
+import { RACE_BY_NAME_QUERY, TRACK_BY_NAME_QUERY } from '../graphql'
 
 import { EntriesService } from '../entries/entries.service'
 import { WinnersService } from '../winners/winners.service'
@@ -18,7 +18,9 @@ import { DecimalPipe } from '@angular/common'
   export class RaceComponent implements OnInit{
     private race_query: QueryRef<any>
     race: any
+    track: any
     private race_name: string
+    private track_query: QueryRef<any>
 
     constructor(private router: Router, private route: ActivatedRoute, private apollo: Apollo, public entriesService: EntriesService) {
     }
@@ -33,6 +35,14 @@ import { DecimalPipe } from '@angular/common'
   
       this.race_query.valueChanges.subscribe(result => {
         this.race = result.data && result.data.raceByName;
+        this.track_query = this.apollo.watchQuery({
+          query: TRACK_BY_NAME_QUERY,
+          variables: {track_name: this.race.course}
+        });
+    
+        this.track_query.valueChanges.subscribe(result => {
+          this.track = result.data && result.data.trackByName;
+        })
       })
     }
   }
