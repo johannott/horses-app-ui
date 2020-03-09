@@ -502,6 +502,15 @@ export const TRACKS_BY_COUNTRY_QUERY = gql`
   }
 `
 
+export const TRACK_BY_NAME_QUERY = gql`
+  query ($track_name: String!){
+    trackByName(track_name: $track_name) {
+      track_name,
+      current_going
+    }
+  }
+`
+
 export const ADD_TRACK_MUTATION = gql`
 mutation AddTrackMutation(
     $track_name: String!

@@ -7,6 +7,7 @@
                       <img class="card-img-top" src="../../assets/images/{{race.race_name}}.jpg" onerror='this.style.display = "none"'>
                       <h5 class="card-title race-card-title">{{race.race_fullname}}</h5>
                       <p class="card-text">A {{race.type}} over {{race.distance}} on the {{race.course}} course for {{race.age_limit}}.</p>
+                      <p *ngIf="track.current_going">Going: {{track.current_going}}</p>
                     </div>
                 </div>
             </div>
