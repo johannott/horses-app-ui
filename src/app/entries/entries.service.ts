@@ -88,6 +88,9 @@ export class EntriesService {
       this.query.valueChanges.subscribe(result => {
         this.ENTRIES = result.data && result.data.entriesByRace && result.data.entriesByRace;
         localStorage.setItem("entries", JSON.stringify(this.ENTRIES));
+        this.ENTRIES.forEach(entry => {
+          entry.number = parseInt(entry.number)
+        });
 
         let horse_names = this.ENTRIES.map(a => a.horse_name);
         
