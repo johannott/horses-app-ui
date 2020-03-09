@@ -29,15 +29,18 @@
     </table>
 
     <div class="d-flex justify-content-between p-2">
-      <ngb-pagination
+      <div class="md-6-col">
+        <ngb-pagination
         [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
       </ngb-pagination>
-  
-      <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
-        <option [ngValue]="20">20 items per page</option>
-        <option [ngValue]="40">40 items per page</option>
-        <option [ngValue]="60">60 items per page</option>
-      </select>
+      </div>
+      <div class="md-6-col">
+        <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+          <option [ngValue]="20">20 items per page</option>
+          <option [ngValue]="40">40 items per page</option>
+          <option [ngValue]="60">60 items per page</option>
+        </select>
+      </div>
     </div>
 
 </form>
