@@ -42,7 +42,7 @@ function sort(entries: MergedEntry[], column: string, direction: string): Merged
 
 function matches(entry: MergedEntry, term: string, pipe: PipeTransform) {
   return (entry.horse_name && entry.horse_name.toLowerCase().includes(term.toLowerCase()))
-    || (entry.number && entry.number.toLowerCase().includes(term.toLowerCase()))
+    || (entry.number && pipe.transform(entry.number).includes(term))
     || (entry.weight && entry.weight.toLowerCase().includes(term.toLowerCase()))
     || (entry.jockey && entry.jockey.toLowerCase().includes(term.toLowerCase()))
     || (entry.trends && entry.trends.toLowerCase().includes(term.toLowerCase()))
@@ -88,6 +88,9 @@ export class EntriesService {
       this.query.valueChanges.subscribe(result => {
         this.ENTRIES = result.data && result.data.entriesByRace && result.data.entriesByRace;
         localStorage.setItem("entries", JSON.stringify(this.ENTRIES));
+        this.ENTRIES.forEach(entry => {
+          entry.number = parseInt(entry.number)
+        });
 
         let horse_names = this.ENTRIES.map(a => a.horse_name);
         
