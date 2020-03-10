@@ -70,7 +70,7 @@ export class BetsService {
       });
   
       this.query.valueChanges.subscribe(result => {
-        this.bets = result.data && result.data.bets.filter(bet => new Date(bet.date).getTime() > (new Date().getTime() + 86400000))
+        this.bets = result.data && result.data.bets.filter(bet => new Date(bet.date).getTime() > (new Date().getTime() - 86400000))
         this.BETS.next(this.bets)
         this._search$.pipe(
           tap(() => this._loading$.next(true)),
