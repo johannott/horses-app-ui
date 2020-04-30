@@ -41,7 +41,7 @@
     "datatables.net-dt": "^1.10.20",
     "graphql": "^14.5.0",
     "graphql-tag": "^2.10.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
