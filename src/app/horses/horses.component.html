@@ -22,11 +22,6 @@
               <th class="d-none d-lg-table-cell" scope="col" sortable="gender" (sort)="onSort($event)">Gender</th>
               <th class="d-none d-md-table-cell" scope="col" sortable="sire" (sort)="onSort($event)">Sire</th>
               <th class="d-none d-md-table-cell" scope="col" sortable="form" (sort)="onSort($event)">Form</th>
-              <th class="d-none d-lg-table-cell" scope="col" sortable="races" (sort)="onSort($event)">Races</th>
-              <th class="d-none d-lg-table-cell" scope="col" sortable="wins" (sort)="onSort($event)">Wins</th>
-              <th class="d-none d-lg-table-cell" scope="col" sortable="places" (sort)="onSort($event)">Places</th>
-              <th class="d-none d-lg-table-cell" scope="col" sortable="win_percentage" (sort)="onSort($event)">W%</th>
-              <th class="d-none d-lg-table-cell" scope="col" sortable="place_percentage" (sort)="onSort($event)">P%</th>
               <th class="d-none d-md-table-cell" scope="col" sortable="type" (sort)="onSort($event)">Type</th>
               <th class="d-none d-md-table-cell" scope="col" sortable="distance" (sort)="onSort($event)">Distance</th>
               <th scope="col" sortable="ground" (sort)="onSort($event)">Ground</th>
@@ -49,11 +44,6 @@
               <td class="d-none d-lg-table-cell"><ngb-highlight [result]="horse.gender" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-md-table-cell"><ngb-highlight [result]="horse.sire" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-md-table-cell">{{horse.form}}</td>
-              <td class="d-none d-lg-table-cell">{{horse.races}}</td>
-              <td class="d-none d-lg-table-cell">{{horse.wins}}</td>
-              <td class="d-none d-lg-table-cell">{{horse.places}}</td>
-              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="horse.win_percentage" [term]="service.searchTerm"></ngb-highlight></td>
-              <td class="d-none d-lg-table-cell"><ngb-highlight [result]="horse.place_percentage" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-md-table-cell"><ngb-highlight [result]="horse.type" [term]="service.searchTerm"></ngb-highlight></td>
               <td class="d-none d-md-table-cell"><ngb-highlight [result]="horse.distance" [term]="service.searchTerm"></ngb-highlight></td>
               <td><ngb-highlight [result]="horse.ground" [term]="service.searchTerm"></ngb-highlight></td>
