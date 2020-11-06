@@ -38,11 +38,6 @@ export class UpdateHorseComponent {
         const bred = form.value.bred.trim()
         const sire = form.value.sire.trim()
         const form_ = form.value.form.trim()
-        const races = form.value.races.trim()
-        const wins = form.value.wins.trim()
-        const places = form.value.places.trim()
-        const win_percentage = form.value.win_percentage.trim()
-        const place_percentage = form.value.place_percentage.trim()
         const type = form.value.type.trim()
         const distance = form.value.distance.trim()
         const ground = form.value.ground.trim()
@@ -63,11 +58,6 @@ export class UpdateHorseComponent {
                 bred,
                 sire,
                 form: form_,
-                races,
-                wins,
-                places,
-                win_percentage,
-                place_percentage,
                 type,
                 distance,
                 ground,
