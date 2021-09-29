@@ -37,7 +37,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
     "axios": "^0.19.1",
-    "datatables.net": "^1.10.21",
+    "datatables.net": "^1.11.3",
     "datatables.net-dt": "^1.10.21",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.11.0",
